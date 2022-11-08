@@ -9,3 +9,5 @@ switch ($variable) {
         # code...
         break;
 }
+
+// update demo
