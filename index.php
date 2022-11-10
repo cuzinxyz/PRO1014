@@ -10,7 +10,7 @@ switch ($variable) {
         break;
 }
 
-echo "Chào mấy con lợn";
+echo "Chào mấy con lợn @@";
 
 // update demo
 
