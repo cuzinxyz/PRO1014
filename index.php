@@ -14,3 +14,6 @@ echo "Chào mấy con lợn @@";
 
 // update demo
 
+
+require 'views/front/index.html';
+
