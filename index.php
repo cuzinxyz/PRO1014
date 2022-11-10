@@ -1,13 +1,3 @@
 <?php
 
-switch ($variable) {
-    case 'value':
-        # code...
-        break;
-
-    default:
-        # code...
-        break;
-}
-
-// update demo
+require 'views/front/index.html';
