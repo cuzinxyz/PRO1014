@@ -1,19 +1,7 @@
 <?php
 
-switch ($variable) {
-    case 'value':
-        # code...
-        break;
-
-    default:
-        # code...
-        break;
-}
-
-echo "Chào mấy con lợn @@";
-
-// update demo
-
-
-require 'views/front/index.html';
-
+if (isset($_GET['view'])) :
+    require 'views/front/blog-detail.html';
+else :
+    require 'views/front/index.html';
+endif;

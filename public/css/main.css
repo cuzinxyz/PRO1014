@@ -157,9 +157,7 @@ nav .menu a:hover::before, .active::before {
 /* END HEADER - NAV CSS */
 
 /* MAIN - BODY CSS */
-main {
-    min-height: 100vh;
-}
+
 /* BANNER CSS */
 .banner {
     position: relative;
@@ -341,6 +339,47 @@ main {
     object-fit: cover;
 }
 /* END INSTAGRAM CSS */
+
+/* BLOG DETAIL */
+.blog_detail {
+    background-color: #fff;
+}
+.blog_container {
+    padding: 50px;
+}
+.blog_date {
+    font-size: 13px;
+    font-weight: 300;
+    color: #8c8c8c;
+}
+.blog_title {
+    text-align: center;
+    font-size: 30px;
+    padding: 15px 0;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 40px;
+    font-weight: 300;
+    color: #1f1f1f;
+}
+.blog_container img.blog_thumbnail {
+    width: 100%;
+    height: 787px;
+    object-fit: cover;
+}
+.blog_content {
+    max-width: 598px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.blog_content p {
+    margin: 13.6px 0;
+    font-weight: 400;
+    line-height: 28px;
+    font-size: 16px;
+}
+/* END BLOG DETAIL */
 
 /* END MAIN - BODY CSS */
 
