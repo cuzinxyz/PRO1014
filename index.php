@@ -1,13 +1,9 @@
 <?php
 
-switch ($variable) {
-    case 'value':
-        # code...
-        break;
+if (isset($_GET['view'])) :
+    require 'views/front/blog-detail.html';
+else :
+    require 'views/front/index.html';
+endif;
 
-    default:
-        # code...
-        break;
-        case 1:
-            break;
-}
+# test commit
