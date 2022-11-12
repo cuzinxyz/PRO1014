@@ -1,3 +1,4 @@
+/* RESET CSS */
 *,
 *::before,
 *::after {
@@ -34,6 +35,16 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+/* END RESET CSS */
+
+body {
+    font-family: "Roboto",serif;
+    background-color: #080808;
+}
+
+/* MOBILE */
+
+/* END MOBILE */
 
 /* Tablet */
 @media (min-width: 768px) {  }
@@ -42,10 +53,6 @@ h6 {
 /* PC & Laptop */
 @media (min-width: 1024px) {
 /* GENERAL CSS */
-body {
-    font-family: "Roboto",serif;
-    background-color: #080808;
-}
 .container {
     width: 1310px;
     margin: auto;
@@ -57,6 +64,8 @@ body {
 a {
     text-decoration: none;
 }
+/* END GENERAL CSS */
+
 .overlay_background {
     position: absolute;
     top: 0;
@@ -151,7 +160,6 @@ nav .menu a:hover::before, .active::before {
 /* END HEADER - NAV CSS */
 
 /* MAIN - BODY CSS */
-
 /* BANNER CSS */
 .banner {
     position: relative;
@@ -374,7 +382,6 @@ nav .menu a:hover::before, .active::before {
     font-size: 16px;
 }
 /* END BLOG DETAIL */
-
 /* END MAIN - BODY CSS */
 
 /* FOOTER CSS */
@@ -404,3 +411,4 @@ footer > .container img {
 /* END FOOTER CSS */
 /* END PC & Laptop */
 }
+
