@@ -1,5 +1,7 @@
 <?php
 
-require 'views/front/index.html';
-
-echo "2 con lợn";
+if (isset($_GET['view'])) :
+    require 'views/front/blog-detail.html';
+else :
+    require 'views/front/index.html';
+endif;
