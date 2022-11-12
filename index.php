@@ -8,4 +8,6 @@ switch ($variable) {
     default:
         # code...
         break;
+        case 1:
+            break;
 }
