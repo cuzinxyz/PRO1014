@@ -35,6 +35,12 @@ h6 {
   overflow-wrap: break-word;
 }
 
+/* Tablet */
+@media (min-width: 768px) {  }
+/* END Tablet */
+
+/* PC & Laptop */
+@media (min-width: 1024px) {
 /* GENERAL CSS */
 body {
     font-family: "Roboto",serif;
@@ -396,3 +402,5 @@ footer > .container img {
 .footer_socials {margin: 30px 0;}
 .footer_socials a {color: #fff;font-size: 23px;margin: 0 5px;margin-bottom: 10px !important;}
 /* END FOOTER CSS */
+/* END PC & Laptop */
+}
