@@ -15,7 +15,7 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    
+
 </head>
 
 <body>
@@ -40,12 +40,16 @@
             <div class="banner">
                 <div class="overlay_background"></div>
                 <div class="container">
-                    <h2 class="banner_title">More than just a haircut.</h2>
+                    <!-- <h2 class="banner_title">More than just a haircut.</h2>
                     <span class="banner_desc">Come in, relax and walk out feeling like a new man.</span>
                     <div class="banner_buttons">
                         <a href="#" class="button">know more</a>
                         <a href="#" class="button">book now</a>
-                    </div>
+                    </div> -->
+                    <form action="views/front/booking.php" method="GET">
+                        <input type="tel" name="phone_number" id="">
+                        <input type="submit" value="Send">
+                    </form>
                 </div>
             </div>
             <div class="list-services">
@@ -54,7 +58,8 @@
                         <p class="service_detail-title">SERVICES</p>
                         <p class="service_detail-name">Upgrade your style.</p>
                         <p class="service_detail-desc">
-                            Look and feel better from head to toe with our range of services. From haircuts to massages and
+                            Look and feel better from head to toe with our range of services. From haircuts to massages
+                            and
                             overall grooming, treat yourself to a day at Bruno’s Barbers.
                         </p>
                         <a href="#" class="service_detail-btn">Book Now</a>
@@ -70,7 +75,8 @@
                             alt="">
                         <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
                         <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker turned
+                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
+                            turned
                             barber with an upgrade.</p>
                         <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
                     </div>
@@ -79,7 +85,8 @@
                             alt="">
                         <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
                         <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker turned
+                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
+                            turned
                             barber with an upgrade.</p>
                         <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
                     </div>
@@ -88,7 +95,8 @@
                             alt="">
                         <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
                         <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker turned
+                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
+                            turned
                             barber with an upgrade.</p>
                         <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
                     </div>
@@ -115,7 +123,8 @@
         <footer>
             <div class="container">
                 <img src="public/images/logo.png" alt="" class="footer_logo">
-                <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas Center,
+                <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas
+                    Center,
                     Pasig City, Philippines 1605.</p>
                 <p class="footer_copyright">
                     Copyright 2022 Bruno's Barbers | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
@@ -128,7 +137,7 @@
             </div>
         </footer>
     </div>
-   
+
 </body>
 
 </html>
