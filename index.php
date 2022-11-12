@@ -13,10 +13,5 @@ if (isset($action)) :
             break;
     }
 else :
-<<<<<<< Updated upstream
     require 'views/front/index.html';
 endif;
-=======
-    require "controllers/front/index.php";
-endif;
->>>>>>> Stashed changes
