@@ -24,6 +24,68 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <?php if (isset($_GET['detail'])) : ?>
+                    <!-- Detail Page Begin -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Chi tiết hóa đơn khách hàng: <i class="nav-icon fas fa-user"></i>
+                                <strong><em><?= $detail_receipt[0]['NguoiDat'] ?></em></strong>
+                            </h3>
+                            <div class="card-tools">
+                                <a href="/">
+                                    <button type="button" class="btn btn-block btn-primary btn-xs">Back</button>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Service</th>
+                                        <th>Employee</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($detail_receipt as $detail) : ?>
+                                    <tr>
+                                        <td><?= $detail['id'] ?></td>
+                                        <td><?= $detail['DichVu'] ?></td>
+                                        <td><?= $detail['NguoiLam'] ?></td>
+                                        <td><?= number_format($detail['price'], 0, '', ',') ?></td>
+                                        <td>
+                                            <?php
+                                                    if ($detail['TrangThai'] == 0) {
+                                                        $today = date("Y-m-d H:i:s");
+                                                        if ($detail['time'] < $today) {
+                                                            echo '<span class="badge bg-danger">Cancel</span>';
+                                                        } else {
+                                                            echo '<span class="badge bg-warning">Waiting</span>';
+                                                        }
+                                                    } else if ($detail['TrangThai'] == 1) {
+                                                        echo '<span class="badge bg-primary">In process</span>';
+                                                    } else if ($detail['TrangThai'] == 2) {
+                                                        echo '<span class="badge bg-success">Done</span>';
+                                                    } else {
+                                                        $today = date("Y-m-d H:i:s");
+                                                        if ($detail['time'] < $today) {
+                                                            echo '<span class="badge bg-danger">Cancel</span>';
+                                                        }
+                                                    }
+                                                    ?>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- Detail Page End -->
+                    <?php else : ?>
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách hóa đơn.</h3>
@@ -50,6 +112,7 @@
                                         <th>Tel</th>
                                         <th>Time</th>
                                         <th>Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,25 +123,30 @@
                                         <td><?= $receipt['time'] ?></td>
                                         <td>
                                             <?php
-                                                if ($receipt['TrangThai'] == 0) {
-                                                    // echo '<span class="badge bg-warning">Waiting</span>';
-                                                    $today = date("Y-m-d H:i:s");
-                                                    if ($receipt['time'] < $today) {
-                                                        echo '<span class="badge bg-danger">Cancel</span>';
+                                                    if ($receipt['TrangThai'] == 0) {
+                                                        $today = date("Y-m-d H:i:s");
+                                                        if ($receipt['time'] < $today) {
+                                                            echo '<span class="badge bg-danger">Cancel</span>';
+                                                        } else {
+                                                            echo '<span class="badge bg-warning">Waiting</span>';
+                                                        }
+                                                    } else if ($receipt['TrangThai'] == 1) {
+                                                        echo '<span class="badge bg-primary">In process</span>';
+                                                    } else if ($receipt['TrangThai'] == 2) {
+                                                        echo '<span class="badge bg-success">Done</span>';
                                                     } else {
-                                                        echo '<span class="badge bg-warning">Waiting</span>';
+                                                        $today = date("Y-m-d H:i:s");
+                                                        if ($receipt['time'] < $today) {
+                                                            echo '<span class="badge bg-danger">Cancel</span>';
+                                                        }
                                                     }
-                                                } else if ($receipt['TrangThai'] == 1) {
-                                                    echo '<span class="badge bg-primary">In process</span>';
-                                                } else if ($receipt['TrangThai'] == 2) {
-                                                    echo '<span class="badge bg-success">Done</span>';
-                                                } else {
-                                                    $today = date("Y-m-d H:i:s");
-                                                    if ($receipt['time'] < $today) {
-                                                        echo '<span class="badge bg-danger">Cancel</span>';
-                                                    }
-                                                }
-                                                ?>
+                                                    ?>
+                                        </td>
+                                        <td>
+                                            <a href="?detail=<?= $receipt['MaHoaDon'] ?>">
+                                                <button type="button"
+                                                    class="btn btn-block btn-primary btn-xs">View</button>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -88,6 +156,7 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+                    <?php endif; ?>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

@@ -11,12 +11,15 @@ if (isset($action)) :
             require "controllers/admin/index.php";
             break;
         case 'receipt':
-            require "controllers/admin/receipt.php";
+            require "controllers/admin/index.php";
+            break;
+        case 'employee':
+            require "controllers/admin/employee.php";
             break;
         default:
             require "views/front/404.php";
             break;
     }
 else :
-    require "controllers/front/index.php";
+    require "controllers/admin/index.php";
 endif;
