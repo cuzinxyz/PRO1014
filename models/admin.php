@@ -39,6 +39,7 @@ function one_receipt($id)
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $data;
+
 }
 
 function addEmployee($name, $avatar, $job, $salary)
@@ -48,3 +49,5 @@ function addEmployee($name, $avatar, $job, $salary)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($name, $avatar, $job, $salary));
 }
+
+

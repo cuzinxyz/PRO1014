@@ -1,16 +1,5 @@
 <?php
 
-<<<<<<< Updated upstream
-switch ($variable) {
-    case 'value':
-        # code...
-        break;
-
-    default:
-        # code...
-        break;
-}
-=======
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (isset($action)) :
@@ -34,4 +23,4 @@ if (isset($action)) :
 else :
     require "controllers/front/index.php";
 endif;
->>>>>>> Stashed changes
+
