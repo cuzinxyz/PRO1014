@@ -1,3 +1,7 @@
 <?php
+require "models/admin.php";
 
-require "views/admin/index.html";
+$all_receipts = get_receipt();
+// print_r($all_receipts);
+
+require "views/admin/index.php";

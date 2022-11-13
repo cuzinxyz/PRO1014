@@ -16,9 +16,8 @@ function connect()
 function get_receipt()
 {
     $conn = connect();
-    $sql = "SELECT users.id, phone_number FROM users
-    JOIN orders ON users.id=orders.user_id
-    WHERE users.id=orders.user_id";
+    $sql = "SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
+    JOIN users ON orders.user_id=users.id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
