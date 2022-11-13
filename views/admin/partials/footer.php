@@ -1,11 +1,11 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-  <strong>Nhóm 8 | PRO-1014</strong>
+    <strong>Nhóm 8 | PRO-1014</strong>
 </footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
+    <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
 </div>
@@ -17,7 +17,7 @@
 <script src="public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+$.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

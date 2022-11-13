@@ -619,3 +619,5 @@
 <?php  require_once 'views/admin/partials/footer.php' ?>
 
 
+
+<?php require_once 'views/admin/partials/footer.php' ?>
