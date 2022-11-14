@@ -1,4 +1,2 @@
 <?php
-require "models/front.php";
-
-require "views/front/index.php";
+require "views/admin/index.php";

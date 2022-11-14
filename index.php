@@ -16,6 +16,9 @@ if (isset($action)) :
         case 'employee':
             require "controllers/admin/employee.php";
             break;
+        case 'addemployee':
+            require "controllers/admin/add-employee.php";
+            break;
         default:
             require "views/front/404.php";
             break;

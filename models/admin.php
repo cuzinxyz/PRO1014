@@ -40,4 +40,15 @@ function one_receipt($id)
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $data;
+
 }
+
+function addEmployee($name, $avatar, $job, $salary)
+{
+    $conn = connect();
+    $sql = "INSERT INTO employee(name, image, job, salary, hire_date, status) VALUES (?, ?, ?, ?, NOW(), 1)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($name, $avatar, $job, $salary));
+}
+
+
