@@ -58,6 +58,13 @@ function one_receipt($id)
     return $data;
 }
 
+# Model Service
+function add_service($name_service, $type_service, $price_service, $status_service) {
+    $conn = connect();
+    $sql = "INSERT INTO services(name, type_service, price, status) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt ->execute(array($name_service, $type_service, $price_service, $status_service));
+
 # Employee Model
 function addEmployee($name, $avatar, $job, $salary)
 {

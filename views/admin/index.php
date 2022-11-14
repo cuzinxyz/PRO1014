@@ -160,8 +160,16 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-
-<?php require_once 'views/admin/partials/footer.php' ?>
+      </section>
+      <!-- /.content -->
+    </div>
+    
+<?php
+  $script = "
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+  ";
+?>
+    
+<?php  require_once 'views/admin/partials/footer.php' ?>
