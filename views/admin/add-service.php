@@ -52,13 +52,14 @@
     <!-- /.content -->
 </div>
 
-<?php require_once "views/admin/partials/footer.php" ?>
-
+<?php
+$script = "
 <script>
 $(function() {
     bsCustomFileInput.init();
 });
 </script>
-</body>
+";
+?>
 
-</html>
+<?php require_once "views/admin/partials/footer.php" ?>
