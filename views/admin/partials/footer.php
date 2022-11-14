@@ -1,11 +1,11 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Nhóm 8 | PRO-1014</strong>
+  <strong>Nhóm 8 | PRO-1014</strong>
 </footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+  <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
 </div>
@@ -16,8 +16,17 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+<!-- <script>
+$.widget.bridge('uibutton', $.ui.button)
+</script> -->
+
+<?php
+if(isset($script) {echo $script;})
+?>
+
 <!-- Bootstrap 4 -->
-<script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></scrip>
+<script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
 <script src="public/admin/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -42,3 +51,6 @@
 <script src="public/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="public/admin/dist/js/pages/dashboard.js"></script>
+</body>
+
+</html>

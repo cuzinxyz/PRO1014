@@ -13,6 +13,22 @@ function connect()
     }
     return $dbConn;
 }
+# Login Model
+function login($email, $password)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM employee WHERE email='$email' AND password='$password'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
+function isEmployee()
+{
+    return (isset($_SESSION['job'])) ? $_SESSION['job'] : false;
+}
+
+# Receipt Model
 function get_receipt()
 {
     $conn = connect();
@@ -42,9 +58,18 @@ function one_receipt($id)
     return $data;
 }
 
+# Model Service
 function add_service($name_service, $type_service, $price_service, $status_service) {
     $conn = connect();
     $sql = "INSERT INTO services(name, type_service, price, status) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt ->execute(array($name_service, $type_service, $price_service, $status_service));
+
+# Employee Model
+function addEmployee($name, $avatar, $job, $salary)
+{
+    $conn = connect();
+    $sql = "INSERT INTO employee(name, image, job, salary, hire_date, status) VALUES (?, ?, ?, ?, NOW(), 1)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($name, $avatar, $job, $salary));
 }

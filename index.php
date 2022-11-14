@@ -7,6 +7,9 @@ if (isset($action)) :
         case 'index':
             require "controllers/front/index.php";
             break;
+        case 'login':
+            require "login.php";
+            break;
         case 'dashboard':
             require "controllers/admin/index.php";
             break;
@@ -19,11 +22,13 @@ if (isset($action)) :
         case 'add-service':
             require "controllers/admin/add-service.php";
             break;
+        case 'addemployee':
+            require "controllers/admin/add-employee.php";
+            break;
         default:
             require "views/front/404.php";
             break;
     }
 else :
-    require "controllers/admin/index.php";
+    require "controllers/front/index.php";
 endif;
-
