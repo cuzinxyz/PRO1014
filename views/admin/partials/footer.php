@@ -1,11 +1,11 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Nhóm 8 | PRO-1014</strong>
+  <strong>Nhóm 8 | PRO-1014</strong>
 </footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+  <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
 </div>
@@ -53,6 +53,19 @@ if (isset($script)) {
 <script src="public/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="public/admin/dist/js/pages/dashboard.js"></script>
+
+<script>
+  $(function() {
+    // Summernote
+    $('#summernote').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+  });
+</script>
 </body>
 
 </html>
