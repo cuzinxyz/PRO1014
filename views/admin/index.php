@@ -32,7 +32,7 @@
                                 <strong><em><?= $detail_receipt[0]['NguoiDat'] ?></em></strong>
                             </h3>
                             <div class="card-tools">
-                                <a href="/">
+                                <a href="/?action=receipt">
                                     <button type="button" class="btn btn-block btn-primary btn-xs">Back</button>
                                 </a>
                             </div>
@@ -143,7 +143,7 @@
                                                     ?>
                                         </td>
                                         <td>
-                                            <a href="?detail=<?= $receipt['MaHoaDon'] ?>">
+                                            <a href="/?action=receipt&detail=<?= $receipt['MaHoaDon'] ?>">
                                                 <button type="button"
                                                     class="btn btn-block btn-primary btn-xs">View</button>
                                             </a>
