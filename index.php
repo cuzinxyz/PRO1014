@@ -7,6 +7,9 @@ if (isset($action)) :
         case 'index':
             require "controllers/front/index.php";
             break;
+        case 'login':
+            require "login.php";
+            break;
         case 'dashboard':
             require "controllers/admin/index.php";
             break;
@@ -24,5 +27,5 @@ if (isset($action)) :
             break;
     }
 else :
-    require "controllers/admin/index.php";
+    require "controllers/front/index.php";
 endif;
