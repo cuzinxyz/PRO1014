@@ -1,14 +1,10 @@
 <?php
-    require "models/admin.php";
-    if(isset($_POST['add'])) {
-        $name_service = $_POST['nameService'];
-        $type_service = $_POST['typeService'];
-        $price_service = $_POST['priceService'];
-        $status_service = $_POST['statusService'];
+require "models/admin.php";
+if (isset($_POST['add'])) {
+    $name_service = $_POST['nameService'];
+    $price_service = $_POST['priceService'];
 
-        add_service($name_service, $type_service, $price_service, $status_service);
+    add_service($name_service, $price_service);
+}
 
-    }
-
-    require "views/admin/add-service.php";
-?>
+require "views/admin/add-service.php";

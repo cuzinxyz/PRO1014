@@ -59,18 +59,18 @@ function one_receipt($id)
 }
 
 # Model Service
-function add_service($name_service, $type_service, $price_service, $status_service)
+function add_service($name_service, $price_service)
 {
     $conn = connect();
-    $sql = "INSERT INTO services(name, type_service, price, status) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO services(name, price, status) VALUES (?, ?, 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name_service, $type_service, $price_service, $status_service));
+    $stmt->execute(array($name_service, $price_service));
 }
 # Employee Model
-function addEmployee($name, $avatar, $job, $salary)
+function addEmployee($email, $name, $avatar, $job, $salary)
 {
     $conn = connect();
-    $sql = "INSERT INTO employee(name, image, job, salary, hire_date, status) VALUES (?, ?, ?, ?, NOW(), 1)";
+    $sql = "INSERT INTO employee(email, password, name, image, job, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name, $avatar, $job, $salary));
+    $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
