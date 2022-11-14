@@ -69,6 +69,16 @@ function add_service($name_service, $price_service)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($name_service, $price_service));
 }
+
+function services() {
+    $conn = connect();
+    $sql = "SELECT * FROM services";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
 # Employee Model
 function addEmployee($email, $name, $avatar, $job, $salary)
 {

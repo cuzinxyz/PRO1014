@@ -22,6 +22,9 @@ if (isset($action)) :
         case 'addservice':
             require "controllers/admin/add-service.php";
             break;
+        case 'services':
+            require "controllers/admin/services.php";
+            break;
         case 'addemployee':
             require "controllers/admin/add-employee.php";
             break;
