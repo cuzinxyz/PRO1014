@@ -1,11 +1,11 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-  <strong>Nhóm 8 | PRO-1014</strong>
+    <strong>Nhóm 8 | PRO-1014</strong>
 </footer>
 
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
+    <!-- Control sidebar content goes here -->
 </aside>
 <!-- /.control-sidebar -->
 </div>
@@ -22,7 +22,9 @@ $.widget.bridge('uibutton', $.ui.button)
 </script> -->
 
 <?php
-if(isset($script) {echo $script;})
+if (isset($script)) {
+  echo $script;
+}
 ?>
 
 <!-- Bootstrap 4 -->
