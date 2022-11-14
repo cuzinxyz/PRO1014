@@ -19,6 +19,8 @@ if (isset($action)) :
         case 'add-service':
             require "controllers/admin/add-service.php";
             break;
+        case 'add-service':
+            require "controllers/admin/add.php";
         default:
             require "views/front/404.php";
             break;
