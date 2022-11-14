@@ -40,10 +40,6 @@
                                     <label for="priceService">Giá dịch vụ</label>
                                     <input type="number" class="form-control" id="priceService" min="0" placeholder="Giá dịch vụ" name="priceService" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="statusService">Trạng thái dịch vụ</label>
-                                    <input type="number" class="form-control" id="statusService" min="0" placeholder="Trạng thái dịch vụ" name="statusService" required>
-                                </div>
                             </div>
 
                             <div class="card-footer">

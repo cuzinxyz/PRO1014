@@ -40,16 +40,12 @@
             <div class="banner">
                 <div class="overlay_background"></div>
                 <div class="container">
-                    <!-- <h2 class="banner_title">More than just a haircut.</h2>
+                    <h2 class="banner_title">More than just a haircut.</h2>
                     <span class="banner_desc">Come in, relax and walk out feeling like a new man.</span>
                     <div class="banner_buttons">
                         <a href="#" class="button">know more</a>
                         <a href="#" class="button">book now</a>
-                    </div> -->
-                    <form action="views/front/booking.php" method="GET">
-                        <input type="tel" name="phone_number" id="">
-                        <input type="submit" value="Send">
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="list-services">

@@ -16,12 +16,19 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+<!-- <script>
+$.widget.bridge('uibutton', $.ui.button)
+</script> -->
+
+<?php
+if (isset($script)) {
+  echo $script;
+}
+?>
+
 <!-- Bootstrap 4 -->
 <script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
 <!-- ChartJS -->
 <script src="public/admin/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -46,4 +53,4 @@
 <script src="public/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="public/admin/dist/js/pages/dashboard.js"></script>
-
+</body>
