@@ -171,7 +171,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a href="/?action=add-service" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm dịch vụ</p>
                                     </a>

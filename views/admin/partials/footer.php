@@ -16,11 +16,8 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="public/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-$.widget.bridge('uibutton', $.ui.button)
-</script>
 <!-- Bootstrap 4 -->
-<script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></scrip>
 <!-- ChartJS -->
 <script src="public/admin/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -45,6 +42,3 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="public/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="public/admin/dist/js/pages/dashboard.js"></script>
-</body>
-
-</html>

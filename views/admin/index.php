@@ -617,7 +617,8 @@
     </div>
 
 <?php  require_once 'views/admin/partials/footer.php' ?>
-
-
-
-<?php require_once 'views/admin/partials/footer.php' ?>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+</body>
+</html>
