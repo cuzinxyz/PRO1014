@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 14, 2022 at 05:37 AM
+-- Generation Time: Nov 14, 2022 at 06:16 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -49,25 +49,6 @@ INSERT INTO `employee` (`id`, `email`, `password`, `name`, `image`, `job`, `sala
 (2, '', '', 'Nguyễn Văn Tuấn', 'https://i.pravatar.cc/300', 'Four', '0', '2022-11-07', '1'),
 (3, '', '', 'Đặng Hải Dương', 'fluidicon.png', 'Cắt tóc', '100', '2022-11-14', '1'),
 (4, 'admin@bruno.me', 'admin', 'administrator', 'admin.jpg', 'admin', '2130012301', '2022-11-01', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `list_services`
---
-
-CREATE TABLE `list_services` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `list_services`
---
-
-INSERT INTO `list_services` (`id`, `name`) VALUES
-(1, 'Combo dịch vụ'),
-(2, 'Cắt gội massage');
 
 -- --------------------------------------------------------
 
@@ -135,7 +116,6 @@ CREATE TABLE `posts` (
 CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `listservice_id` int(11) NOT NULL,
   `price` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -144,9 +124,10 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `name`, `listservice_id`, `price`, `status`) VALUES
-(1, 'Combo Cắt gội VIP (all dịch vụ chăm sóc)', 1, '250000', 1),
-(2, 'BrunoCombo cắt gội', 2, '120000', 1);
+INSERT INTO `services` (`id`, `name`, `price`, `status`) VALUES
+(1, 'Combo Cắt gội VIP (all dịch vụ chăm sóc)', '250000', 1),
+(2, 'BrunoCombo cắt gội', '120000', 1),
+(3, 'demo', '292383', 1);
 
 -- --------------------------------------------------------
 
@@ -175,12 +156,6 @@ INSERT INTO `users` (`id`, `phone_number`, `status`) VALUES
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `list_services`
---
-ALTER TABLE `list_services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -224,12 +199,6 @@ ALTER TABLE `employee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `list_services`
---
-ALTER TABLE `list_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -251,7 +220,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

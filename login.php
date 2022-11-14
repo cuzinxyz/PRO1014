@@ -1,6 +1,4 @@
 <?php
-session_start();
-ob_start();
 
 require "models/admin.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result['job'] == 'admin') {
             header("location: /?action=receipt");
         } else {
-            header("location: /?action=index");
+            header("location: /nhanvien");
         }
     }
 }
