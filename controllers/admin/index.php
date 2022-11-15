@@ -8,6 +8,8 @@ if (isEmployee()) {
         # Nhân viên sẽ chuyển hướng sang các đơn của mình.
         header("location: /nhanvien");
     }
+} else {
+    header("location: /");
 }
 # Tất cả hóa đơn.
 $all_receipts = get_receipt();
@@ -17,6 +19,13 @@ if (isset($_GET['detail'])) {
     $id_receipt = $_GET['detail'];
     # Lấy 1 hóa đơn dựa vào detail url.
     $detail_receipt = one_receipt($id_receipt);
+}
+
+# FEEDBACK
+if (isset($_GET['done'])) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    }
 }
 
 require "views/admin/index.php";
