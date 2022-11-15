@@ -77,3 +77,9 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
+
+# Feedback
+function feedback($employee )
+{
+
+}
