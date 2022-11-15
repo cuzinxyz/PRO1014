@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="public/admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="public/admin/plugins/summernote/summernote-bs4.min.css">
-<!--    custom css-->
+    <!--    custom css-->
     <link rel="stylesheet" href="public/css/custom.css">
 </head>
 
@@ -197,7 +197,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/?action=addpost" class="nav-link">
+                                    <a href="/?action=addblog" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm bài viết</p>
                                     </a>
