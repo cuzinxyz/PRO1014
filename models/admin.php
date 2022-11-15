@@ -77,6 +77,7 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
+
 # Blog Model
 function addBlog($title, $image, $content)
 {
@@ -85,3 +86,11 @@ function addBlog($title, $image, $content)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($title, $image, $content));
 }
+
+
+# Feedback
+function feedback($employee )
+{
+
+}
+
