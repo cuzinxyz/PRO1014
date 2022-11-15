@@ -78,8 +78,19 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
 
+# Blog Model
+function addBlog($title, $image, $content)
+{
+    $conn = connect();
+    $sql = "INSERT INTO `posts` (`title`, `image`, `createdAt`, `updateAt`, `content`) VALUES (?,?,NOW(),NOW(),?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($title, $image, $content));
+}
+
+
 # Feedback
 function feedback($employee )
 {
 
 }
+
