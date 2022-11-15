@@ -31,6 +31,8 @@ if (isset($action)) :
         case 'addblog':
             require "controllers/admin/add-blog.php";
             break;
+        case "blogs": 
+            require "controllers/admin/blogs.php";
         default:
             require "views/front/404.php";
             break;
