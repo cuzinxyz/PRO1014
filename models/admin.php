@@ -79,6 +79,17 @@ function services() {
     return $data;
 }
 
+function blogs() {
+    $conn = connect();
+    $sql = "SELECT * FROM posts";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
+
+
 # Employee Model
 function addEmployee($email, $name, $avatar, $job, $salary)
 {

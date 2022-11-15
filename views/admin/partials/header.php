@@ -203,7 +203,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/?action=posts" class="nav-link">
+                                    <a href="/?action=blogs" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách bài viết</p>
                                     </a>
