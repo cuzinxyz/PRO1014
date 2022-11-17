@@ -47,7 +47,7 @@ function one_receipt($id)
 {
     $conn = connect();
 
-    $sql = "SELECT orders.id, users.phone_number as NguoiDat, time, orders.status as TrangThai, services.name as DichVu, employee.name as NguoiLam, services.price FROM `orders`
+    $sql = "SELECT orders.id, users.id as idKhach, users.phone_number as NguoiDat, time, orders.status as TrangThai, services.name as DichVu, employee.name as NguoiLam, services.price FROM `orders`
     JOIN orders_detail ON orders.id=orders_detail.order_id
     JOIN services ON orders_detail.service_id=services.id
     JOIN users ON orders.user_id=users.id
@@ -70,12 +70,13 @@ function add_service($name_service, $price_service)
     $stmt->execute(array($name_service, $price_service));
 }
 
-function services() {
+function services()
+{
     $conn = connect();
     $sql = "SELECT * FROM services";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
 }
 
@@ -99,8 +100,10 @@ function addBlog($title, $image, $content)
 
 
 # Feedback
-function feedback($employee )
+function feedback($orderid, $customer, $star, $feedback)
 {
-
+    $conn = connect();
+    $sql = "INSERT INTO `feedback`(`star`, `note`, `order_id`, `user_id`) VALUES('$star', '$feedback', $orderid, $customer)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
 }
-

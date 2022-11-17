@@ -10,8 +10,8 @@ if (isset($action)) :
         case 'login':
             require "login.php";
             break;
-        case 'dashboard':
-            require "controllers/admin/index.php";
+        case 'book':
+            require "controllers/front/booking.php";
             break;
         case 'receipt':
             require "controllers/admin/index.php";

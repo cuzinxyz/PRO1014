@@ -1,1 +1,4 @@
 Redirect /admin /?action=login
+
+RewriteEngine on
+RewriteRule ^book ?action=book&
