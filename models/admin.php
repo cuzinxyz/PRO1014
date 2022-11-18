@@ -108,6 +108,31 @@ function addBlog($title, $image, $content)
     $stmt->execute(array($title, $image, $content));
 }
 
+// Updete Blog
+function edit_blog($id, $title, $image, $content){
+    $conn = connect();
+    $sql= "UPDATE `posts` SET `title`='$title',`image`='$image',`updateAt`=NOW(),`content`='$content' WHERE id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+  }
+
+  function hienthi($id){
+    $conn = connect();
+    $sql="select * from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $value = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $value ;
+  }
+
+// Delete Blog
+function delete_blog($id){
+    $conn = connect();
+    $sql= "delete from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
 
 # Feedback
 function feedback($employee )

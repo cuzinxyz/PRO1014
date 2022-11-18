@@ -35,7 +35,7 @@
                     <th>Tên bài viết</th>
                     <th>Hình ảnh</th>
                     <th>Ngày tạo</th>
-                    
+                    <!-- <th>Conten</th> -->
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -45,13 +45,13 @@
                     <td><?= $key + 1 ?></td>
                     <td><?= $value['title'] ?></td>
                     <td>
-                    <img src="./public/images/image__blog/<?= $value['image'] ?>" alt="" width="20%">
+                    <img src="./public/images/image__blog/<?= $value['image'] ?>" alt="" style="max-width: 200px">
                     </td> 
                     <td><?= $value['createdAt'] ?></td>
                     <!--  -->
                     <td>
-                        <a href="">Update</a>
-                        <a href="">Delete</a>
+                        <a href="?action=edit_blog&id=<?= $value['id']?>" style="margin: 0 20px 0 0; color: green;"><i class="fas fa-edit" ></i></a>
+                        <a href="?action=delete_blog&id=<?= $value['id']?>" ><i class="fas fa-trash" style="color: red;"></i></a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
