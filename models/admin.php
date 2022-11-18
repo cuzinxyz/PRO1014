@@ -107,7 +107,15 @@ function addBlog($title, $image, $content)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($title, $image, $content));
 }
-
+# employee
+function employee() {
+    $conn = connect();
+    $sql = "SELECT * FROM employee";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
 
 # Feedback
 function feedback($employee )
