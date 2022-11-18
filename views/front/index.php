@@ -55,8 +55,8 @@
                     <div class="form-input__form flex">
                         <form action="/book" method="POST" style="width: 100%;">
                             <div class="form__input flex">
-                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value=""
-                                    name="phone">
+                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus
+                                    name="phone" maxlength="10">
                                 <button type="submit" class="btn__action">ĐẶT LỊCH NGAY</button>
                             </div>
                         </form>

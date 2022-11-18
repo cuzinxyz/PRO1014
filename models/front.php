@@ -25,3 +25,11 @@ function query($sql)
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
+
+function add_phone($phone_number)
+{
+    $conn = connect();
+    $stmt = $conn->prepare("INSERT INTO users(phone_number, status) VALUES('$phone_number', 1)");
+    $stmt->execute();
+    return $id = $conn->lastInsertId();
+}

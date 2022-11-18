@@ -1,17 +1,17 @@
 // Gọi đến 1 thẻ
-const $ = document.querySelector.bind(document);
+const $$$ = document.querySelector.bind(document);
 
 // Gọi đến nhiều thẻ
-const $$ = document.querySelectorAll.bind(document);
+const $$$$ = document.querySelectorAll.bind(document);
 
 
 // Gọi đến thẻ input có type = checkbox
 // console.log(checkInputsCombo);
-const checkInputs = $$('.checkbox__input');
+const checkInputs = $$$$('.checkbox__input');
 // Lấy độ dài của biến checkInputs khi gọi để sử dụng vòng lặp
 
-const checkboxInput = $$('.checkbox__input.checkbox__input-checkbox');
-const radioInput = $$('.checkbox__input.checkbox__input-radio');
+const checkboxInput = $$$$('.checkbox__input.checkbox__input-checkbox');
+const radioInput = $$$$('.checkbox__input.checkbox__input-radio');
 
 // console.log(checkboxDisabaled);
 // Tạo mảng trống để add và delete
@@ -37,7 +37,7 @@ const app = {
             input[i].onchange = () => {
                 // Gọi đến thẻ label(thẻ chứa input) khi click vào 1 thẻ input nhất định
                 const divServiceItem = input[i].closest('.checkbox__label');
-                const divServiceItemCheck = typeInput[i].closest('.service__item')
+                const divServiceItemCheck = typeInput[0].closest('.service__item')
                 const list__services = divServiceItemCheck.parentElement;
                 // Từ thẻ label lấy được gọi đến thẻ chứa thông tin sản phẩm
                 const serviceContent =  divServiceItem.lastElementChild;
@@ -67,11 +67,10 @@ const app = {
                 // }
 
                 for (const index in checkName) {
-                    if(checkName[index].name.includes('Combo')) {
+                    if(checkName[index].name.toLowerCase().indexOf('combo') != -1) {
                         if(checkName.length > 1) {
                             checkName.shift();
                         }
-
                     }else {}
 
                 }  
@@ -131,15 +130,22 @@ const app = {
     },
 
     renderBill(values, totalPrices) {
-        const infoPayPro = $('.main__receipt--wrap');
-        const infoTotal = $('.total');
+        const infoPayPro = $$$('.main__receipt--wrap');
+        const infoTotal = $$$('.total');
         infoPayPro.innerHTML = '';
         if(typeof values === 'object') {
+
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0
+            });
+
             for (let key in values) {
                 infoPayPro.innerHTML += `
                 <div class="have__service">
                     <p class="status__receippt">${values[key].name ? values[key].name : 'No service'}</p>
-                    <p class="have__service-price">$ ${values[key].price}</p>
+                    <p class="have__service-price">${formatter.format(values[key].price)}</p>
                 </div>
                 `
             }
@@ -152,10 +158,10 @@ const app = {
             `
         }
 
-
+        totalPrices = totalPrices.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         infoTotal.innerHTML = `
             <p class="total__text">Total</p>
-            <p class="total__price">$ ${totalPrices ? totalPrices : '0'} </p>
+            <p class="total__price">${totalPrices ? totalPrices : '0'} </p>
         `;
     },
     start() {
@@ -165,9 +171,4 @@ const app = {
     }
 
 }
-
-
 app.start();
-
-
-

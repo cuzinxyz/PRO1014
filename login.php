@@ -52,7 +52,7 @@ if (isEmployee()) {
 
                 <form action="" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="login_email" placeholder="Email">
+                        <input type="email" class="form-control" name="login_email" placeholder="Email" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

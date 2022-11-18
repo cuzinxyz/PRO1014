@@ -65,7 +65,7 @@ function one_receipt($id)
 function add_service($name_service, $price_service)
 {
     $conn = connect();
-    $sql = "INSERT INTO services(name, price, status) VALUES (?, ?, 1)";
+    $sql = "INSERT INTO services(name, price, category_id, status) VALUES (?, ?, 2, 1)";
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($name_service, $price_service));
 }

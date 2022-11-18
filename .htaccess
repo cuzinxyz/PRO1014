@@ -2,3 +2,5 @@ Redirect /admin /?action=login
 
 RewriteEngine on
 RewriteRule ^book ?action=book&
+
+RewriteRule ^gettime controllers/front/booking.php?gettime [L]
