@@ -67,5 +67,3 @@ if (isset($script)) {
   });
 </script>
 </body>
-
-</html>

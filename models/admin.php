@@ -62,12 +62,12 @@ function one_receipt($id)
 }
 
 # Model Service
-function add_service($name_service, $price_service)
+function add_service($name_service, $price_service, $cate_service)
 {
     $conn = connect();
-    $sql = "INSERT INTO services(name, price, status) VALUES (?, ?, 1)";
+    $sql = "INSERT INTO services(name, price, category_id , status) VALUES (?, ?, ?, 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name_service, $price_service));
+    $stmt->execute(array($name_service, $price_service, $cate_service));
 }
 
 function services() {
@@ -110,8 +110,22 @@ function addBlog($title, $image, $content)
 
 
 # Feedback
-function feedback($employee )
+function feedback($employee)
 {
 
 }
+
+
+
+# Category Model
+
+function categories() {
+    $conn = connect();
+    $sql = "SELECT * FROM categories";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
 
