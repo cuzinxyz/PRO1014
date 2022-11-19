@@ -62,12 +62,12 @@ function one_receipt($id)
 }
 
 # Model Service
-function add_service($name_service, $price_service)
+function add_service($name_service, $price_service, $cate_service)
 {
     $conn = connect();
-    $sql = "INSERT INTO services(name, price, status) VALUES (?, ?, 1)";
+    $sql = "INSERT INTO services(name, price, category_id , status) VALUES (?, ?, ?, 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name_service, $price_service));
+    $stmt->execute(array($name_service, $price_service, $cate_service));
 }
 
 function services() {
@@ -99,15 +99,6 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
 
-# Blog Model
-function addBlog($title, $image, $content)
-{
-    $conn = connect();
-    $sql = "INSERT INTO `posts` (`title`, `image`, `createdAt`, `updateAt`, `content`) VALUES (?,?,NOW(),NOW(),?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(array($title, $image, $content));
-}
-# employee
 function employee() {
     $conn = connect();
     $sql = "SELECT * FROM employee";
@@ -117,9 +108,58 @@ function employee() {
     return $data;
 }
 
+# Blog Model
+function addBlog($title, $image, $content)
+{
+    $conn = connect();
+    $sql = "INSERT INTO `posts` (`title`, `image`, `createdAt`, `updateAt`, `content`) VALUES (?,?,NOW(),NOW(),?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($title, $image, $content));
+}
+
+
+// Updete Blog
+function edit_blog($id, $title, $image, $content){
+    $conn = connect();
+    $sql= "UPDATE `posts` SET `title`='$title',`image`='$image',`updateAt`=NOW(),`content`='$content' WHERE id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+  }
+
+  function hienthi($id){
+    $conn = connect();
+    $sql="select * from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $value = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $value ;
+  }
+
+// Delete Blog
+function delete_blog($id){
+    $conn = connect();
+    $sql= "delete from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+
 # Feedback
-function feedback($employee )
+function feedback($employee)
 {
 
 }
+
+
+
+# Category Model
+function categories() {
+    $conn = connect();
+    $sql = "SELECT * FROM categories";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
 
