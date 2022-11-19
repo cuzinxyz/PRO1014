@@ -1,6 +1,6 @@
 <?php
 require_once "models/admin.php";
 
-$values = employees();
+$values = employee();
 
 require "views/admin/employee.php";
