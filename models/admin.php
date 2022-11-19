@@ -99,6 +99,15 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
 
+function employee() {
+    $conn = connect();
+    $sql = "SELECT * FROM employee";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
 # Blog Model
 function addBlog($title, $image, $content)
 {
@@ -107,6 +116,7 @@ function addBlog($title, $image, $content)
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($title, $image, $content));
 }
+
 
 // Updete Blog
 function edit_blog($id, $title, $image, $content){
@@ -143,7 +153,6 @@ function feedback($employee)
 
 
 # Category Model
-
 function categories() {
     $conn = connect();
     $sql = "SELECT * FROM categories";
