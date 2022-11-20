@@ -108,6 +108,22 @@ function employee() {
     return $data;
 }
 
+function show_one_employee($id) {
+    $conn = connect();
+    $sql = "SELECT * FROM employee WHERE id=?";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute(array($id));
+    $data = $stmt -> fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function update_employee($id, $email, $password, $image, $job, $salary, $status) {
+    $conn = connect();
+    $sql = "UPDATE employee SET email= ?, password= ?, image= ?, job= ?, salary= ?, status= ? WHERE id=?";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute(array($email, $password, $image, $job, $salary, $status, $id));
+}
+
 # Blog Model
 function addBlog($title, $image, $content)
 {
@@ -157,6 +173,16 @@ function categories() {
     $conn = connect();
     $sql = "SELECT * FROM categories";
     $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
+# Job Model
+function jobs() {
+    $conn = connect();
+    $sql = "SELECT * FROM jobs";
+    $stmt = $conn -> prepare($sql); 
     $stmt -> execute();
     $data = $stmt -> fetchAll();
     return $data;
