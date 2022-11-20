@@ -45,13 +45,13 @@
                     <td><?= $key + 1 ?></td>
                     <td><?= $value['name'] ?></td>
                     <td>
-                        <img src="<?= $value['image'] ?>" alt="" style="width:20%">
+                        <img src="./public/images/employee/<?= $value['image'] ?>" alt="" style="width:20%">
                     </td>
                     <td><?= $value['job'] ?></td>
                     <!--  -->
                     <td>
-                        <a href="">Update</a>
-                        <a href="">Delete</a>
+                        <a href="?action=edit_employee&id=<?= $value['id']?>" style="margin: 0 20px 0 0; color: green;"><i class="fas fa-edit" ></i></a>
+                        <a href="?action=edit_employee&id=<?= $value['id']?>" ><i class="fas fa-trash" style="color: red;"></i></a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
