@@ -111,20 +111,22 @@ function employee()
     return $data;
 }
 
-function show_one_employee($id) {
+function show_one_employee($id)
+{
     $conn = connect();
     $sql = "SELECT * FROM employee WHERE id=?";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute(array($id));
-    $data = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($id));
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
 
-function update_employee($id, $email, $password, $image, $job, $salary, $status) {
+function update_employee($id, $email, $password, $image, $job, $salary, $status)
+{
     $conn = connect();
     $sql = "UPDATE employee SET email= ?, password= ?, image= ?, job= ?, salary= ?, status= ? WHERE id=?";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute(array($email, $password, $image, $job, $salary, $status, $id));
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array($email, $password, $image, $job, $salary, $status, $id));
 }
 
 # Blog Model
@@ -176,12 +178,6 @@ function feedback($orderid, $customer, $star, $feedback)
     $stmt->execute();
 }
 
-function feedback($employee)
-{
-}
-
-
-
 # Category Model
 function categories()
 {
@@ -205,12 +201,13 @@ function one_service($id)
 }
 
 # Job Model
-function jobs() {
+function jobs()
+{
     $conn = connect();
     $sql = "SELECT * FROM jobs";
-    $stmt = $conn -> prepare($sql); 
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
 }
 
@@ -222,4 +219,3 @@ function update_service($name, $price, $cate_id, $status, $id)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
-
