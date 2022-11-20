@@ -70,21 +70,23 @@ function add_service($name_service, $price_service, $cate_service)
     $stmt->execute(array($name_service, $price_service, $cate_service));
 }
 
-function services() {
+function services()
+{
     $conn = connect();
     $sql = "SELECT * FROM services";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
 }
 
-function blogs() {
+function blogs()
+{
     $conn = connect();
     $sql = "SELECT * FROM posts";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
 }
 
@@ -99,12 +101,13 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
 }
 
-function employee() {
+function employee()
+{
     $conn = connect();
     $sql = "SELECT * FROM employee";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
 }
 
@@ -135,26 +138,29 @@ function addBlog($title, $image, $content)
 
 
 // Updete Blog
-function edit_blog($id, $title, $image, $content){
+function edit_blog($id, $title, $image, $content)
+{
     $conn = connect();
-    $sql= "UPDATE `posts` SET `title`='$title',`image`='$image',`updateAt`=NOW(),`content`='$content' WHERE id = $id";
+    $sql = "UPDATE `posts` SET `title`='$title',`image`='$image',`updateAt`=NOW(),`content`='$content' WHERE id = $id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-  }
+}
 
-  function hienthi($id){
+function hienthi($id)
+{
     $conn = connect();
-    $sql="select * from posts where id=$id";
+    $sql = "select * from posts where id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $value = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $value ;
-  }
+    return $value;
+}
 
 // Delete Blog
-function delete_blog($id){
+function delete_blog($id)
+{
     $conn = connect();
-    $sql= "delete from posts where id=$id";
+    $sql = "delete from posts where id=$id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
@@ -163,19 +169,30 @@ function delete_blog($id){
 # Feedback
 function feedback($employee)
 {
-
 }
 
 
 
 # Category Model
-function categories() {
+function categories()
+{
     $conn = connect();
     $sql = "SELECT * FROM categories";
-    $stmt = $conn -> prepare($sql);
-    $stmt -> execute();
-    $data = $stmt -> fetchAll();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
     return $data;
+}
+
+
+function one_service($id)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM `services` WHERE `id` = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $value = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $value;
 }
 
 # Job Model
@@ -189,3 +206,10 @@ function jobs() {
 }
 
 
+function update_service($name, $price, $cate_id, $status, $id)
+{
+    $conn = connect();
+    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`category_id`='$cate_id',`status`='$status' WHERE `id` = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}

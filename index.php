@@ -22,6 +22,9 @@ if (isset($action)) :
         case 'services':
             require "controllers/admin/services.php";
             break;
+        case 'edit_service':
+            require "controllers/admin/edit_service.php";
+            break;
         case 'addemployee':
             require "controllers/admin/add-employee.php";
             break;
@@ -34,7 +37,7 @@ if (isset($action)) :
         case 'addblog':
             require "controllers/admin/add-blog.php";
             break;
-        case 'blogs': 
+        case 'blogs':
             require "controllers/admin/blogs.php";
             break;
         case 'edit_blog':
