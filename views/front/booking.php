@@ -15,7 +15,7 @@
     <div class="container">
         <div class="booking--wrap">
             <h2 class="request">Đặt lịch giữ chỗ</h2>
-            <form action="" method="POST">
+            <form action="" method="POST" id="bookapp">
                 <div class="grid display-block">
                     <div class="selection">
                         <div class="select--wrap">
@@ -118,26 +118,8 @@
                         <h2 class="name__option" id="list__stylist">
                             Stylists
                         </h2>
-                        <div class="list__stylists">
-                            <div class="stylist__item">
-                                <label class="checkbox__label">
-                                    <div class="checkbox__custom">
-                                        <input class="checkbox__input" name="choose_stylist" type="checkbox" value="1">
-                                        <span class="checkmark"><i class="fa-solid fa-check"></i></span>
-                                    </div>
-                                    <div class="service__content">
-                                        <div class="infor__stylist">
-                                            <img src="https://xsgames.co/randomusers/avatar.php?g=male" alt=""
-                                                class="avatar__stylist">
-                                            <p class="name__stylist">Stylist 1</p>
-                                            <a href="" class="detail__stylist">
-                                                Review: 4.5/5 <i class="fa-regular fa-star"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!-- end stylist item -->
+                        <div class="list__stylists" id="list_stylist" style="padding: 20px;">
+                            <p>Vui lòng chọn ngày giờ!</p>
                         </div>
                         <!-- end list styelist -->
 
