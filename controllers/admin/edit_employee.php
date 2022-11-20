@@ -3,10 +3,10 @@ require_once "models/admin.php";
 
 $id = $_GET['id'];
 $value = show_one_employee($id);
-$jobs = jobs();
+// $jobs = jobs();
 
 
-if(isset($_POST['edit_employee'])) {
+if (isset($_POST['edit_employee'])) {
     $id = $_POST['id'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -20,11 +20,11 @@ if(isset($_POST['edit_employee'])) {
     $typeImg = ['jpg', 'jpeg', 'png', 'gif'];
     $imgFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
     $check = in_array($imgFileType, $typeImg);
-    
+
     $sizeImg = $_FILES['image']['size'];
-    if($sizeImg > 0 && $check) {
+    if ($sizeImg > 0 && $check) {
         $image = $_FILES['image']['name'];
-    }else {
+    } else {
         $image = $value['image'];
     }
 

@@ -182,7 +182,7 @@ function feedback($orderid, $customer, $star, $feedback)
 function categories()
 {
     $conn = connect();
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT id as cate_id, category_name as cate_name FROM categories";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll();
