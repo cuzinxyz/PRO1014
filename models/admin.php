@@ -62,12 +62,12 @@ function one_receipt($id)
 }
 
 # Model Service
-function add_service($name_service, $price_service)
+function add_service($name_service, $price_service, $cate_service)
 {
     $conn = connect();
     $sql = "INSERT INTO services(name, price, category_id, status) VALUES (?, ?, 2, 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name_service, $price_service));
+    $stmt->execute(array($name_service, $price_service, $cate_service));
 }
 
 function services()
@@ -80,6 +80,18 @@ function services()
     return $data;
 }
 
+function blogs()
+{
+    $conn = connect();
+    $sql = "SELECT * FROM posts";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}
+
+
+
 # Employee Model
 function addEmployee($email, $name, $avatar, $job, $salary)
 {
@@ -87,6 +99,32 @@ function addEmployee($email, $name, $avatar, $job, $salary)
     $sql = "INSERT INTO employee(email, password, name, image, job, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($email, $name, $avatar, $job, $salary));
+}
+
+function employee()
+{
+    $conn = connect();
+    $sql = "SELECT * FROM employee";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}
+
+function show_one_employee($id) {
+    $conn = connect();
+    $sql = "SELECT * FROM employee WHERE id=?";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute(array($id));
+    $data = $stmt -> fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function update_employee($id, $email, $password, $image, $job, $salary, $status) {
+    $conn = connect();
+    $sql = "UPDATE employee SET email= ?, password= ?, image= ?, job= ?, salary= ?, status= ? WHERE id=?";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute(array($email, $password, $image, $job, $salary, $status, $id));
 }
 
 # Blog Model
@@ -99,7 +137,37 @@ function addBlog($title, $image, $content)
 }
 
 
+// Updete Blog
+function edit_blog($id, $title, $image, $content)
+{
+    $conn = connect();
+    $sql = "UPDATE `posts` SET `title`='$title',`image`='$image',`updateAt`=NOW(),`content`='$content' WHERE id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+function hienthi($id)
+{
+    $conn = connect();
+    $sql = "select * from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $value = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $value;
+}
+
+// Delete Blog
+function delete_blog($id)
+{
+    $conn = connect();
+    $sql = "delete from posts where id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+
 # Feedback
+
 function feedback($orderid, $customer, $star, $feedback)
 {
     $conn = connect();
@@ -107,3 +175,51 @@ function feedback($orderid, $customer, $star, $feedback)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
+
+function feedback($employee)
+{
+}
+
+
+
+# Category Model
+function categories()
+{
+    $conn = connect();
+    $sql = "SELECT * FROM categories";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}
+
+
+function one_service($id)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM `services` WHERE `id` = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $value = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $value;
+}
+
+# Job Model
+function jobs() {
+    $conn = connect();
+    $sql = "SELECT * FROM jobs";
+    $stmt = $conn -> prepare($sql); 
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+}
+
+
+function update_service($name, $price, $cate_id, $status, $id)
+{
+    $conn = connect();
+    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`category_id`='$cate_id',`status`='$status' WHERE `id` = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+

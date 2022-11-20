@@ -38,6 +38,14 @@
                                     <input type="number" class="form-control" id="priceService" min="0"
                                         placeholder="Giá dịch vụ" name="priceService" required>
                                 </div>
+                                <div class="form-group">
+                                    <select name="cateService" id="" class="form-control select2" style="width: 100%;">
+                                        <option value="">Lựa chọn dịch vụ</option>
+                                        <?php foreach($values as $value) :?>
+                                            <option value="<?= $value['id'] ?>"><?= $value['category_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="card-footer">
