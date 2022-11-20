@@ -5,9 +5,21 @@ require_once "models/front.php";
 $services = query("SELECT * FROM services WHERE category_id=2");
 $combos = query("SELECT * FROM services WHERE category_id=1");
 $work_time = query("SELECT * FROM work_time");
+$stylists = query("SELECT employee.name, image, job, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
+LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
+LEFT JOIN orders ON orders_detail.order_id=orders.id");
 
-// print_r($services);
-// print_r($combos);
+// print_r($stylists);
+
+$list_stylist = array();
+foreach ($stylists as $stylist) {
+    if (in_array($stylist['name'], $list_stylist)) {
+        continue;
+    }
+    array_push($list_stylist, $stylist['name']);
+}
+// print_r($list_stylist);
+
 var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -18,6 +18,14 @@ function connect()
     }
     return $dbConn;
 }
+function query($sql)
+{
+    $conn = connect();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
 
 if (isset($_GET['gettime'])) {
     $conn = connect();
@@ -37,6 +45,37 @@ if (isset($_GET['gettime'])) {
             <span
                 class="time__checked ' . (($currentTime > $checkTime) ? " unavailable" : "") . '">' . date("H:i", strtotime($time['time'])) . '</span>
         </label>
+        ';
+    }
+}
+
+if (isset($_GET['getstylist'])) {
+    $choose_date = date("Y-m-d H:i:s", strtotime($_POST['datetime']));
+    $list = query("
+    SELECT employee.name, image, job, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
+    LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
+    LEFT JOIN orders ON orders_detail.order_id=orders.id");
+
+    // print_r($list);
+    foreach ($list as $item) {
+        echo '
+            <div class="stylist__item">
+                <label class="checkbox__label">
+                <div class="checkbox__custom">
+                    <input class="checkbox__input" name="check__input" type="checkbox">
+                    <span class="checkmark"><i class="fa-solid fa-check"></i></span>
+                </div>
+                <div class="service__content">
+                    <div class="infor__stylist">
+                    <img src="public/images/employee/' . $item['image'] . '" alt="" class="avatar__stylist">
+                    <p class="name__stylist">' . $item['name'] . '</p>
+                    <a href="" class="detail__stylist">
+                        Review: 4.5/5 <i class="fa-regular fa-star"></i>
+                    </a>
+                    </div>
+                </div>
+                </label>
+            </div>
         ';
     }
 }
