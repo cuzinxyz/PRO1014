@@ -23,8 +23,15 @@ if (isset($_GET['detail'])) {
 
 # FEEDBACK
 if (isset($_GET['done'])) {
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    $id_receipt = (int) $_GET['detail'];
+    $id_user = (int) $detail_receipt[0]['idKhach'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $star = $_POST['rating'];
+        $feedback_content = $_POST['feedback_content'];
+        $result = feedback($id_receipt, $id_user, $star, $feedback_content);
+        if ($result) {
+            header("location: /?action=receipt");
+        }
     }
 }
 

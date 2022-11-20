@@ -39,14 +39,30 @@
         <main>
             <div class="banner">
                 <div class="overlay_background"></div>
-                <div class="container">
+                <!-- <div class="container">
                     <h2 class="banner_title">More than just a haircut.</h2>
                     <span class="banner_desc">Come in, relax and walk out feeling like a new man.</span>
                     <div class="banner_buttons">
                         <a href="#" class="button">know more</a>
                         <a href="#" class="button">book now</a>
                     </div>
+                </div> -->
+                <div class="home__form-input">
+                    <div class="form-input__slogan">
+                        <div class="slogan__title">Đặt lịch giữ chỗ chỉ 30 giây</div>
+                        <div class="slogan__text">Cắt xong trả tiền, hủy lịch không sao</div>
+                    </div>
+                    <div class="form-input__form flex">
+                        <form action="/book" method="POST" style="width: 100%;">
+                            <div class="form__input flex">
+                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus
+                                    name="phone" maxlength="10">
+                                <button type="submit" class="btn__action">ĐẶT LỊCH NGAY</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
             </div>
             <div class="list-services">
                 <div class="service container">
