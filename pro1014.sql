@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 20, 2022 at 11:53 AM
+-- Generation Time: Nov 21, 2022 at 06:08 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -25,21 +25,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `combo`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE `combo` (
   `id` int(11) NOT NULL,
-  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `category_name`) VALUES
-(1, 'Combo'),
-(2, 'Dịch vụ');
 
 -- --------------------------------------------------------
 
@@ -53,7 +45,7 @@ CREATE TABLE `employee` (
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isAdmin` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `salary` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hire_date` date NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -63,12 +55,12 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `email`, `password`, `name`, `image`, `job`, `salary`, `hire_date`, `status`) VALUES
-(1, '', '', 'Đỗ Hữu Nhật', 'https://i.pravatar.cc/300', 'Cắt tóc', '6000000', '2022-11-13', '1'),
-(2, '', '', 'Nguyễn Văn Tuấn', 'https://i.pravatar.cc/300', 'Cắt tóc', '0', '2022-11-07', '1'),
-(3, '', '', 'Đặng Hải Dương', 'fluidicon.png', 'Cắt tóc', '100', '2022-11-14', '1'),
+INSERT INTO `employee` (`id`, `email`, `password`, `name`, `image`, `isAdmin`, `salary`, `hire_date`, `status`) VALUES
+(1, 'cuzin2k3@gmail.com', '12', 'Đỗ Hữu Nhật', 'img_parallax.jpg', NULL, '6000000', '2022-11-13', '0'),
+(2, 'duongbeo@beo.com', '12345', 'Nguyễn Văn Tuấn', 'aee19d3455b89031a5d6213caf8acbec.jpg', NULL, '121212121212', '2022-11-07', '0'),
+(3, '', '', 'Đặng Hải Dương', 'fluidicon.png', NULL, '100', '2022-11-14', '1'),
 (4, 'admin@bruno.me', 'admin', 'administrator', 'banhmichuot3.jpg', 'admin', '2130012301', '2022-11-01', '1'),
-(5, 'duongbeo@beo.com', '123456', 'Đặng Hải Dương', 'img_parallax.jpg', 'Cắt tóc', '123123123123', '2022-11-14', '1');
+(5, 'duongbeo@beo.com', '123456', 'Đặng Hải Dương', 'img_parallax.jpg', NULL, '123123123123', '2022-11-14', '1');
 
 -- --------------------------------------------------------
 
@@ -91,6 +83,17 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`id`, `star`, `note`, `order_id`, `user_id`) VALUES
 (1, '5', 'asdasd', 3, 2),
 (2, '5', 'ád', 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_combo`
+--
+
+CREATE TABLE `list_combo` (
+  `combo_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -161,7 +164,6 @@ CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -169,13 +171,13 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `name`, `price`, `category_id`, `status`) VALUES
-(1, 'Combo Cắt gội VIP (all dịch vụ chăm sóc)', '250000', 1, 1),
-(2, 'BrunoCombo cắt gội', '120000', 1, 1),
-(3, 'demo', '292383', 2, 1),
-(4, 'Combo Massage', '100000', 1, 1),
-(5, 'demo 2', '1230213', 2, 1),
-(6, 'demo 3', '129211', 2, 1);
+INSERT INTO `services` (`id`, `name`, `price`, `status`) VALUES
+(1, 'Combo Cắt gội VIP (all dịch vụ chăm sóc)', '250000', 1),
+(2, 'BrunoCombo cắt gội', '120000', 1),
+(3, 'demo', '292383', 1),
+(4, 'Combo Massage', '100000', 1),
+(5, 'demo 2', '1230213', 1),
+(6, 'demo 3', '129211', 1);
 
 -- --------------------------------------------------------
 
@@ -199,7 +201,10 @@ INSERT INTO `users` (`id`, `phone_number`, `status`) VALUES
 (3, '0999999999', 1),
 (4, '0999999999', 1),
 (5, '0999999999', 1),
-(6, '0999999999', 1);
+(6, '0999999999', 1),
+(7, '0999999999', 1),
+(8, '1231231231', 1),
+(9, '0999999999', 1);
 
 -- --------------------------------------------------------
 
@@ -238,9 +243,9 @@ INSERT INTO `work_time` (`id`, `time`) VALUES
 --
 
 --
--- Indexes for table `categories`
+-- Indexes for table `combo`
 --
-ALTER TABLE `categories`
+ALTER TABLE `combo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -254,6 +259,12 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_combo`
+--
+ALTER TABLE `list_combo`
+  ADD PRIMARY KEY (`combo_id`);
 
 --
 -- Indexes for table `orders`
@@ -296,10 +307,10 @@ ALTER TABLE `work_time`
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT for table `combo`
 --
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `combo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -341,7 +352,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `work_time`

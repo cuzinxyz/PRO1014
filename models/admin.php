@@ -28,7 +28,7 @@ function login($email, $password)
 }
 function isEmployee()
 {
-    return (isset($_SESSION['job'])) ? $_SESSION['job'] : false;
+    return (isset($_SESSION['role'])) ? $_SESSION['role'] : false;
 }
 
 # Receipt Model
@@ -179,15 +179,15 @@ function feedback($orderid, $customer, $star, $feedback)
 }
 
 # Category Model
-function categories()
-{
-    $conn = connect();
-    $sql = "SELECT id as cate_id, category_name as cate_name FROM categories";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-    return $data;
-}
+// function categories()
+// {
+//     $conn = connect();
+//     $sql = "SELECT id as cate_id, category_name as cate_name FROM categories";
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute();
+//     $data = $stmt->fetchAll();
+//     return $data;
+// }
 
 
 function one_service($id)
@@ -212,10 +212,10 @@ function jobs()
 }
 
 
-function update_service($name, $price, $cate_id, $status, $id)
+function update_service($name, $price, $status, $id)
 {
     $conn = connect();
-    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`category_id`='$cate_id',`status`='$status' WHERE `id` = $id";
+    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`status`='$status' WHERE `id` = $id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
