@@ -10,7 +10,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Danh sách dịch vụ</li>
+            <li class="breadcrumb-item active">Service list</li>
           </ol>
         </div>
       </div>

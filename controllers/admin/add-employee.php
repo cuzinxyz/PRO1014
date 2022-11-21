@@ -7,8 +7,8 @@ if (isset($_POST['add'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $avatar = $_FILES['avatar']['name'];
-  $job = $_POST['job'];
+  // $job = $_POST['job'];
   $salary = $_POST['salary'];
-  addEmployee($email, $name, $avatar, $job, $salary);
+  addEmployee($email, $name, $avatar, $salary);
 }
 require "views/admin/add-employee.php";
