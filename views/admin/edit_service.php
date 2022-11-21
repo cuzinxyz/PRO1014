@@ -30,27 +30,13 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nameService">Tên dịch vụ</label>
-                                    <input type="text" class="form-control" id="nameService" placeholder="Tên dịch vụ"
-                                        name="nameService" required
-                                        value="<?= isset($_GET['id']) ? $service['name'] : "" ?>">
+                                    <input type="text" class="form-control" id="nameService" placeholder="Tên dịch vụ" name="nameService" required value="<?= isset($_GET['id']) ? $service['name'] : "" ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="priceService">Giá dịch vụ</label>
-                                    <input type="number" class="form-control" id="priceService" min="0"
-                                        placeholder="Giá dịch vụ" name="priceService" required
-                                        value="<?= isset($_GET['id']) ? $service['price'] : "" ?>">
+                                    <input type="number" class="form-control" id="priceService" min="0" placeholder="Giá dịch vụ" name="priceService" required value="<?= isset($_GET['id']) ? $service['price'] : "" ?>">
                                 </div>
-                                <div class="form-group">
-                                    <select name="cateService" id="" class="form-control select2" style="width: 100%;">
-                                        <option value="">Lựa chọn dịch vụ</option>
-                                        <?php foreach ($values as $value) : ?>
-                                        <option value="<?= $value['cate_id'] ?>"
-                                            <?php if ($value['cate_id'] == $service['id']) echo ' selected'; ?>>
-                                            <?= $value['cate_name'] ?>
-                                        </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
+                                <!--  -->
                                 <div class="form-group">
                                     <select name="status" id="" class="form-control select2" style="width: 100%;">
                                         <option value="" hidden>Lựa chọn trạng thái</option>
@@ -61,7 +47,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" name="add">Thêm</button>
                             </div>

@@ -31,7 +31,7 @@
                     <th>#</th>
                     <th>Tên dịch vụ</th>
                     <th>Giá dịch vụ</th>
-
+                    <th>Trạng thái</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -41,6 +41,7 @@
                       <td><?= $key + 1 ?></td>
                       <td><?= $value['name'] ?></td>
                       <td><?= $value['price'] ?></td>
+                      <td><?= $value['status'] == 1 ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>" ?></td>
                       <!--  -->
                       <td>
                         <a href="?action=edit_service&id=<?= $value['id'] ?>"><i class="fas fa-edit"></i>Update</a>
