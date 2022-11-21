@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Thêm dịch vụ</li>
+                        <li class="breadcrumb-item active">Add service</li>
                     </ol>
                 </div>
             </div>
@@ -30,13 +30,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nameService">Tên dịch vụ</label>
-                                    <input type="text" class="form-control" id="nameService" placeholder="Tên dịch vụ"
-                                        name="nameService" required>
+                                    <input type="text" class="form-control" id="nameService" placeholder="Tên dịch vụ" name="nameService" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="priceService">Giá dịch vụ</label>
-                                    <input type="number" class="form-control" id="priceService" min="0"
-                                        placeholder="Giá dịch vụ" name="priceService" required>
+                                    <input type="number" class="form-control" id="priceService" min="0" placeholder="Giá dịch vụ" name="priceService" required>
                                 </div>
                             </div>
 
