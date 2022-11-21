@@ -28,7 +28,7 @@ function login($email, $password)
 }
 function isEmployee()
 {
-    return (isset($_SESSION['job'])) ? $_SESSION['job'] : false;
+    return (isset($_SESSION['role'])) ? $_SESSION['role'] : false;
 }
 
 # Receipt Model

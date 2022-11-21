@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = login($email, $password);
     if ($result) {
         $_SESSION['name'] = $result['name'];
-        $_SESSION['job'] = $result['job'];
-        if ($result['job'] == 'admin') {
+        $_SESSION['role'] = $result['isAdmin'];
+        if ($result['isAdmin'] == 'admin') {
             header("location: /?action=receipt");
         } else {
             header("location: /nhanvien");
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 # CHECK AVAILABLE LOGIN
 if (isEmployee()) {
-    if ($_SESSION['job'] == 'admin') header("location: /?action=receipt");
+    if ($_SESSION['role'] == 'admin') header("location: /?action=receipt");
 }
 ?>
 <!DOCTYPE html>
