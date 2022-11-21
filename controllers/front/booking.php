@@ -5,31 +5,29 @@ require_once "models/front.php";
 $services = query("SELECT * FROM services");
 $combos = query("SELECT * FROM services");
 $work_time = query("SELECT * FROM work_time");
-$stylists = query("SELECT employee.name, image, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
-LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
-LEFT JOIN orders ON orders_detail.order_id=orders.id");
+$stylists = query("SELECT * FROM employee");
 
-// print_r($stylists);
 
-$list_stylist = array();
-foreach ($stylists as $stylist) {
-    if (in_array($stylist['name'], $list_stylist)) {
-        continue;
-    }
-    array_push($list_stylist, $stylist['name']);
-}
-// print_r($list_stylist);
 
 var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $_SESSION['phone'] = $_POST['phone'];
+    // Lay so dienn thoai tu form index
     if (isset($_POST['phone'])) {
         $phone = $_POST['phone'];
         # lấy id khách vừa add vào database
         $user_id = add_phone($phone);
         $_SESSION['user_id'] = $user_id;
     }
+}
+// Xu li du lieu sau khi nguoi dung dat lich
+if (isset($_POST['book_now'])) {
+    $user_id = (int) $_POST['user_id'];
+    $time = $_POST['choose_date'] . " " . $_POST['choose_time'];
+    $formatTime = date('Y-m-d H:i:s', strtotime($time));
+    $employee = (int) $_POST['choose_employee'];
+    $service_choose = $_POST['choose_service'];
+    book($user_id, $time, $service_choose, $employee);
 }
 
 # GET LIST TIME AVAILABLE WITH AJAX

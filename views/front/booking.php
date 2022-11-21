@@ -118,13 +118,13 @@
                         <h2 class="name__option" id="list__stylist">
                             Stylists
                         </h2>
-                        <div class="list__stylists" id="list_stylist" style="padding: 20px;">
+                        <div class="list__stylists" id="list_stylist">
                             <p>Vui lòng chọn ngày giờ!</p>
                         </div>
                         <!-- end list styelist -->
 
                         <div class="btn-order">
-                            <button type="submit">ĐẶT LỊCH NGAY</button>
+                            <input type="submit" name="book_now" value="ĐẶT LỊCH NGAY">
                         </div>
 
                     </div>
