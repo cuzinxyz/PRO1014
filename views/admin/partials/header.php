@@ -31,6 +31,11 @@
     <link rel="stylesheet" href="public/admin/plugins/summernote/summernote-bs4.min.css">
     <!--    custom css-->
     <link rel="stylesheet" href="public/css/custom.css">
+    
+    <link rel="stylesheet" href="public/css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="public/css/flatpickr.min.css">
+    <link rel="stylesheet" href="public/css/toastify.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -160,6 +165,18 @@
                                     <a href="?action=services" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách dịch vụ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?action=addcombo" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm combo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?action=services" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách combo</p>
                                     </a>
                                 </li>
                             </ul>

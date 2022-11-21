@@ -46,6 +46,8 @@ if (isset($action)) :
         case 'delete_blog':
             require "controllers/admin/delete_blog.php";
             break;
+        case 'addcombo':
+            require "controllers/admin/add-combo.php";
         default:
             require "views/front/404.php";
             break;
