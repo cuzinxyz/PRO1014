@@ -93,12 +93,12 @@ function blogs()
 
 
 # Employee Model
-function addEmployee($email, $name, $avatar, $job, $salary)
+function addEmployee($email, $name, $avatar, $salary)
 {
     $conn = connect();
-    $sql = "INSERT INTO employee(email, password, name, image, job, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, ?, NOW(), 1)";
+    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $name, $avatar, $job, $salary));
+    $stmt->execute(array($email, $name, $avatar, $salary));
 }
 
 function employee()
@@ -121,12 +121,12 @@ function show_one_employee($id)
     return $data;
 }
 
-function update_employee($id, $email, $password, $image, $job, $salary, $status)
+function update_employee($id, $email, $password, $name, $image, $salary, $status)
 {
     $conn = connect();
-    $sql = "UPDATE employee SET email= ?, password= ?, image= ?, job= ?, salary= ?, status= ? WHERE id=?";
+    $sql = "UPDATE employee SET email= ?, password= ?, name = ?, image= ?, salary= ?, status= ? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $password, $image, $job, $salary, $status, $id));
+    $stmt->execute(array($email, $password, $name, $image, $salary, $status, $id));
 }
 
 # Blog Model

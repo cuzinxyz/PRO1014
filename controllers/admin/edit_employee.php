@@ -10,10 +10,9 @@ if (isset($_POST['edit_employee'])) {
     $id = $_POST['id'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $job = $_POST['job'];
     $salary = $_POST['salary'];
     $status = $_POST['status'];
-
+    $name = $_POST['name'];
     $folder = "./public/images/employee/";
     $fileName = $folder . basename($_FILES['image']['name']);
 
@@ -29,7 +28,7 @@ if (isset($_POST['edit_employee'])) {
     }
 
     move_uploaded_file($_FILES['image']['tmp_name'], $fileName);
-    update_employee($id, $email, $password, $image, $job, $salary, $status);
+    update_employee($id, $email, $password, $name, $image, $salary, $status);
     header('location: /?action=employees');
 }
 
