@@ -10,8 +10,8 @@ if (isset($action)) :
         case 'login':
             require "login.php";
             break;
-        case 'dashboard':
-            require "controllers/admin/index.php";
+        case 'book':
+            require "controllers/front/booking.php";
             break;
         case 'receipt':
             require "controllers/admin/index.php";
@@ -21,6 +21,9 @@ if (isset($action)) :
             break;
         case 'services':
             require "controllers/admin/services.php";
+            break;
+        case 'edit_service':
+            require "controllers/admin/edit_service.php";
             break;
         case 'addemployee':
             require "controllers/admin/add-employee.php";
@@ -34,7 +37,7 @@ if (isset($action)) :
         case 'addblog':
             require "controllers/admin/add-blog.php";
             break;
-        case 'blogs': 
+        case 'blogs':
             require "controllers/admin/blogs.php";
             break;
         case 'edit_blog':
