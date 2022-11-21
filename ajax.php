@@ -59,7 +59,7 @@ if (isset($_GET['getstylist'])) {
             <div class="stylist__item">
                 <label class="checkbox__label">
                 <div class="checkbox__custom">
-                    <input class="checkbox__input" name="choose_employee" value="' . $item['id'] . '" type="checkbox">
+                    <input class="checkbox__input" name="choose_employee" value="' . $item['id'] . '" type="radio" required>
                     <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                 </div>
                 <div class="service__content">
