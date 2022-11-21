@@ -4,7 +4,7 @@ require "models/admin.php";
 # Kiểm tra xem có phải là admin hay không?
 if (isEmployee()) {
     # Nếu job khác admin thì chuyển hướng.
-    if ($_SESSION['job'] != 'admin') {
+    if ($_SESSION['role'] != 'admin') {
         # Nhân viên sẽ chuyển hướng sang các đơn của mình.
         header("location: /nhanvien");
     }

@@ -2,10 +2,10 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once "models/front.php";
 
-$services = query("SELECT * FROM services WHERE category_id=2");
-$combos = query("SELECT * FROM services WHERE category_id=1");
+$services = query("SELECT * FROM services");
+$combos = query("SELECT * FROM services");
 $work_time = query("SELECT * FROM work_time");
-$stylists = query("SELECT employee.name, image, job, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
+$stylists = query("SELECT employee.name, image, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
 LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
 LEFT JOIN orders ON orders_detail.order_id=orders.id");
 
