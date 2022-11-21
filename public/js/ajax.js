@@ -16,6 +16,7 @@ $(document).ready(function() {
         })
     })
 
+    // lấy thời gian người dùng chọn sau đó đổ ra danh sách nhân viên
     $("#list_time").change(function() {
         const date = $("#date").val();
         const time = $('input[name=choose_time]:checked', '#bookapp').val();
@@ -34,5 +35,5 @@ $(document).ready(function() {
             }
         })
     })
-
+    
 })

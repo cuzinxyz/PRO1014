@@ -51,10 +51,7 @@ if (isset($_GET['gettime'])) {
 
 if (isset($_GET['getstylist'])) {
     $choose_date = date("Y-m-d H:i:s", strtotime($_POST['datetime']));
-    $list = query("
-    SELECT employee.name, image, job, employee.status as StatusWork, orders_detail.employee_id as idNhanVien, orders.id as MaHoaDon, orders.time FROM employee
-    LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
-    LEFT JOIN orders ON orders_detail.order_id=orders.id");
+    $list = query("SELECT * FROM employee");
 
     // print_r($list);
     foreach ($list as $item) {
@@ -62,7 +59,7 @@ if (isset($_GET['getstylist'])) {
             <div class="stylist__item">
                 <label class="checkbox__label">
                 <div class="checkbox__custom">
-                    <input class="checkbox__input" name="check__input" type="checkbox">
+                    <input class="checkbox__input" name="choose_employee" value="' . $item['id'] . '" type="radio" required>
                     <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                 </div>
                 <div class="service__content">

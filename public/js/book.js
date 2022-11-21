@@ -37,8 +37,11 @@ const app = {
             input[i].onchange = () => {
                 // Gọi đến thẻ label(thẻ chứa input) khi click vào 1 thẻ input nhất định
                 const divServiceItem = input[i].closest('.checkbox__label');
-                const divServiceItemCheck = typeInput[0].closest('.service__item')
+                const divServiceItemCheck = typeInput[0].closest('.service__item');
                 const list__services = divServiceItemCheck.parentElement;
+                const divType = input[0].closest('.service__item');
+                const divTypeParent = divType.parentElement;
+                const getTitle = divTypeParent.previousElementSibling;
                 // Từ thẻ label lấy được gọi đến thẻ chứa thông tin sản phẩm
                 const serviceContent =  divServiceItem.lastElementChild;
                 // Từ thẻ chứa thông tin sản phẩm gọi đến thẻ chứa tên và giá của sản phẩm
@@ -62,19 +65,12 @@ const app = {
                     }
                 }
 
-                // if(checkTrue.length > 0) {
-                //     list__services.classList.add('input-opacity');
-                // }
 
-                for (const index in checkName) {
-                    if(checkName[index].name.toLowerCase().indexOf('combo') != -1) {
-                        if(checkName.length > 1) {
-                            checkName.shift();
-                        }
-                    }else {}
-
-                }  
-
+                if(getTitle.innerText == "Combo") {
+                    if(checkName.length > 1) {
+                        checkName.shift();
+                    }  
+                }else {}
                 // Xử lý phần chọn tối đa 2 dịch vụ
                 for (const index in checkName) {
                     if(checkName.length > 2) {
@@ -86,6 +82,8 @@ const app = {
                         break;
                     }                
                 }
+                
+                
                 this.hanldeDeleteCheckedRadio(checkTrue);
                 // Xử lý phần chọn Combo
                 for(const index in typeInput) {
@@ -104,7 +102,6 @@ const app = {
     },
 
     hanldeDeleteCheckedRadio(checkTrue) {
-        console.log(checkTrue);
         let lengthInputRadio = radioInput.length;
         for (let i = 0; i < lengthInputRadio; i++) {
             radioInput[i].onclick = () => {

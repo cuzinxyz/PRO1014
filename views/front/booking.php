@@ -8,7 +8,8 @@
     <title>Booking</title>
     <link rel="stylesheet" href="public/css/booking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="public/css/flatpickr.min.css">
+    <link rel="stylesheet" href="public/css/toastify.min.css">
 </head>
 
 <body>
@@ -41,7 +42,7 @@
                                 <label class="checkbox__label">
                                     <div class="checkbox__custom">
                                         <input class="checkbox__input checkbox__input-checkbox" name="choose_service[]"
-                                            value="<?= $service['id'] ?>" type="checkbox">
+                                            required value="<?= $service['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
@@ -57,6 +58,9 @@
                             <!-- end service item -->
                             <?php endforeach; ?>
                         </div>
+                        <div class="nofication">
+                            <label for="services" class="error"></label>
+                        </div>
                         <!-- end list service -->
                         <h2 class="name__option" id="list__combo">
                             Combo
@@ -67,8 +71,8 @@
                             <div class="service__item">
                                 <label class="checkbox__label checkbox__label-combo">
                                     <div class="checkbox__custom">
-                                        <input class="checkbox__input checkbox__input-radio" name="choose_combo"
-                                            value="<?= $combo['id'] ?>" type="checkbox">
+                                        <input class="checkbox__input checkbox__input-radio" name="choose_combo[]"
+                                            required value="<?= $combo['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
@@ -83,6 +87,9 @@
                             </div>
                             <?php endforeach; ?>
                         </div>
+                        <div class="nofication">
+                            <label for="combo" class="error"></label>
+                        </div>
                         <!-- end combo -->
 
                         <h2 class="name__option">
@@ -90,7 +97,7 @@
                         </h2>
                         <!-- start list date -->
                         <div class="date--wrap">
-                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.."
+                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." required
                                 name="choose_date" data-id="minDateToday" readonly="readonly" id="date">
                         </div>
                         <!-- end list date -->
@@ -107,7 +114,7 @@
                                 ?>
                             <label class="time__item">
                                 <input class="time__input" type="radio" value="<?= $time['time'] ?>" name="choose_time"
-                                    <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
+                                    required <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
                                 <span
                                     class="time__checked <?= ($currentTime > $checkTime) ? " unavailable" : "" ?>"><?= date("H:i", strtotime($time['time'])) ?></span>
                             </label>
@@ -118,13 +125,13 @@
                         <h2 class="name__option" id="list__stylist">
                             Stylists
                         </h2>
-                        <div class="list__stylists" id="list_stylist" style="padding: 20px;">
+                        <div class="list__stylists" id="list_stylist">
                             <p>Vui lòng chọn ngày giờ!</p>
                         </div>
                         <!-- end list styelist -->
 
                         <div class="btn-order">
-                            <button type="submit">ĐẶT LỊCH NGAY</button>
+                            <input type="submit" name="book_now" onclick="reloadP()" id="book" value="ĐẶT LỊCH NGAY">
                         </div>
 
                     </div>
@@ -156,12 +163,15 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="public/js/jquery-3.6.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+    <script src="public/js/flatpickr.js"></script>
+    <script src="public/js/toastify-js.js"></script>
     <script src="public/js/book.js"></script>
     <script src="public/js/date.js"></script>
-    <script src="public/js/time.js"></script>
-
+    <script src="public/js/ajax.js"></script>
+    <script src="public/js/validate.js"></script>
 </body>
 
 </html>

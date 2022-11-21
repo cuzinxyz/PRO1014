@@ -28,7 +28,7 @@ function login($email, $password)
 }
 function isEmployee()
 {
-    return (isset($_SESSION['job'])) ? $_SESSION['job'] : false;
+    return (isset($_SESSION['role'])) ? $_SESSION['role'] : false;
 }
 
 # Receipt Model
@@ -62,12 +62,12 @@ function one_receipt($id)
 }
 
 # Model Service
-function add_service($name_service, $price_service, $cate_service)
+function add_service($name_service, $price_service)
 {
     $conn = connect();
-    $sql = "INSERT INTO services(name, price, category_id, status) VALUES (?, ?, 2, 1)";
+    $sql = "INSERT INTO services(name, price, status) VALUES (?, ?, 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($name_service, $price_service, $cate_service));
+    $stmt->execute(array($name_service, $price_service));
 }
 
 function services()
@@ -93,12 +93,12 @@ function blogs()
 
 
 # Employee Model
-function addEmployee($email, $name, $avatar, $job, $salary)
+function addEmployee($email, $name, $avatar, $salary)
 {
     $conn = connect();
-    $sql = "INSERT INTO employee(email, password, name, image, job, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, ?, NOW(), 1)";
+    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $name, $avatar, $job, $salary));
+    $stmt->execute(array($email, $name, $avatar, $salary));
 }
 
 function employee()
@@ -121,12 +121,12 @@ function show_one_employee($id)
     return $data;
 }
 
-function update_employee($id, $email, $password, $image, $job, $salary, $status)
+function update_employee($id, $email, $password, $name, $image, $salary, $status)
 {
     $conn = connect();
-    $sql = "UPDATE employee SET email= ?, password= ?, image= ?, job= ?, salary= ?, status= ? WHERE id=?";
+    $sql = "UPDATE employee SET email= ?, password= ?, name = ?, image= ?, salary= ?, status= ? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $password, $image, $job, $salary, $status, $id));
+    $stmt->execute(array($email, $password, $name, $image, $salary, $status, $id));
 }
 
 # Blog Model
@@ -181,15 +181,15 @@ function feedback($orderid, $customer, $star, $feedback)
 
 
 # Category Model
-function categories()
-{
-    $conn = connect();
-    $sql = "SELECT * FROM categories";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $data = $stmt->fetchAll();
-    return $data;
-}
+// function categories()
+// {
+//     $conn = connect();
+//     $sql = "SELECT id as cate_id, category_name as cate_name FROM categories";
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute();
+//     $data = $stmt->fetchAll();
+//     return $data;
+// }
 
 
 function one_service($id)
@@ -214,10 +214,10 @@ function jobs()
 }
 
 
-function update_service($name, $price, $cate_id, $status, $id)
+function update_service($name, $price, $status, $id)
 {
     $conn = connect();
-    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`category_id`='$cate_id',`status`='$status' WHERE `id` = $id";
+    $sql = "UPDATE `services` SET `name`='$name',`price`='$price',`status`='$status' WHERE `id` = $id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }

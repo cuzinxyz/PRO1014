@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>General Form</h1>
+          <h1>Sửa bài viết</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">General Form</li>
+            <li class="breadcrumb-item active">Update Blog</li>
           </ol>
         </div>
       </div>
@@ -36,13 +36,12 @@
               <div class="card-body">
 
                 <div class="tt">
-                <input type="hidden" name="id" value=<?php if(isset($id)&&($id>0))echo $id; ?>>
+                  <input type="hidden" name="id" value=<?php if (isset($id) && ($id > 0)) echo $id; ?>>
                 </div>
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="title" 
-                  value="<?= isset($_GET['id']) ? $blogEdit['title'] : "" ?>">
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="title" value="<?= isset($_GET['id']) ? $blogEdit['title'] : "" ?>">
                 </div>
                 <!-- textarea -->
                 <div class="form-group">
@@ -55,7 +54,7 @@
                   <div class="input-group">
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                      <img src="<?=$image?>" alt="">
+                      <img src="<?= $image ?>" alt="">
                       <label class="custom-file-label" for="exampleInputFile">Choose image</label>
                     </div>
                     <div class="input-group-append">

@@ -146,10 +146,29 @@ h6 {
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
 
-.list__services {
+.list__services{
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 10px;
+}
+.btn-order {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-order input {
+  padding: 12px 18px;
+  background-color: #282A3A;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  transition: all .3s linear;
+  cursor: pointer;
+}
+.btn-order input:hover {
+  background-color: #000000;
 }
 
 /* custom input checkbox */
@@ -242,7 +261,9 @@ h6 {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-
+.list__stylists p {
+  padding: 10px;
+}
 .infor__stylist {
   font-weight: 500;
   width: 100%;

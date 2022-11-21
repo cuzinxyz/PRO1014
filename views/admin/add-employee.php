@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>General Form</h1>
+                    <h1>Thêm nhân viên</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">General Form</li>
+                        <li class="breadcrumb-item active">Add Employee</li>
                     </ol>
                 </div>
             </div>
@@ -35,32 +35,21 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter name" name="name">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter email" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Job</label>
-                                    <select name="job" id="" class="form-control">
-                                        <option value="Cắt tóc">Cắt tóc</option>
-                                        <option value="Chăm sóc">Chăm sóc (gội, matxa)</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Lương</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter salary" name="salary">
+                                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter salary" name="salary">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image upload</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile"
-                                                name="avatar">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="avatar">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                         <div class="input-group-append">
