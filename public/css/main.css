@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+
 /* RESET CSS */
 *,
 *::before,
@@ -446,4 +449,60 @@ footer > .container img {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
+}
+
+.flex {
+    display: flex;
+}
+.home__form-input {
+    border-radius: 6px;
+    width: 545px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    background: #3a6186;
+    background: -webkit-linear-gradient(to right, #89253e, #3a6186);
+    background: linear-gradient(to right, #89253e, #3a6186);
+    padding: 20px;
+}
+.form__input {
+    width: 100%;
+    column-gap: 5px;
+}
+.form__input ::placeholder {
+    font-size: 18px;
+}
+.form-input__slogan {
+    margin-bottom: 20px;
+    color: #fff;
+}
+.slogan__title {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: 'Oswald', sans-serif;
+}
+.form-input__form {
+    width: 100%;
+}
+
+.home__form-input .form-input__form .form__input input {
+    border-radius: 6px;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 20px;
+    border: 1px solid transparent;
+    font-family: "Oswald",sans-serif;
+    font-weight: 500;
+}
+.btn__action {
+    padding: 0 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    font-family: 'oswald', sans-serif;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #fc3 !important;
+    color: #000!important;
 }
