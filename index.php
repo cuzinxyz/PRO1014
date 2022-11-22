@@ -48,6 +48,9 @@ if (isset($action)) :
             break;
         case 'addcombo':
             require "controllers/admin/add-combo.php";
+        case 'booking_offline':
+            require "controllers/admin/booking_offline.php";
+            break;
         default:
             require "views/front/404.php";
             break;

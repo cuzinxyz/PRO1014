@@ -178,6 +178,8 @@ function feedback($orderid, $customer, $star, $feedback)
     $stmt->execute();
 }
 
+
+
 # Category Model
 // function categories()
 // {
@@ -221,6 +223,7 @@ function update_service($name, $price, $status, $id)
 }
 
 
+
 #Model combo 
 function addCombo($ids) {
     $conn = connect();
@@ -235,3 +238,14 @@ function addCombo($ids) {
         $stmt->execute();
     }
 }
+
+# Query
+function query($sql)
+{
+    $conn = connect();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
