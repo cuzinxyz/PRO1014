@@ -46,6 +46,8 @@ if (isset($action)) :
         case 'delete_blog':
             require "controllers/admin/delete_blog.php";
             break;
+        case 'addcombo':
+            require "controllers/admin/add-combo.php";
         case 'booking_offline':
             require "controllers/admin/booking_offline.php";
             break;

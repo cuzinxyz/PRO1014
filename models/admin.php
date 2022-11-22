@@ -222,6 +222,23 @@ function update_service($name, $price, $status, $id)
     $stmt->execute();
 }
 
+
+
+#Model combo 
+function addCombo($ids) {
+    $conn = connect();
+    $sql1 = "INSERT INTO `combo`(`status`) VALUES(1)";
+    $stmt = $conn->prepare($sql1);
+    $stmt->execute();
+
+    $combo_id = $conn->lastInsertId();
+    foreach($ids as $id) {
+        $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($combo_id, $id)";
+        $stmt = $conn->prepare($sql2);
+        $stmt->execute();
+    }
+}
+
 # Query
 function query($sql)
 {
@@ -231,3 +248,4 @@ function query($sql)
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
+
