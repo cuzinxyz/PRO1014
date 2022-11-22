@@ -24,7 +24,33 @@
         }
     }
     
-    function reloadP() {
-        sessionStorage.setItem("reloading", "true");
-        document.location.reload();
+    // function reloadP() {
+    //     sessionStorage.setItem("reloading", "true");
+    //     document.location.reload();
+    // }
+
+    // checked book
+    const bookApp = document.querySelector('#bookapp');
+    console.log(bookApp);
+    bookApp.onsubmit = function(e) {
+        let checkServices = document.getElementsByName('choose_service[]');
+        // console.log(checkServices);
+        let checkComboes = document.getElementsByName('choose_combo[]');
+        let checkBox = [...checkServices, ...checkComboes];
+        for (i = 0; i < checkBox.length; i++) {
+                let checked = (checkBox[i].checked||checked===true)?true:false;
+            }
+            
+            console.log(checked);
+        if (checked == false) {
+            alert('Check Something!');
+            e.preventDefault();
+            return false;
+        } else {
+            sessionStorage.setItem("reloading", "true");
+            document.location.reload();
+            return true;
+        }
+          
     }
+    

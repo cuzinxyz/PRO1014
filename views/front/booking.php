@@ -42,7 +42,7 @@
                                 <label class="checkbox__label">
                                     <div class="checkbox__custom">
                                         <input class="checkbox__input checkbox__input-checkbox" name="choose_service[]"
-                                            required value="<?= $service['id'] ?>" type="checkbox">
+                                             value="<?= $service['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
@@ -72,7 +72,7 @@
                                 <label class="checkbox__label checkbox__label-combo">
                                     <div class="checkbox__custom">
                                         <input class="checkbox__input checkbox__input-radio" name="choose_combo[]"
-                                            required value="<?= $combo['id'] ?>" type="checkbox">
+                                             value="<?= $combo['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
@@ -97,7 +97,7 @@
                         </h2>
                         <!-- start list date -->
                         <div class="date--wrap">
-                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." required
+                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." 
                                 name="choose_date" data-id="minDateToday" readonly="readonly" id="date">
                         </div>
                         <!-- end list date -->
@@ -114,7 +114,7 @@
                                 ?>
                             <label class="time__item">
                                 <input class="time__input" type="radio" value="<?= $time['time'] ?>" name="choose_time"
-                                    required <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
+                                     <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
                                 <span
                                     class="time__checked <?= ($currentTime > $checkTime) ? " unavailable" : "" ?>"><?= date("H:i", strtotime($time['time'])) ?></span>
                             </label>
@@ -131,7 +131,7 @@
                         <!-- end list styelist -->
 
                         <div class="btn-order">
-                            <input type="submit" name="book_now" onclick="reloadP()" id="book" value="ĐẶT LỊCH NGAY">
+                            <input type="submit" name="book_now" id="book" value="ĐẶT LỊCH NGAY">
                         </div>
 
                     </div>
