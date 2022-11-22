@@ -2,14 +2,12 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once "models/front.php";
 
-$services = query("SELECT * FROM services");
+$services = query("SELECT * FROM services WHERE status=1");
 $combos = query("SELECT * FROM services");
 $work_time = query("SELECT * FROM work_time");
 $stylists = query("SELECT * FROM employee");
 
-
-
-var_dump($_POST);
+// var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Lay so dienn thoai tu form index
@@ -26,8 +24,12 @@ if (isset($_POST['book_now'])) {
     $time = $_POST['choose_date'] . " " . $_POST['choose_time'];
     $formatTime = date('Y-m-d H:i:s', strtotime($time));
     $employee = (int) $_POST['choose_employee'];
-    $service_choose = $_POST['choose_service'];
-    book($user_id, $time, $service_choose, $employee);
+    if (isset($_POST['choose_service'])) {
+        $service_choose = $_POST['choose_service'];
+    } else {
+        $service_choose = $_POST['choose_combo'];
+    }
+    // book($user_id, $time, $service_choose, $employee);
 }
 
 # GET LIST TIME AVAILABLE WITH AJAX
