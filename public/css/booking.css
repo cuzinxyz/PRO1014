@@ -136,6 +136,7 @@ h6 {
   margin-top: 35px;
   margin-bottom: 6px;
 }
+
 .flatpickr {
   width: 100%;
   background-color: #fff;
@@ -146,11 +147,12 @@ h6 {
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
 
-.list__services{
+.list__services {
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 10px;
 }
+
 .btn-order {
   margin-top: 20px;
   margin-bottom: 60px;
@@ -158,6 +160,7 @@ h6 {
   align-items: center;
   justify-content: center;
 }
+
 .btn-order input {
   padding: 12px 18px;
   background-color: #282A3A;
@@ -168,6 +171,7 @@ h6 {
   cursor: pointer;
 }
 .btn-order input:hover {
+
   background-color: #000000;
 }
 
@@ -213,14 +217,14 @@ h6 {
   transform: translate(-50%, -50%);
 }
 
-.checkbox__input:checked ~ .checkmark i,
-.checkbox__input-radio:checked ~ .checkmark i {
+.checkbox__input:checked~.checkmark i,
+.checkbox__input-radio:checked~.checkmark i {
   display: inline-block;
   /* color: #000; */
 }
 
-.checkbox__input:checked ~ .checkmark,
-.checkbox__input-radio:checked ~ .checkmark {
+.checkbox__input:checked~.checkmark,
+.checkbox__input-radio:checked~.checkmark {
   background-color: #8d9eff;
 }
 
@@ -261,9 +265,11 @@ h6 {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
 .list__stylists p {
   padding: 10px;
 }
+
 .infor__stylist {
   font-weight: 500;
   width: 100%;
@@ -405,11 +411,9 @@ h6 {
   background-repeat: repeat-x;
   height: 10px;
   background-size: 40px 23px;
-  background-image: radial-gradient(
-    circle at 10.8px -5px,
-    rgba(255, 255, 255, 0) 11px,
-    rgb(242, 242, 247) 13px
-  );
+  background-image: radial-gradient(circle at 10.8px -5px,
+      rgba(255, 255, 255, 0) 11px,
+      rgb(242, 242, 247) 13px);
 }
 
 .rim:after {
@@ -421,11 +425,9 @@ h6 {
   background-repeat: repeat-x;
   height: 15px;
   background-size: 40px 8px;
-  background-image: radial-gradient(
-    circle at 11.2px 15.3px,
-    rgb(242, 242, 247) 13px,
-    rgba(255, 255, 255, 0) 14px
-  );
+  background-image: radial-gradient(circle at 11.2px 15.3px,
+      rgb(242, 242, 247) 13px,
+      rgba(255, 255, 255, 0) 14px);
 }
 
 .rim__end {
@@ -568,13 +570,18 @@ h6 {
 
 .unavailable {
   border: 1px solid #d1d1d1;
-    background: #e8e8e8;
-    color: #a3a3a3;
-    cursor: not-allowed;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none;
+  background: #e8e8e8;
+  color: #a3a3a3;
+  cursor: not-allowed;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
 }

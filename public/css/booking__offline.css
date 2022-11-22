@@ -1,0 +1,23 @@
+.price__service--off {
+  color: #6c757d;
+  font-size: 25px;
+  position: absolute;
+  bottom: -15px;
+  right: 15px;
+}
+
+.name__service--off {
+  font-weight: 600;
+}
+
+.input__book--off {
+  display: none;
+}
+
+.label--off {
+  background-color: #fff;
+}
+
+.input__book--off:checked~.label--off {
+  background-color: aqua;
+}

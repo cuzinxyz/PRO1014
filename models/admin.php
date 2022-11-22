@@ -221,3 +221,13 @@ function update_service($name, $price, $status, $id)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
+
+# Query
+function query($sql)
+{
+    $conn = connect();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
