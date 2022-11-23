@@ -225,14 +225,15 @@ function update_service($name, $price, $status, $id)
 
 
 #Model combo 
-function addCombo($ids) {
+function addCombo($ids)
+{
     $conn = connect();
     $sql1 = "INSERT INTO `combo`(`status`) VALUES(1)";
     $stmt = $conn->prepare($sql1);
     $stmt->execute();
 
     $combo_id = $conn->lastInsertId();
-    foreach($ids as $id) {
+    foreach ($ids as $id) {
         $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($combo_id, $id)";
         $stmt = $conn->prepare($sql2);
         $stmt->execute();
@@ -249,3 +250,29 @@ function query($sql)
     return $data;
 }
 
+function book($phone_number, $services, $combo, $employee)
+{
+    $conn = connect();
+    # insert user
+    $sql0 = "INSERT INTO `users`(`phone_number`, `status`) VALUES ('$phone_number', 1)";
+    $stmt0 = $conn->prepare($sql0);
+    $stmt0->execute();
+    $user_id = (int) $conn->lastInsertId();
+    # insert hoa don
+    $sql1 = "INSERT INTO `orders`(`user_id`, `time`, `status`) VALUES ($user_id, NOW(), 0)";
+    $stmt1 = $conn->prepare($sql1);
+    $stmt1->execute();
+    $order_id = $conn->lastInsertId();
+    if (!empty($services)) {
+        # insert chi tiet hoa don
+        foreach ($services as $service) {
+            $sql2 = "INSERT INTO `orders_detail`(`order_id`, `service_id`, `employee_id`) VALUES($order_id, $service, $employee)";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->execute();
+        }
+    } else {
+        $sql3 = "INSERT INTO `orders_detail`(`order_id`, `combo_id`, `employee_id`) VALUES($order_id, $combo, $employee)";
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->execute();
+    }
+}

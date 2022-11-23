@@ -19,6 +19,17 @@
 </head>
 
 <body>
+    <!-- Popup nofication success  -->
+    <div id="popup1" class="popup-container">
+        <div class="popup-content">
+            <a href="#" class="close">&times;</a>
+            <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;"
+                        class="fa-solid fa-check"></i></span>
+            </h3>
+            <p>Chúc bạn một ngày mới vui vẻ, hẹn gặp lại bạn. </p>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <header>
             <nav class="container">

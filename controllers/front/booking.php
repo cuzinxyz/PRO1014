@@ -38,6 +38,7 @@ if (isset($_POST['book_now'])) {
         $combo_choose = (int) $_POST['choose_combo'];
     }
     book($user_id, $time, $service_choose, $combo_choose, $employee);
+    header("location: /#popup1");
 }
 
 # GET LIST TIME AVAILABLE WITH AJAX

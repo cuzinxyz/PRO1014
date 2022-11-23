@@ -8,5 +8,6 @@ if (isset($_POST['add'])) {
   $content = $_POST['content'];
   $image = $_FILES['image']['name'];
   addBlog($title, $image, $content);
+  header("location: /?action=blogs");
 }
 require "views/admin/add-blog.php";
