@@ -7,7 +7,7 @@ $combos = query("SELECT * FROM services");
 $work_time = query("SELECT * FROM work_time");
 $stylists = query("SELECT * FROM employee");
 
-// var_dump($_POST);
+var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Lay so dienn thoai tu form index

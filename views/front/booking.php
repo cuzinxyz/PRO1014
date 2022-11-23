@@ -131,7 +131,7 @@
                         <!-- end list styelist -->
 
                         <div class="btn-order">
-                            <input type="submit" name="book_now" onclick="reloadP()" id="book" value="ĐẶT LỊCH NGAY">
+                            <input type="submit" name="book_now" id="book" value="ĐẶT LỊCH NGAY">
                         </div>
 
                     </div>

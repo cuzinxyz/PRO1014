@@ -29,6 +29,7 @@
         document.location.reload();
     }
 
+    
     // checked book
     const bookApp = document.querySelector('#bookapp');
     bookApp.onsubmit = function(e) {
@@ -40,14 +41,12 @@
                 var checked = (checkBox[i].checked||checked===true)?true:false;
             }
             
-            console.log(checked);
         if (checked == false) {
-            alert('Vui lòng điền đầy đủ thông tin')
+            alert('Vui lòng chọn dịch vụ')
             e.preventDefault();
             return false;
         } else {
-            sessionStorage.setItem("reloading", "true");
-            document.location.reload();
+            document.querySelector('#book').onclick = () => reloadP();
             return true;
         }
           
