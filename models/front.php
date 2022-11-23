@@ -34,7 +34,7 @@ function add_phone($phone_number)
     return $id = $conn->lastInsertId();
 }
 
-function book($user_id, $time, $services, $employee)
+function book($user_id, $time, $services, $combo, $employee)
 {
     $conn = connect();
     $sql1 = "INSERT INTO `orders`(`user_id`, `time`, `status`) VALUES ($user_id, '$time', 0)";
@@ -42,9 +42,15 @@ function book($user_id, $time, $services, $employee)
     $sql1->execute();
     # sau khi insert hóa đơn vào sẽ lấy mã hóa đơn để add các dịch vụ của hóa đơn đó.
     $order_id = $conn->lastInsertId();
-    foreach ($services as $service) {
-        $sql2 = "INSERT INTO `orders_detail`(`order_id`, `service_id`, `employee_id`) VALUES($order_id, $service, $employee)";
-        $sql2 = $conn->prepare($sql2);
-        $sql2->execute();
+    if (!empty($services)) {
+        foreach ($services as $service) {
+            $sql2 = "INSERT INTO `orders_detail`(`order_id`, `service_id`, `employee_id`) VALUES($order_id, $service, $employee)";
+            $sql2 = $conn->prepare($sql2);
+            $sql2->execute();
+        }
+    } else {
+        $sql3 = "INSERT INTO `orders_detail`(`order_id`, `combo_id`, `employee_id`) VALUES($order_id, $combo, $employee)";
+        $sql3 = $conn->prepare($sql3);
+        $sql3->execute();
     }
 }

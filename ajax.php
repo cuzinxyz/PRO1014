@@ -51,28 +51,41 @@ if (isset($_GET['gettime'])) {
 
 if (isset($_GET['getstylist'])) {
     $choose_date = date("Y-m-d H:i:s", strtotime($_POST['datetime']));
-    $list = query("SELECT * FROM employee");
-
+    $list = query("
+    SELECT DISTINCT employee.id as idnhanvien, employee.name, employee.image FROM employee
+    LEFT JOIN orders_detail ON employee.id=orders_detail.employee_id
+    LEFT JOIN orders ON orders_detail.order_id=orders.id
+    WHERE employee.id NOT IN (
+        SELECT orders_detail.employee_id FROM orders
+        JOIN orders_detail ON orders.id=orders_detail.order_id
+        WHERE orders.time = '" . $choose_date . "'
+    )
+    ");
+    // echo $choose_date;
     // print_r($list);
-    foreach ($list as $item) {
-        echo '
-            <div class="stylist__item">
-                <label class="checkbox__label">
-                <div class="checkbox__custom">
-                    <input class="checkbox__input" name="choose_employee" value="' . $item['id'] . '" type="radio" required>
-                    <span class="checkmark"><i class="fa-solid fa-check"></i></span>
-                </div>
-                <div class="service__content">
-                    <div class="infor__stylist">
-                    <img src="public/images/employee/' . $item['image'] . '" alt="" class="avatar__stylist">
-                    <p class="name__stylist">' . $item['name'] . '</p>
-                    <a href="" class="detail__stylist">
-                        Review: 4.5/5 <i class="fa-regular fa-star"></i>
-                    </a>
+    if (empty($list)) {
+        echo "Thời gian bạn chọn đã được đặt hết, vui lòng chọn ca khác. Chúng tôi vô cùng tiếc vì điều này!";
+    } else {
+        foreach ($list as $item) {
+            echo '
+                <div class="stylist__item">
+                    <label class="checkbox__label">
+                    <div class="checkbox__custom">
+                        <input class="checkbox__input" name="choose_employee" value="' . $item['idnhanvien'] . '" type="radio" required>
+                        <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                     </div>
+                    <div class="service__content">
+                        <div class="infor__stylist">
+                        <img src="public/images/employee/' . $item['image'] . '" alt="" class="avatar__stylist">
+                        <p class="name__stylist">' . $item['name'] . '</p>
+                        <a href="" class="detail__stylist">
+                            Review: 4.5/5 <i class="fa-regular fa-star"></i>
+                        </a>
+                        </div>
+                    </div>
+                    </label>
                 </div>
-                </label>
-            </div>
-        ';
+            ';
+        }
     }
 }

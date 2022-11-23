@@ -16,7 +16,7 @@
     <div class="container">
         <div class="booking--wrap">
             <h2 class="request">Đặt lịch giữ chỗ</h2>
-            <form action="" method="POST" id="bookapp">
+            <form action="" method="post" id="bookapp">
                 <div class="grid display-block">
                     <div class="selection">
                         <div class="select--wrap">
@@ -42,7 +42,7 @@
                                 <label class="checkbox__label">
                                     <div class="checkbox__custom">
                                         <input class="checkbox__input checkbox__input-checkbox" name="choose_service[]"
-                                             value="<?= $service['id'] ?>" type="checkbox">
+                                            value="<?= $service['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
@@ -67,25 +67,29 @@
                         </h2>
                         <!-- start combo -->
                         <div class="list__services">
-                            <?php foreach ($combos as $combo) : ?>
+                            <?php
+                            foreach ($combos as $key => $combo) :
+                            ?>
                             <div class="service__item">
                                 <label class="checkbox__label checkbox__label-combo">
                                     <div class="checkbox__custom">
-                                        <input class="checkbox__input checkbox__input-radio" name="choose_combo[]"
-                                             value="<?= $combo['id'] ?>" type="checkbox">
+                                        <input class="checkbox__input checkbox__input-radio" name="choose_combo"
+                                            value="<?= $combo['id'] ?>" type="checkbox">
                                         <span class="checkmark"><i class="fa-solid fa-check"></i></span>
                                     </div>
                                     <div class="service__content">
                                         <div class="name-price">
-                                            <p class="name__service"><?= $combo['name'] ?></p>
-                                            <p class="price__service"><?= number_format($combo['price'], 0, '', ','); ?>
+                                            <p class="name__service"><?= $combo['comboname'] ?></p>
+                                            <p class="price__service">
+                                                <?= number_format($combo['tongtien'], 0, '', ','); ?>
                                                 &#8363;
                                             </p>
                                         </div>
                                     </div>
                                 </label>
                             </div>
-                            <?php endforeach; ?>
+                            <?php endforeach;
+                            ?>
                         </div>
                         <div class="nofication">
                             <label for="combo" class="error"></label>
@@ -133,7 +137,6 @@
                         <div class="btn-order">
                             <input type="submit" name="book_now" id="book" value="ĐẶT LỊCH NGAY">
                         </div>
-
                     </div>
 
                     <!-- end selection -->
@@ -163,7 +166,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="public/js/jquery-3.6.1.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
     <script src="public/js/flatpickr.js"></script>
