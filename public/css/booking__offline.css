@@ -21,3 +21,7 @@
 .input__book--off:checked~.label--off {
   background-color: aqua;
 }
+
+.input-opacity {
+  opacity: 0.5;
+}
