@@ -7,11 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = login($email, $password);
     if ($result) {
         $_SESSION['name'] = $result['name'];
+        $_SESSION['id'] = $result['id'];
         $_SESSION['role'] = $result['isAdmin'];
         if ($result['isAdmin'] == 'admin') {
             header("location: /?action=receipt");
         } else {
-            header("location: /nhanvien");
+            header("location: /employee.php");
         }
     }
 }
@@ -19,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 # CHECK AVAILABLE LOGIN
 if (isEmployee()) {
     if ($_SESSION['role'] == 'admin') header("location: /?action=receipt");
+    if ($_SESSION['role'] == NULL) header("location: /employee.php");
 }
 ?>
 <!DOCTYPE html>
@@ -30,8 +32,7 @@ if (isEmployee()) {
     <title>Admin | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="public/admin/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
