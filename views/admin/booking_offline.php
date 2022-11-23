@@ -42,8 +42,8 @@
               <h3 class="service__off">Service</h3>
               <div class="row">
                 <?php foreach ($services as $service) : ?>
-                  <label class="col-sm-3">
-                    <input type="checkbox" name="" class="input__book--off">
+                  <label class="col-sm-3 service__item">
+                    <input type="checkbox" name="" class="checkbox__input-checkbox input__book--off">
                     <div class="position-relative p-3 label--off" style="height: 150px">
                       <h5 class="name__service--off col-10"><?= $service['name'] ?></h5>
                       <p class="price__service--off"><?= number_format($service['price'], 0, '', '.'); ?>
@@ -56,8 +56,8 @@
               <h3 class="service__off">Combo</h3>
               <div class="row">
                 <?php foreach ($combos as $combo) : ?>
-                  <label class="col-sm-3">
-                    <input type="checkbox" name="" class="input__book--off">
+                  <label class="col-sm-3 service__item">
+                    <input type="checkbox" name="" class="checkbox__input-radio input__book--off">
                     <div class="position-relative p-3 label--off" style="height: 150px">
                       <h5 class="name__service--off col-10"><?= $combo['name'] ?></h5>
                       <p class="price__service--off"><?= number_format($combo['price'], 0, '', '.'); ?>
@@ -77,5 +77,5 @@
   </section>
   <!-- /.content -->
 </div>
-
+<?php $script = '<script src="public/js/booking-off.js"></script>'; ?>
 <?php require_once 'views/admin/partials/footer.php' ?>
