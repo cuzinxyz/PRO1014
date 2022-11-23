@@ -101,7 +101,7 @@
                         </h2>
                         <!-- start list date -->
                         <div class="date--wrap">
-                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." required
+                            <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." 
                                 name="choose_date" data-id="minDateToday" readonly="readonly" id="date">
                         </div>
                         <!-- end list date -->
@@ -118,7 +118,7 @@
                                 ?>
                             <label class="time__item">
                                 <input class="time__input" type="radio" value="<?= $time['time'] ?>" name="choose_time"
-                                    required <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
+                                     <?= ($currentTime > $checkTime) ? " disabled" : "" ?>>
                                 <span
                                     class="time__checked <?= ($currentTime > $checkTime) ? " unavailable" : "" ?>"><?= date("H:i", strtotime($time['time'])) ?></span>
                             </label>
@@ -135,7 +135,7 @@
                         <!-- end list styelist -->
 
                         <div class="btn-order">
-                            <input type="submit" name="book_now" onclick="reloadP()" value="ĐẶT LỊCH NGAY" />
+                            <input type="submit" name="book_now" id="book" value="ĐẶT LỊCH NGAY">
                         </div>
                     </div>
 

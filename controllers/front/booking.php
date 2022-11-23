@@ -11,6 +11,7 @@ GROUP BY combo.id
 $work_time = query("SELECT * FROM work_time");
 $stylists = query("SELECT * FROM employee");
 
+
 // print_r($combos);
 // var_dump($_POST);
 
