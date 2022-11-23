@@ -38,7 +38,7 @@ const app = {
                 const list__services = divServiceItemCheck.parentElement;
                 const rowCombos = input[i].closest('.row');
                 const getTitle = rowCombos.previousElementSibling;
-                
+                console.log(getTitle.innerText);
                 
                 if(input[i].checked === true) {
                     checkTrue.push(input[i].checked);
@@ -51,6 +51,8 @@ const app = {
                         checkTrue.shift();
                     }  
                 }else {}
+
+                this.hanldeDeleteCheckedRadio(checkTrue);
 
                 // Xử lý phần chọn tối đa 2 dịch vụ
                 for (const index in checkTrue) {
@@ -73,6 +75,22 @@ const app = {
                     }
                 }
 
+            }
+        }
+    },
+
+    hanldeDeleteCheckedRadio(checkTrue) {
+        let lengthInputRadio = radioInput.length;
+        for (let i = 0; i < lengthInputRadio; i++) {
+            radioInput[i].onclick = () => {
+                if(radioInput[i].checked === true) {
+                    for (const index in radioInput) {
+                        radioInput[index].checked = false;
+                        checkTrue.pop();
+                    }
+                    radioInput[i].checked = true;
+                    checkTrue.pop();
+                }else {}
             }
         }
     },
