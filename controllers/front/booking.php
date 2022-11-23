@@ -3,10 +3,15 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once "models/front.php";
 
 $services = query("SELECT * FROM services WHERE status=1");
-$combos = query("SELECT * FROM services");
+$combos = query("
+SELECT combo.id, combo.status as trangthaicombo, GROUP_CONCAT(services.name SEPARATOR ' & ') as comboname, SUM(services.price) as tongtien FROM combo JOIN list_combo ON combo.id=list_combo.combo_id JOIN services ON list_combo.service_id=services.id
+WHERE services.status <> 0
+GROUP BY combo.id
+");
 $work_time = query("SELECT * FROM work_time");
 $stylists = query("SELECT * FROM employee");
 
+// print_r($combos);
 // var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,10 +31,12 @@ if (isset($_POST['book_now'])) {
     $employee = (int) $_POST['choose_employee'];
     if (isset($_POST['choose_service'])) {
         $service_choose = $_POST['choose_service'];
+        $combo_choose = null;
     } else {
-        $service_choose = $_POST['choose_combo'];
+        $service_choose = null;
+        $combo_choose = (int) $_POST['choose_combo'];
     }
-    // book($user_id, $time, $service_choose, $employee);
+    book($user_id, $time, $service_choose, $combo_choose, $employee);
 }
 
 # GET LIST TIME AVAILABLE WITH AJAX
