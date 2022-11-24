@@ -11,9 +11,7 @@
     <!-- CSS CUSTOM -->
     <link rel="stylesheet" href="public/css/main.css">
     <!-- CSS FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -23,8 +21,7 @@
     <div id="popup1" class="popup-container">
         <div class="popup-content">
             <a href="#" class="close">&times;</a>
-            <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;"
-                        class="fa-solid fa-check"></i></span>
+            <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;" class="fa-solid fa-check"></i></span>
             </h3>
             <p>Chúc bạn một ngày mới vui vẻ, hẹn gặp lại bạn. </p>
         </div>
@@ -66,8 +63,7 @@
                     <div class="form-input__form flex">
                         <form action="/book" method="POST" style="width: 100%;">
                             <div class="form__input flex">
-                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus
-                                    name="phone" maxlength="10">
+                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus name="phone" maxlength="10">
                                 <button type="submit" class="btn__action">ĐẶT LỊCH NGAY</button>
                             </div>
                         </form>
@@ -93,36 +89,15 @@
             <div class="blog container">
                 <p class="blog-title">Lastest News</p>
                 <div class="list-posts">
-                    <div class="post">
-                        <img src="https://www.brunosbarbers.com/wp-content/uploads/2021/02/Construction-Worker-turned-barber.jpg"
-                            alt="">
-                        <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
-                        <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
-                            turned
-                            barber with an upgrade.</p>
-                        <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                    <div class="post">
-                        <img src="https://www.brunosbarbers.com/wp-content/uploads/2021/02/Construction-Worker-turned-barber.jpg"
-                            alt="">
-                        <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
-                        <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
-                            turned
-                            barber with an upgrade.</p>
-                        <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                    <div class="post">
-                        <img src="https://www.brunosbarbers.com/wp-content/uploads/2021/02/Construction-Worker-turned-barber.jpg"
-                            alt="">
-                        <p class="post_title">Construction worker turned barber gets tools upgrade.</p>
-                        <p class="post_date">FEBRUARY 26, 2021</p>
-                        <p class="post_desc">Bruno’s Barbers’ president, Marco Pascual surprises construction worker
-                            turned
-                            barber with an upgrade.</p>
-                        <a href="#" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
+                    <?php foreach ($blogs as $key => $blog) : ?>
+                        <div class="post">
+                            <img src="public/images/image__blog/<?= $blog['image'] ?>" alt="">
+                            <p class="post_title"><?= $blog['title'] ?></p>
+                            <p class="post_date"><?= date("F jS Y", strtotime($blog['createdAt'])) ?></p>
+                            <div class="post_desc"><?= $blog['content'] ?></div>
+                            <a href="/?action=blog_detail&id=<?= $blog['id'] ?>" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="instagram">
