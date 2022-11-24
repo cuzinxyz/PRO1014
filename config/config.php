@@ -1,10 +1,10 @@
 <?php
 function connect()
 {
-    $dbhost  = 'localhost';
-    $dbname  = 'pro1014';
-    $dbuser  = 'root';
-    $dbpass  = '';
+    $dbhost  = 'sql.freedb.tech';
+    $dbname  = 'freedb_pro1014';
+    $dbuser  = 'freedb_pro1014';
+    $dbpass  = 'SCaUbQ9Y%m@cP#r';
 
     try {
         $dbConn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
