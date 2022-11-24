@@ -156,12 +156,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="?action=services" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách dịch vụ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="?action=addcombo" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm combo</p>
@@ -170,7 +164,7 @@
                                 <li class="nav-item">
                                     <a href="?action=services" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách combo</p>
+                                        <p>Danh sách dịch vụ</p>
                                     </a>
                                 </li>
                             </ul>

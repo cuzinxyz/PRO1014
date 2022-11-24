@@ -36,12 +36,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($values as $key => $value) : ?>
+                  <?php foreach ($values_service as $key => $value) : ?>
                     <tr>
-                      <td><?= $key + 1 ?></td>
+                      <td><?= $count += 1 ?></td>
                       <td><?= $value['name'] ?></td>
-                      <td><?= $value['price'] ?></td>
+                      <td><?= number_format($value['price'], 0, '', ',');  ?> &#8363;</td>
                       <td><?= $value['status'] == 1 ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>" ?></td>
+                      <!--  -->
+                      <td>
+                        <a href="?action=edit_service&id=<?= $value['id'] ?>"><i class="fas fa-edit"></i>Update</a>
+                        <!-- <a href="">Delete</a> -->
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                  <?php foreach ($values_comboes as $key => $value) : ?>
+                    <tr>
+                      <td><?= $count += 1 ?></td>
+                      <td><?= $value['comboname'] ?> <span style="color:red">(Combo)</span></td>
+                      <td><?= number_format($value['tongtien'], 0, '', ',') ?> &#8363;</td>
+                      <td><?= $value['trangthaicombo'] == 1 ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>" ?></td>
                       <!--  -->
                       <td>
                         <a href="?action=edit_service&id=<?= $value['id'] ?>"><i class="fas fa-edit"></i>Update</a>

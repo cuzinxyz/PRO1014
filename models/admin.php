@@ -240,6 +240,21 @@ function addCombo($ids)
     }
 }
 
+function comboes()
+{
+    $conn = connect();
+    $sql = "SELECT combo.id, combo.status as trangthaicombo, 
+        GROUP_CONCAT(services.name SEPARATOR ' & ') as comboname, 
+        SUM(services.price) as tongtien 
+        FROM combo JOIN list_combo ON combo.id=list_combo.combo_id 
+        JOIN services ON list_combo.service_id=services.id 
+        GROUP BY combo.id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}
+
 # Query
 function query($sql)
 {
