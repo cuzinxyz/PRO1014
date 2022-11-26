@@ -1,6 +1,6 @@
 <?php
 require "models/admin.php";
-if (empty($_SESSION['role'])) {
+if (!isset($_SESSION['role'])) {
     header("location: /");
 }
 $employeeID = (int)$_SESSION['id'];
