@@ -1,7 +1,9 @@
 <?php
 require "models/admin.php";
-if (!isset($_SESSION['role'])) {
-    header("location: /");
+if (isEmployee()) {
+    if ($_SESSION['role'] == 'admin') {
+        header("location: /?action=receipt");
+    }
 }
 $employeeID = (int)$_SESSION['id'];
 $employee = query("SELECT * FROM `employee` WHERE `id` = $employeeID");
