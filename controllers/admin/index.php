@@ -19,6 +19,8 @@ if (isset($_GET['detail'])) {
     $id_receipt = $_GET['detail'];
     # Lấy 1 hóa đơn dựa vào detail url.
     $detail_receipt = one_receipt($id_receipt);
+
+    // print_r($detail_receipt);
 }
 
 # FEEDBACK

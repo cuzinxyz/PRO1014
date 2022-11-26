@@ -249,9 +249,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($detail_receipt as $detail) : ?>
+                                    <?php foreach ($detail_receipt as $key => $detail) : ?>
                                     <tr>
-                                        <td><?= $detail['id'] ?></td>
+                                        <td><?= ++$key ?></td>
                                         <td><?= $detail['DichVu'] ?></td>
                                         <td><?= $detail['NguoiLam'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
@@ -334,7 +334,7 @@
                                 <tbody>
                                     <?php foreach ($all_receipts as $key => $receipt) : ?>
                                     <tr>
-                                        <td><?= $receipt['MaHoaDon'] ?></td>
+                                        <td><?= ++$key ?></td>
                                         <td><?= $receipt['phone_number'] ?></td>
                                         <td><?= $receipt['time'] ?></td>
                                         <td>
