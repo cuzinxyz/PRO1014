@@ -36,7 +36,7 @@ function get_receipt()
 {
     $conn = connect();
     $sql = "SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
-    JOIN users ON orders.user_id=users.id";
+    JOIN users ON orders.user_id=users.id ORDER BY time DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -316,4 +316,24 @@ function book($phone_number, $services, $combo, $employee)
         $stmt3 = $conn->prepare($sql3);
         $stmt3->execute();
     }
+}
+
+function startCut($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE `orders` SET `status`=1 WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+function finished($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE `orders` SET `status`=2 WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
 }

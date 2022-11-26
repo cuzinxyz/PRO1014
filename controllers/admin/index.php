@@ -31,9 +31,7 @@ if (isset($_GET['done'])) {
         $star = $_POST['rating'];
         $feedback_content = $_POST['feedback_content'];
         $result = feedback($id_receipt, $id_user, $star, $feedback_content);
-        if ($result) {
-            header("location: /?action=receipt");
-        }
+        header("location: /?action=receipt");
     }
 }
 
