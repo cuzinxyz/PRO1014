@@ -36,9 +36,14 @@
                 <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
                 <div class="menu">
                     <a href="#" class="active">home</a>
-                    <a href="#">who we are</a>
                     <a href="#">contact us</a>
                     <a href="#">book now</a>
+                    <a href="/?action=register">đăng ký</a>
+                    <?php if (isset($_SESSION['phone_number'])) {  ?>
+                        <a href="/?action=login">đăng xuất</a>
+                    <?php } else {  ?>
+                        <a href="/?action=login">đăng nhập</a>
+                    <?php } ?>
                 </div>
                 <div class="nav_socials">
                     <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -94,44 +99,49 @@
                 <p class="blog-title">Lastest News</p>
                 <div class="list-posts">
                     <?php foreach ($blogs as $key => $blog) : ?>
-                    <div class="post">
-                        <img src="public/images/image__blog/<?= $blog['image'] ?>" alt="">
-                        <p class="post_title"><?= $blog['title'] ?></p>
-                        <p class="post_date"><?= date("F jS Y", strtotime($blog['createdAt'])) ?></p>
-                        <a href="/?action=blog_detail&id=<?= $blog['id'] ?>" class="post_readmore">Read more <i
-                                class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+                        <div class="post">
+                            <img src="public/images/image__blog/<?= $blog['image'] ?>" alt="">
+                            <p class="post_title"><?= $blog['title'] ?></p>
+                            <p class="post_date"><?= date("F jS Y", strtotime($blog['createdAt'])) ?></p>
+                            <div class="post_desc"><?= $blog['content'] ?></div>
+                        <a href="/?action=blog_detail&id=<?= $blog['id'] ?>" class="post_readmore">Read more <i class="fa-solid fa-chevron-right"></i></a>
+            <?php endforeach; ?>
             </div>
-            <div class="instagram">
-                <p class="instagram-title container">INSTAGRAM</p>
-                <div class="instagram-list">
-                    <img src="public/images/insta-1.jpg" alt="">
-                    <img src="public/images/insta-2.jpg" alt="">
-                    <img src="public/images/insta-3.jpg" alt="">
-                    <img src="public/images/insta-4.jpg" alt="">
-                    <img src="public/images/insta-5.jpg" alt="">
-                    <img src="public/images/man-large.jpg" alt="">
-                </div>
-            </div>
-        </main>
-        <footer>
-            <div class="container">
-                <img src="public/images/logo.png" alt="" class="footer_logo">
-                <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas
-                    Center,
-                    Pasig City, Philippines 1605.</p>
-                <p class="footer_copyright">
-                    Copyright 2022 Bruno's Barbers | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
-                </p>
-                <p class="footer_socials">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </p>
-            </div>
-        </footer>
+    </div>
+    <div class="instagram">
+        <p class="instagram-title container">INSTAGRAM</p>
+        <div class="instagram-list">
+            <img src="public/images/insta-1.jpg" alt="">
+            <img src="public/images/insta-2.jpg" alt="">
+            <img src="public/images/insta-3.jpg" alt="">
+            <img src="public/images/insta-4.jpg" alt="">
+            <img src="public/images/insta-5.jpg" alt="">
+            <img src="public/images/man-large.jpg" alt="">
+            <img src="public/images/insta-1.jpg" alt="">
+            <img src="public/images/insta-2.jpg" alt="">
+            <img src="public/images/insta-3.jpg" alt="">
+            <img src="public/images/insta-4.jpg" alt="">
+            <img src="public/images/insta-5.jpg" alt="">
+            <img src="public/images/man-large.jpg" alt="">
+        </div>
+    </div>
+    </main>
+    <footer>
+        <div class="container">
+            <img src="public/images/logo.png" alt="" class="footer_logo">
+            <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas
+                Center,
+                Pasig City, Philippines 1605.</p>
+            <p class="footer_copyright">
+                Copyright 2022 Bruno's Barbers | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
+            </p>
+            <p class="footer_socials">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </p>
+        </div>
+    </footer>
     </div>
 
 </body>

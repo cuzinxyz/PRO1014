@@ -94,8 +94,8 @@
                         <span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Inventory</span>
-                            <span class="info-box-number">5,200</span>
+                            <span class="info-box-text">Nhân viên</span>
+                            <span class="info-box-number"><?= $employee[0]['amount'] ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -104,8 +104,8 @@
                         <span class="info-box-icon"><i class="far fa-heart"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Mentions</span>
-                            <span class="info-box-number">92,050</span>
+                            <span class="info-box-text">Dịch vụ</span>
+                            <span class="info-box-number"><?= $services[0]['amount'] ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -114,8 +114,18 @@
                         <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Downloads</span>
-                            <span class="info-box-number">114,381</span>
+                            <span class="info-box-text">Tổng đơn hàng</span>
+                            <span class="info-box-number"><?= $totalOrder[0]['amount'] ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    <div class="info-box mb-3 bg-blue">
+                        <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Tổng doanh thu</span>
+                            <span class="info-box-number"><?= $totalTurnover[0]['total'] ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -124,8 +134,8 @@
                         <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Direct Messages</span>
-                            <span class="info-box-number">163,921</span>
+                            <span class="info-box-text">Khách hàng</span>
+                            <span class="info-box-number"><?= $users[0]['amount'] ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
