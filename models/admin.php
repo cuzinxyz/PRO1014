@@ -276,3 +276,14 @@ function book($phone_number, $services, $combo, $employee)
         $stmt3->execute();
     }
 }
+
+// login user
+function login_user($phone_number, $password)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM users WHERE phone_number='$phone_number' AND password='$password'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
