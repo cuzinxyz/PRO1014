@@ -57,7 +57,7 @@
                       <td><?= $value['trangthaicombo'] == 1 ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>" ?></td>
                       <!--  -->
                       <td>
-                        <a href="?action=edit_service&id=<?= $value['id'] ?>"><i class="fas fa-edit"></i>Update</a>
+                        <a href="?action=edit_combo&id=<?= $value['id'] ?>"><i class="fas fa-edit"></i>Update</a>
                         <!-- <a href="">Delete</a> -->
                       </td>
                     </tr>

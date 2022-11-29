@@ -281,6 +281,33 @@ function comboes()
     return $data;
 }
 
+function get_one_combo($id) {
+    $conn = connect();
+    $sql = "SELECT list_combo.service_id FROM list_combo 
+    JOIN services ON list_combo.service_id = services.id 
+    WHERE combo_id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function update_comboes($ids, $id_combo) {
+    $conn = connect();
+    $detail_combo = get_one_combo($id_combo);
+    foreach ($detail_combo as $combo) {
+        foreach (array($ids) as $id) {
+            $sql = "UPDATE `list_combo` 
+            SET CASE  
+                WHEN service_id = $combo THEN $id
+            END
+            WHERE combo_id=$id_combo";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+        }
+    }
+}
+
 # Query
 function query($sql)
 {
