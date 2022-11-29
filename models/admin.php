@@ -36,7 +36,7 @@ function get_receipt()
 {
     $conn = connect();
     $sql = "SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
-    JOIN users ON orders.user_id=users.id";
+    JOIN users ON orders.user_id=users.id ORDER BY time DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,18 +46,44 @@ function get_receipt()
 function one_receipt($id)
 {
     $conn = connect();
-
-    $sql = "SELECT orders.id, users.id as idKhach, users.phone_number as NguoiDat, time, orders.status as TrangThai, services.name as DichVu, employee.name as NguoiLam, services.price FROM `orders`
+    $sql = "
+    SELECT orders.id, users.id as idKhach, users.phone_number as NguoiDat, time, orders.status as TrangThai, services.name as DichVu, employee.name as NguoiLam, services.price FROM `orders`
     JOIN orders_detail ON orders.id=orders_detail.order_id
     JOIN services ON orders_detail.service_id=services.id
     JOIN users ON orders.user_id=users.id
     JOIN employee ON orders_detail.employee_id=employee.id
-    WHERE orders.id=$id";
-
+    WHERE orders.id=$id
+    ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    if (empty($data)) {
+        $sql = "
+        SELECT orders.id, users.id as idKhach, users.phone_number as NguoiDat, time, orders.status as TrangThai, 
+        (
+        SELECT DISTINCT GROUP_CONCAT(services.name SEPARATOR ' & ') AS Combo FROM combo
+        JOIN list_combo ON combo.id=list_combo.combo_id
+        JOIN services ON list_combo.service_id=services.id
+        GROUP BY combo.id
+        ) AS DichVu
+        , employee.name as NguoiLam, 
+        (
+        SELECT DISTINCT SUM(services.price) as tongtien FROM combo
+        JOIN list_combo ON combo.id=list_combo.combo_id
+        JOIN services ON list_combo.service_id=services.id
+        GROUP BY combo.id
+        ) AS price
+        FROM `orders`
+        LEFT JOIN orders_detail ON orders.id=orders_detail.order_id
+        LEFT JOIN services ON orders_detail.service_id=services.id
+        LEFT JOIN users ON orders.user_id=users.id
+        LEFT JOIN employee ON orders_detail.employee_id=employee.id
+        WHERE orders.id=$id
+        ";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     return $data;
 }
 
@@ -240,6 +266,21 @@ function addCombo($ids)
     }
 }
 
+function comboes()
+{
+    $conn = connect();
+    $sql = "SELECT combo.id, combo.status as trangthaicombo, 
+        GROUP_CONCAT(services.name SEPARATOR ' & ') as comboname, 
+        SUM(services.price) as tongtien 
+        FROM combo JOIN list_combo ON combo.id=list_combo.combo_id 
+        JOIN services ON list_combo.service_id=services.id 
+        GROUP BY combo.id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}
+
 # Query
 function query($sql)
 {
@@ -277,6 +318,7 @@ function book($phone_number, $services, $combo, $employee)
     }
 }
 
+
 // login user
 function login_user($phone_number, $password)
 {
@@ -287,3 +329,24 @@ function login_user($phone_number, $password)
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
+
+function startCut($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE `orders` SET `status`=1 WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+function finished($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE `orders` SET `status`=2 WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+

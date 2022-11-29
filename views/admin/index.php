@@ -249,9 +249,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($detail_receipt as $detail) : ?>
+                                    <?php foreach ($detail_receipt as $key => $detail) : ?>
                                     <tr>
-                                        <td><?= $detail['id'] ?></td>
+                                        <td><?= ++$key ?></td>
                                         <td><?= $detail['DichVu'] ?></td>
                                         <td><?= $detail['NguoiLam'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
@@ -286,7 +286,7 @@
                     <!--                    Thanh toán-->
                     <?php
                             # Nếu trạng thái của hóa đơn là In process thì hiển thị button đã thanh toán.
-                            if ($detail_receipt[0]['TrangThai'] == 1) {
+                            if ($detail_receipt[0]['TrangThai'] == 1 || $detail_receipt[0]['TrangThai'] == 2) {
                             ?>
                     <div class="text-center">
                         <a href="/?action=receipt&detail=<?= $_GET['detail'] ?>&done">
@@ -326,7 +326,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Tel</th>
-                                        <th>Time</th>
+                                        <th>Time (Năm-Tháng-Ngày | Giờ)</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -334,7 +334,7 @@
                                 <tbody>
                                     <?php foreach ($all_receipts as $key => $receipt) : ?>
                                     <tr>
-                                        <td><?= $receipt['MaHoaDon'] ?></td>
+                                        <td><?= ++$key ?></td>
                                         <td><?= $receipt['phone_number'] ?></td>
                                         <td><?= $receipt['time'] ?></td>
                                         <td>

@@ -16,6 +16,9 @@ if (isset($action)) :
         case 'receipt':
             require "controllers/admin/index.php";
             break;
+        case 'dashboard':
+            require "controllers/admin/dashboard.php";
+            break;
         case 'addservice':
             require "controllers/admin/add-service.php";
             break;
