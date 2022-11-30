@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 require "models/admin.php";
 if (isEmployee()) {
     if ($_SESSION['role'] == 'admin') {
@@ -8,7 +10,7 @@ if (isEmployee()) {
 $employeeID = (int)$_SESSION['id'];
 $employee = query("SELECT * FROM `employee` WHERE `id` = $employeeID");
 
-$receipts = query("SELECT DISTINCT users.phone_number, orders.time, orders.id  FROM `orders` 
+$receipts = query("SELECT DISTINCT users.phone_number, orders.time, orders.id, orders.status  FROM `orders` 
 JOIN `orders_detail` ON orders.id = orders_detail.order_id 
 JOIN `users` ON orders.user_id = users.id
 WHERE orders_detail.employee_id = $employeeID
@@ -124,7 +126,8 @@ if (isset($_POST['startCut'])) {
                                         <th>Phone number</th>
                                         <!-- <th>Task</th> -->
                                         <th>Time</th>
-                                        <th style="width: 40px">Label</th>
+                                        <th>Status</th>
+                                        <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,6 +140,33 @@ if (isset($_POST['startCut'])) {
                                             <?= $receipt['time'] ?>
                                         </td>
                                         <td>
+            <?php
+            if ($receipt['status'] == 0) {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Waiting</span>';
+                }
+            } else if ($receipt['status'] == 1) {
+                echo '<span class="badge bg-primary">In process</span>';
+            } else if ($receipt['status'] == 2) {
+                echo '<span class="badge bg-success">Done</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+            ?>
+                                        </td>
+                                        <td>
                                             <a href="/employee.php?detail=<?= $receipt['id'] ?>"><button
                                                     class="badge bg-success" style="border: none;">Detail</button></a>
                                         </td>
@@ -146,15 +176,6 @@ if (isset($_POST['startCut'])) {
                             </table>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
-                        </div>
                     </div>
                     <!-- /.card -->
                     <?php
@@ -184,25 +205,31 @@ if (isset($_POST['startCut'])) {
                                         <td><?= $detail['DichVu'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
                                         <td>
-                                            <?php
-                                                    if ($detail['TrangThai'] == 0) {
-                                                        $today = date("Y-m-d H:i:s");
-                                                        if ($detail['time'] < $today) {
-                                                            echo '<span class="badge bg-danger">Cancel</span>';
-                                                        } else {
-                                                            echo '<span class="badge bg-warning">Waiting</span>';
-                                                        }
-                                                    } else if ($detail['TrangThai'] == 1) {
-                                                        echo '<span class="badge bg-primary">In process</span>';
-                                                    } else if ($detail['TrangThai'] == 2) {
-                                                        echo '<span class="badge bg-success">Done</span>';
-                                                    } else {
-                                                        $today = date("Y-m-d H:i:s");
-                                                        if ($detail['time'] < $today) {
-                                                            echo '<span class="badge bg-danger">Cancel</span>';
-                                                        }
-                                                    }
-                                                    ?>
+                                        <?php
+            if ($detail['TrangThai'] == 0) {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Waiting</span>';
+                }
+            } else if ($detail['TrangThai'] == 1) {
+                echo '<span class="badge bg-primary">In process</span>';
+            } else if ($detail['TrangThai'] == 2) {
+                echo '<span class="badge bg-success">Done</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+            ?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

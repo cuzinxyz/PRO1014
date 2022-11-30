@@ -10,26 +10,15 @@
     <!-- CSS CUSTOM -->
     <link rel="stylesheet" href="public/css/main.css">
     <!-- CSS FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header>
-        <nav class="container">
-            <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
-            <div class="menu">
-                <a href="#" class="active">home</a>
-                <a href="#">who we are</a>
-                <a href="#">contact us</a>
-                <a href="#">book now</a>
-            </div>
-            <div class="nav_socials">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </nav>
-    </header>
+
+    <?php require "views/front/partials/header.php" ?>
+
     <main>
         <div class="blog_detail">
             <div class="blog_container container">
@@ -49,21 +38,9 @@
             </div>
         </div>
     </main>
-    <footer>
-        <div class="container">
-            <img src="public/images/logo.png" alt="" class="footer_logo">
-            <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas Center,
-                Pasig City, Philippines 1605.</p>
-            <p class="footer_copyright">
-                Copyright 2022 Bruno's Barbers | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
-            </p>
-            <p class="footer_socials">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            </p>
-        </div>
-    </footer>
+
+    <?php require "views/front/partials/footer.php" ?>
+
 </body>
 
 </html>

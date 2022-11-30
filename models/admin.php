@@ -64,6 +64,7 @@ function one_receipt($id)
         SELECT DISTINCT GROUP_CONCAT(services.name SEPARATOR ' & ') AS Combo FROM combo
         JOIN list_combo ON combo.id=list_combo.combo_id
         JOIN services ON list_combo.service_id=services.id
+        WHERE o1.combo_id=combo.id
         GROUP BY combo.id
         ) AS DichVu
         , employee.name as NguoiLam, 
@@ -71,13 +72,14 @@ function one_receipt($id)
         SELECT DISTINCT SUM(services.price) as tongtien FROM combo
         JOIN list_combo ON combo.id=list_combo.combo_id
         JOIN services ON list_combo.service_id=services.id
+        WHERE o1.combo_id=combo.id
         GROUP BY combo.id
         ) AS price
         FROM `orders`
-        LEFT JOIN orders_detail ON orders.id=orders_detail.order_id
-        LEFT JOIN services ON orders_detail.service_id=services.id
+        LEFT JOIN orders_detail o1 ON orders.id=o1.order_id
+        LEFT JOIN services ON o1.service_id=services.id
         LEFT JOIN users ON orders.user_id=users.id
-        LEFT JOIN employee ON orders_detail.employee_id=employee.id
+        LEFT JOIN employee ON o1.employee_id=employee.id
         WHERE orders.id=$id
         ";
         $stmt = $conn->prepare($sql);
@@ -349,4 +351,3 @@ function finished($id_receipt)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
-
