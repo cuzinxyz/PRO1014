@@ -31,8 +31,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Doanh thu theo ngày</span>
                             <span class="info-box-number">
-                                10
-                                <small>%</small>
+                                <?= $totalOfOneDay ?>
                             </span>
                         </div>
                         <!-- /.info-box-content -->
@@ -46,7 +45,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Doanh thu tháng</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-number"><?= $totalOfMonth ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -60,10 +59,9 @@
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
                         <div class="info-box-content">
-                            <span class="info-box-text">Doanh thu năm</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-text">Tổng doanh thu</span>
+                            <span class="info-box-number"><?= $totalSales ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -125,7 +123,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Tổng doanh thu</span>
-                            <span class="info-box-number"><?= $totalTurnover[0]['total'] ?></span>
+                            <span class="info-box-number"><?= $totalSales ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
