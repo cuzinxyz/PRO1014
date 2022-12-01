@@ -294,17 +294,20 @@ function get_one_combo($id) {
 
 function update_comboes($ids, $id_combo) {
     $conn = connect();
-    $detail_combo = get_one_combo($id_combo);
-    foreach ($detail_combo as $combo) {
-        foreach (array($ids) as $id) {
-            $sql = "UPDATE `list_combo` 
-            SET CASE  
-                WHEN service_id = $combo THEN $id
-            END
-            WHERE combo_id=$id_combo";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-        }
+    $sql1 = "DELETE FROM list_combo
+            WHERE list_combo.combo_id = $id_combo";
+    $stmt = $conn->prepare($sql1);
+    $stmt ->execute();
+
+    $sql2 = "INSERT INTO `combo`(`status`) VALUES(1)";
+    $stmt = $conn->prepare($sql2);
+    $stmt->execute();
+
+    $combo_id = $conn->lastInsertId();
+    foreach ($ids as $id) {
+        $sql3 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($combo_id, $id)";
+        $stmt = $conn->prepare($sql3);
+        $stmt->execute();
     }
 }
 

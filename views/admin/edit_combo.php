@@ -35,7 +35,7 @@
                                     <input class="checkbox__input" name="id_combo[]"
                                         value="<?= $value['id'] ?>" 
                                         <?php 
-                                          foreach($one_combo as $key ) {
+                                          foreach($detail_combo as $key ) {
                                             extract($key);
                                             if($value['id'] == $service_id) {
                                               echo "checked";

@@ -3,7 +3,8 @@ require_once "models/admin.php";
 $values = services();
 
 $id = $_GET['id'];
-$one_combo = get_one_combo($id);
+$detail_combo = get_one_combo($id);
+
 
 if (isset($_POST['add'])) {
     $ids = $_POST['id_combo'];
