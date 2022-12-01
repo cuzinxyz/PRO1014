@@ -1,26 +1,26 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 require "models/admin.php";
-if (empty($_SESSION['role'])) {
-  if ($_SESSION['role'] != NULL) {
-    header("location: /");
-  }
-} else {
-  header("location: /");
+if (isEmployee()) {
+    if ($_SESSION['role'] == 'admin') {
+        header("location: /?action=receipt");
+    }
 }
 $employeeID = (int)$_SESSION['id'];
 $employee = query("SELECT * FROM `employee` WHERE `id` = $employeeID");
 
-$receipts = query("SELECT DISTINCT users.phone_number, orders.time, orders.id  FROM `orders` 
+$receipts = query("SELECT DISTINCT users.phone_number, orders.time, orders.id, orders.status  FROM `orders` 
 JOIN `orders_detail` ON orders.id = orders_detail.order_id 
 JOIN `users` ON orders.user_id = users.id
 WHERE orders_detail.employee_id = $employeeID
 ORDER BY orders.time DESC");
 
 if (isset($_GET['detail'])) {
-  # $_GET detail url
-  $id_receipt = $_GET['detail'];
-  # Lấy 1 hóa đơn dựa vào detail url.
-  $detail_receipt = one_receipt($id_receipt);
+    # $_GET detail url
+    $id_receipt = $_GET['detail'];
+    # Lấy 1 hóa đơn dựa vào detail url.
+    $detail_receipt = one_receipt($id_receipt);
 }
 # số lượng đơn hàng của user
 $quantity = count($receipts);
@@ -28,13 +28,13 @@ $quantity = count($receipts);
 $vote = query("SELECT AVG(star) as vote FROM `feedback` JOIN `orders_detail` ON feedback.order_id = orders_detail.order_id WHERE employee_id = $employeeID");
 
 if (isset($_POST['startCut'])) {
-  $id_receipt = (int) $_GET['detail'];
-  startCut($id_receipt);
-  header("location: /employee.php?detail=$id_receipt");
+    $id_receipt = (int) $_GET['detail'];
+    startCut($id_receipt);
+    header("location: /employee.php?detail=$id_receipt");
 } elseif (isset($_POST['finished'])) {
-  $id_receipt = (int) $_GET['detail'];
-  finished($id_receipt);
-  header("location: /employee.php?detail=$id_receipt");
+    $id_receipt = (int) $_GET['detail'];
+    finished($id_receipt);
+    header("location: /employee.php?detail=$id_receipt");
 }
 ?>
 <!DOCTYPE html>
@@ -126,7 +126,8 @@ if (isset($_POST['startCut'])) {
                                         <th>Phone number</th>
                                         <!-- <th>Task</th> -->
                                         <th>Time</th>
-                                        <th style="width: 40px">Label</th>
+                                        <th>Status</th>
+                                        <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,6 +140,33 @@ if (isset($_POST['startCut'])) {
                                             <?= $receipt['time'] ?>
                                         </td>
                                         <td>
+            <?php
+            if ($receipt['status'] == 0) {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Waiting</span>';
+                }
+            } else if ($receipt['status'] == 1) {
+                echo '<span class="badge bg-primary">In process</span>';
+            } else if ($receipt['status'] == 2) {
+                echo '<span class="badge bg-success">Done</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+            ?>
+                                        </td>
+                                        <td>
                                             <a href="/employee.php?detail=<?= $receipt['id'] ?>"><button
                                                     class="badge bg-success" style="border: none;">Detail</button></a>
                                         </td>
@@ -148,20 +176,11 @@ if (isset($_POST['startCut'])) {
                             </table>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
-                        </div>
                     </div>
                     <!-- /.card -->
                     <?php
-          if (isset($_GET['detail'])) :
-          ?>
+                    if (isset($_GET['detail'])) :
+                    ?>
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Chi tiết hóa đơn khách hàng: <i class="nav-icon fas fa-user"></i>
@@ -186,25 +205,31 @@ if (isset($_POST['startCut'])) {
                                         <td><?= $detail['DichVu'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
                                         <td>
-                                            <?php
-                          if ($detail['TrangThai'] == 0) {
-                            $today = date("Y-m-d H:i:s");
-                            if ($detail['time'] < $today) {
-                              echo '<span class="badge bg-danger">Cancel</span>';
-                            } else {
-                              echo '<span class="badge bg-warning">Waiting</span>';
-                            }
-                          } else if ($detail['TrangThai'] == 1) {
-                            echo '<span class="badge bg-primary">In process</span>';
-                          } else if ($detail['TrangThai'] == 2) {
-                            echo '<span class="badge bg-success">Done</span>';
-                          } else {
-                            $today = date("Y-m-d H:i:s");
-                            if ($detail['time'] < $today) {
-                              echo '<span class="badge bg-danger">Cancel</span>';
-                            }
-                          }
-                          ?>
+                                        <?php
+            if ($detail['TrangThai'] == 0) {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Waiting</span>';
+                }
+            } else if ($detail['TrangThai'] == 1) {
+                echo '<span class="badge bg-primary">In process</span>';
+            } else if ($detail['TrangThai'] == 2) {
+                echo '<span class="badge bg-success">Done</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+            ?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -212,19 +237,19 @@ if (isset($_POST['startCut'])) {
                             </table>
                             <form action="" method="POST">
                                 <?php
-                  if ($detail['TrangThai'] == 0) {
-                  ?>
+                                    if ($detail['TrangThai'] == 0) {
+                                    ?>
                                 <button type="submit" name="startCut" class="btn btn-block btn-success btn-sm">Bắt đầu
                                     cắt</button>
                                 <?php } elseif ($detail['TrangThai'] == 1) { ?>
                                 <button type="submit" name="finished" class="btn btn-block btn-success btn-sm">Hoàn
                                     thành</button>
                                 <?php } else {
-                    echo '<div class="direct-chat-text">
+                                        echo '<div class="direct-chat-text">
                       Hóa đơn này của bạn đã xong!
                     </div>';
-                  }
-                  ?>
+                                    }
+                                    ?>
                             </form>
                         </div>
                         <!-- /.card-body -->

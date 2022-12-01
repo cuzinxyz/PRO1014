@@ -89,3 +89,56 @@ if (isset($_GET['getstylist'])) {
         }
     }
 }
+
+if (isset($_POST['search'])) 
+{
+    $searchValue = $_POST['search'];
+    //Search query & Query execution.
+    $searchResult = query("
+    SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
+    JOIN users ON orders.user_id=users.id 
+    WHERE users.phone_number LIKE '%$searchValue%' 
+    ORDER BY time DESC
+    ");
+    foreach ($searchResult as $key => $receipt) : ?>
+        <tr>
+            <td><?= ++$key ?></td>
+            <td><?= $receipt['phone_number'] ?></td>
+            <td><?= $receipt['time'] ?></td>
+            <td>
+            <?php
+            if ($receipt['TrangThai'] == 0) {
+            // tính thời gian quá 1h sẽ Cancel hóa đơn.
+            $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+            $today = date("Y-m-d H:i:s");
+            if ($deadline < $today) {
+            echo '<span class="badge bg-danger">Cancel</span>';
+            } else {
+            echo '<span class="badge bg-warning">Waiting</span>';
+            }
+            } else if ($receipt['TrangThai'] == 1) {
+            echo '<span class="badge bg-primary">In process</span>';
+            } else if ($receipt['TrangThai'] == 2) {
+            echo '<span class="badge bg-success">Done</span>';
+            } else {
+            // tính thời gian quá 1h sẽ Cancel hóa đơn.
+            $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+            $today = date("Y-m-d H:i:s");
+            if ($deadline < $today) {
+            echo '<span class="badge bg-danger">Cancel</span>';
+            }
+            }
+            ?>
+            </td>
+            <td>
+                <a href="/?action=receipt&detail=<?= $receipt['MaHoaDon'] ?>">
+                    <button type="button"
+                        class="btn btn-block btn-primary btn-xs">View</button>
+                </a>
+            </td>
+        </tr>
+        <?php endforeach;
+
+}
