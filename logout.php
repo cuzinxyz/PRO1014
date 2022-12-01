@@ -4,4 +4,4 @@ ob_start();
 
 session_destroy();
 
-header("location: /");
+header("location: /?action=login");

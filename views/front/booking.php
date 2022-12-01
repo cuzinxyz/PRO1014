@@ -17,6 +17,30 @@
         <div class="booking--wrap">
             <h2 class="request">Đặt lịch giữ chỗ</h2>
             <form action="" method="post" id="bookapp">
+
+                <?php  
+                if(empty($userDetail[0]['password'])) :
+                ?>
+                <!-- Form nhap mat khau  -->
+                <div id="myModal" class="modal">
+                <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p>Tạo tài khoản để sử dụng thêm các tính năng khác.</p>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body container">
+                            <input type="password" placeholder="Nhập mật khẩu" class="input_password" name="password_register">
+                            <input class="button_register" type="button" id="done" value="Hoàn thành" />
+                        </div>
+                    </div>
+                </div>
+                <!-- End form nhap mat khau  -->
+                <?php
+                endif;
+                ?>
+
+
                 <div class="grid display-block">
                     <div class="selection">
                         <div class="select--wrap">
@@ -29,7 +53,7 @@
 
                         <!-- lay user id do vao input, neu khong co thi chuyen huong sang index -->
                         <input type="text" name="user_id"
-                            value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : header("location: /") ?>"
+                            value="<?= isset($_SESSION['user_id']) ? $_SESSION['user_id'] : (isset($_SESSION['id']) ? $_SESSION['id'] : header("location: /")) ?>"
                             id="" hidden>
                         <h2 class="name__option" id="list__service">
                             Services
@@ -174,6 +198,28 @@
     <script src="public/js/date.js"></script>
     <script src="public/js/ajax.js"></script>
     <script src="public/js/validate.js"></script>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        var btnDone = document.getElementById("done");
+        function openPopup() {
+        modal.style.display = "block";
+        }
+        openPopup();
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        btnDone.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>

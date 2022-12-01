@@ -2,10 +2,16 @@
 
 require "models/admin.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    # validate
+    if(empty($_POST['login_email']) || empty($_POST['login_password'])) {
+        echo '<script>alert("Vui lòng nhập đủ.");window.location.href="/?action=login"</script>';
+    }
+
     if (filter_var($_POST['login_email'], FILTER_VALIDATE_EMAIL)) {
-        echo $_POST['login_email'];
         $email = $_POST['login_email'];
         $password = $_POST['login_password'];
+
         $result = login($email, $password);
         if ($result) {
             $_SESSION['name'] = $result['name'];
@@ -18,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     } else {
-        echo 'phone number';
         $phone_number = $_POST['login_email'];
         $password = $_POST['login_password'];
+
         $result = login_user($phone_number, $password);
         if (empty($result)) {
             $error = '';

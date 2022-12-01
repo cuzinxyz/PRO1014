@@ -6,7 +6,7 @@
             <a href="/#booknow">book now</a>
             <a href="/?action=register">đăng ký</a>
             <?php if (isset($_SESSION['phone_number'])) {  ?>
-            <a href="/?action=login">đăng xuất</a>
+            <a href="/logout.php">đăng xuất</a>
             <?php } else {  ?>
             <a href="/?action=login">đăng nhập</a>
             <?php } ?>
