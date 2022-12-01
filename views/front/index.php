@@ -31,34 +31,13 @@
     </div>
 
     <div class="container-fluid">
-        <header>
-            <nav class="container">
-                <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
-                <div class="menu">
-                    <a href="#" class="active">home</a>
-                    <a href="#">who we are</a>
-                    <a href="#">contact us</a>
-                    <a href="#">book now</a>
-                </div>
-                <div class="nav_socials">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </nav>
-        </header>
+
+        <?php require "views/front/partials/header.php" ?>
+
         <main>
             <div class="banner">
                 <div class="overlay_background"></div>
-                <!-- <div class="container">
-                    <h2 class="banner_title">More than just a haircut.</h2>
-                    <span class="banner_desc">Come in, relax and walk out feeling like a new man.</span>
-                    <div class="banner_buttons">
-                        <a href="#" class="button">know more</a>
-                        <a href="#" class="button">book now</a>
-                    </div>
-                </div> -->
-                <div class="home__form-input">
+                <div class="home__form-input" id="booknow">
                     <div class="form-input__slogan">
                         <div class="slogan__title">Đặt lịch giữ chỗ chỉ 30 giây</div>
                         <div class="slogan__text">Cắt xong trả tiền, hủy lịch không sao</div>
@@ -104,34 +83,27 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="instagram">
-                <p class="instagram-title container">INSTAGRAM</p>
-                <div class="instagram-list">
-                    <img src="public/images/insta-1.jpg" alt="">
-                    <img src="public/images/insta-2.jpg" alt="">
-                    <img src="public/images/insta-3.jpg" alt="">
-                    <img src="public/images/insta-4.jpg" alt="">
-                    <img src="public/images/insta-5.jpg" alt="">
-                    <img src="public/images/man-large.jpg" alt="">
-                </div>
-            </div>
         </main>
-        <footer>
-            <div class="container">
-                <img src="public/images/logo.png" alt="" class="footer_logo">
-                <p class="footer_address">1501 West Tower, Philippine Stock Exchange Centre, Exchange Road, Ortigas
-                    Center,
-                    Pasig City, Philippines 1605.</p>
-                <p class="footer_copyright">
-                    Copyright 2022 Bruno's Barbers | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
-                </p>
-                <p class="footer_socials">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </p>
+        <div class="instagram">
+            <p class="instagram-title container">INSTAGRAM</p>
+            <div class="instagram-list">
+                <img src="public/images/insta-1.jpg" alt="">
+                <img src="public/images/insta-2.jpg" alt="">
+                <img src="public/images/insta-3.jpg" alt="">
+                <img src="public/images/insta-4.jpg" alt="">
+                <img src="public/images/insta-5.jpg" alt="">
+                <img src="public/images/man-large.jpg" alt="">
+                <img src="public/images/insta-1.jpg" alt="">
+                <img src="public/images/insta-2.jpg" alt="">
+                <img src="public/images/insta-3.jpg" alt="">
+                <img src="public/images/insta-4.jpg" alt="">
+                <img src="public/images/insta-5.jpg" alt="">
+                <img src="public/images/man-large.jpg" alt="">
             </div>
-        </footer>
+        </div>
+
+        <?php require "views/front/partials/footer.php" ?>
+
     </div>
 
 </body>

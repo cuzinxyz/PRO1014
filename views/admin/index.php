@@ -256,25 +256,31 @@
                                         <td><?= $detail['NguoiLam'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
                                         <td>
-                                            <?php
-                                                        if ($detail['TrangThai'] == 0) {
-                                                            $today = date("Y-m-d H:i:s");
-                                                            if ($detail['time'] < $today) {
-                                                                echo '<span class="badge bg-danger">Cancel</span>';
-                                                            } else {
-                                                                echo '<span class="badge bg-warning">Waiting</span>';
-                                                            }
-                                                        } else if ($detail['TrangThai'] == 1) {
-                                                            echo '<span class="badge bg-primary">In process</span>';
-                                                        } else if ($detail['TrangThai'] == 2) {
-                                                            echo '<span class="badge bg-success">Done</span>';
-                                                        } else {
-                                                            $today = date("Y-m-d H:i:s");
-                                                            if ($detail['time'] < $today) {
-                                                                echo '<span class="badge bg-danger">Cancel</span>';
-                                                            }
-                                                        }
-                                                        ?>
+<?php
+        if ($detail['TrangThai'] == 0) {
+            // tính thời gian quá 1h sẽ Cancel hóa đơn.
+            $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+            $today = date("Y-m-d H:i:s");
+            if ($deadline < $today) {
+                echo '<span class="badge bg-danger">Cancel</span>';
+            } else {
+                echo '<span class="badge bg-warning">Waiting</span>';
+            }
+        } else if ($detail['TrangThai'] == 1) {
+            echo '<span class="badge bg-primary">In process</span>';
+        } else if ($detail['TrangThai'] == 2) {
+            echo '<span class="badge bg-success">Done</span>';
+        } else {
+            // tính thời gian quá 1h sẽ Cancel hóa đơn.
+            $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+            $today = date("Y-m-d H:i:s");
+            if ($deadline < $today) {
+                echo '<span class="badge bg-danger">Cancel</span>';
+            }
+        }
+        ?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -305,11 +311,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách hóa đơn.</h3>
-
+                            <a onClick="window.location.reload()" class="btn_refresh">Refresh</a>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
+                                        placeholder="Search" id="search">
 
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default">
@@ -331,32 +337,38 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="searchResult">
                                     <?php foreach ($all_receipts as $key => $receipt) : ?>
                                     <tr>
                                         <td><?= ++$key ?></td>
                                         <td><?= $receipt['phone_number'] ?></td>
                                         <td><?= $receipt['time'] ?></td>
                                         <td>
-                                            <?php
-                                                    if ($receipt['TrangThai'] == 0) {
-                                                        $today = date("Y-m-d H:i:s");
-                                                        if ($receipt['time'] < $today) {
-                                                            echo '<span class="badge bg-danger">Cancel</span>';
-                                                        } else {
-                                                            echo '<span class="badge bg-warning">Waiting</span>';
-                                                        }
-                                                    } else if ($receipt['TrangThai'] == 1) {
-                                                        echo '<span class="badge bg-primary">In process</span>';
-                                                    } else if ($receipt['TrangThai'] == 2) {
-                                                        echo '<span class="badge bg-success">Done</span>';
-                                                    } else {
-                                                        $today = date("Y-m-d H:i:s");
-                                                        if ($receipt['time'] < $today) {
-                                                            echo '<span class="badge bg-danger">Cancel</span>';
-                                                        }
-                                                    }
-                                                    ?>
+    <?php
+            if ($receipt['TrangThai'] == 0) {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Waiting</span>';
+                }
+            } else if ($receipt['TrangThai'] == 1) {
+                echo '<span class="badge bg-primary">In process</span>';
+            } else if ($receipt['TrangThai'] == 2) {
+                echo '<span class="badge bg-success">Done</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+            ?>
                                         </td>
                                         <td>
                                             <a href="/?action=receipt&detail=<?= $receipt['MaHoaDon'] ?>">
@@ -382,6 +394,7 @@
 
 <?php
 $script = "
+    <script src='public/js/live_search.js'></script>
     <script>
       $.widget.bridge('uibutton', $.ui.button)
     </script>

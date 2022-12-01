@@ -2,17 +2,32 @@
 
 require "models/admin.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['login_email'];
-    $password = $_POST['login_password'];
-    $result = login($email, $password);
-    if ($result) {
-        $_SESSION['name'] = $result['name'];
-        $_SESSION['id'] = $result['id'];
-        $_SESSION['role'] = $result['isAdmin'];
-        if ($result['isAdmin'] == 'admin') {
-            header("location: /?action=receipt");
+    if (filter_var($_POST['login_email'], FILTER_VALIDATE_EMAIL)) {
+        echo $_POST['login_email'];
+        $email = $_POST['login_email'];
+        $password = $_POST['login_password'];
+        $result = login($email, $password);
+        if ($result) {
+            $_SESSION['name'] = $result['name'];
+            $_SESSION['id'] = $result['id'];
+            $_SESSION['role'] = $result['isAdmin'];
+            if ($result['isAdmin'] == 'admin') {
+                header("location: /?action=receipt");
+            } else {
+                header("location: /employee.php");
+            }
+        }
+    } else {
+        echo 'phone number';
+        $phone_number = $_POST['login_email'];
+        $password = $_POST['login_password'];
+        $result = login_user($phone_number, $password);
+        if (empty($result)) {
+            $error = '';
         } else {
-            header("location: /employee.php");
+            $_SESSION['id'] = $result['id'];
+            $_SESSION['phone_number'] = $result['phone_number'];
+            header("location: /?action=index");
         }
     }
 }
@@ -29,7 +44,7 @@ if (isEmployee()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | Log in</title>
+    <title>Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -53,7 +68,7 @@ if (isEmployee()) {
 
                 <form action="" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="login_email" placeholder="Email" autofocus>
+                        <input type="text" class="form-control" name="login_email" placeholder="Email or Phone number" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
