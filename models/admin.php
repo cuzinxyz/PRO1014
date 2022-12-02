@@ -283,6 +283,31 @@ function comboes()
     return $data;
 }
 
+function get_one_combo($id) {
+    $conn = connect();
+    $sql = "SELECT list_combo.service_id FROM list_combo 
+    JOIN services ON list_combo.service_id = services.id 
+    WHERE combo_id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function update_comboes($ids, $id_combo) {
+    $conn = connect();
+    $sql1 = "DELETE FROM list_combo
+            WHERE list_combo.combo_id = $id_combo";
+    $stmt = $conn->prepare($sql1);
+    $stmt ->execute();
+    
+    foreach ($ids as $id) {
+        $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($combo_id, $id)";
+        $stmt = $conn->prepare($sql2);
+        $stmt->execute();
+    }
+}
+
 # Query
 function query($sql)
 {
@@ -351,4 +376,3 @@ function finished($id_receipt)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
-
