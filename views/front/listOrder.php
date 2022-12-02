@@ -1,3 +1,4 @@
+<?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Lịch sử cắt tóc của bạn | BrunoBarber</title>
+  <link rel="icon" type="image/x-icon" href="public/images/favicon.png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -26,10 +28,21 @@
   <link rel="stylesheet" href="public/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="public/admin/plugins/summernote/summernote-bs4.min.css">
+  <style>
+    .logo_bg {
+      background: #000;
+      padding: 10px 30px;
+      border-radius: 60px;
+      margin: 30px 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="container">
+    <a href="/"><img src="public/images/logo.png" class="logo_bg" alt=""></a>
+  </div>
+  <div class="container">
     <div class="row">
       <div class="col-12">
 
@@ -40,7 +53,7 @@
             <div class="col-12">
               <h4>
                 <i class="fas fa-globe"></i> Lịch sử cắt
-                <small class="float-right">User: <?= $phone_number ?></small>
+                <small class="float-right">User: <b><?= $phone_number ?></b></small>
               </h4>
             </div>
             <!-- /.col -->
@@ -57,6 +70,7 @@
                     <th>Name Service</th>
                     <th>Time</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,6 +79,33 @@
                       <td>1</td>
                       <td><?= $order['phone_number'] ?></td>
                       <td><?= $order['time'] ?></td>
+                      <td>
+<?php
+    if ($order['status'] == 0) {
+      // tính thời gian quá 1h sẽ Cancel hóa đơn.
+      $CalcTimeDeadline = strtotime($order['time']) + 3600;
+      $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+      $today = date("Y-m-d H:i:s");
+      if ($deadline < $today) {
+          echo '<span class="badge bg-danger">Cancel</span>';
+      } else {
+          echo '<span class="badge bg-warning">Waiting</span>';
+      }
+    } else if ($order['status'] == 1) {
+      echo '<span class="badge bg-primary">In process</span>';
+    } else if ($order['status'] == 2) {
+      echo '<span class="badge bg-success">Done</span>';
+    } else {
+      // tính thời gian quá 1h sẽ Cancel hóa đơn.
+      $CalcTimeDeadline = strtotime($order['time']) + 3600;
+      $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+      $today = date("Y-m-d H:i:s");
+      if ($deadline < $today) {
+          echo '<span class="badge bg-danger">Cancel</span>';
+      }
+    }
+?>
+                      </td>
                       <td> <a href="/?action=history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Detail</button></a></td>
                     </tr>
                   <?php endforeach; ?>
@@ -83,7 +124,7 @@
   <?php
   if (isset($_GET['detail'])) :
   ?>
-    <div class="card">
+    <div class="card container">
       <div class="card-header">
         <h3 class="card-title">Chi tiết hóa đơn khách hàng ngày:
           <strong><em><?= $detail_receipt[0]['time'] ?></em></strong>
@@ -105,25 +146,31 @@
                 <td><?= $detail['DichVu'] ?></td>
                 <td><?= number_format($detail['price'], 0, '', ',') ?></td>
                 <td>
-                  <?php
-                  if ($detail['TrangThai'] == 0) {
-                    $today = date("Y-m-d H:i:s");
-                    if ($detail['time'] < $today) {
-                      echo '<span class="badge bg-danger">Cancel</span>';
-                    } else {
-                      echo '<span class="badge bg-warning">Waiting</span>';
-                    }
-                  } else if ($detail['TrangThai'] == 1) {
-                    echo '<span class="badge bg-primary">In process</span>';
-                  } else if ($detail['TrangThai'] == 2) {
-                    echo '<span class="badge bg-success">Done</span>';
-                  } else {
-                    $today = date("Y-m-d H:i:s");
-                    if ($detail['time'] < $today) {
-                      echo '<span class="badge bg-danger">Cancel</span>';
-                    }
-                  }
-                  ?>
+  <?php
+  if ($detail['TrangThai'] == 0) {
+      // tính thời gian quá 1h sẽ Cancel hóa đơn.
+      $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+      $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+      $today = date("Y-m-d H:i:s");
+      if ($deadline < $today) {
+          echo '<span class="badge bg-danger">Cancel</span>';
+      } else {
+          echo '<span class="badge bg-warning">Waiting</span>';
+      }
+  } else if ($detail['TrangThai'] == 1) {
+      echo '<span class="badge bg-primary">In process</span>';
+  } else if ($detail['TrangThai'] == 2) {
+      echo '<span class="badge bg-success">Done</span>';
+  } else {
+      // tính thời gian quá 1h sẽ Cancel hóa đơn.
+      $CalcTimeDeadline = strtotime($detail['time']) + 3600;
+      $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+      $today = date("Y-m-d H:i:s");
+      if ($deadline < $today) {
+          echo '<span class="badge bg-danger">Cancel</span>';
+      }
+    }
+  ?>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -133,6 +180,7 @@
       <!-- /.card-body -->
     </div>
   <?php endif; ?>
+
 </body>
 
 </html>

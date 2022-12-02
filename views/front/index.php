@@ -18,7 +18,7 @@
 
 <body>
     <!-- Popup nofication success  -->
-    <div id="popup1" class="popup-container animate__animated animate__zoomIn">
+    <div id="popup1" class="popup-container animate__animated animate__zoomIn" style="z-index: 10000;">
         <div class="popup-content">
             <a href="#" class="close">&times;</a>
             <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;" class="fa-solid fa-check"></i></span>
@@ -28,27 +28,7 @@
     </div>
 
     <div class="container-fluid">
-        <header>
-            <nav class="container">
-                <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
-                <div class="menu">
-                    <a href="#" class="active">home</a>
-                    <a href="#">contact us</a>
-                    <a href="#">book now</a>
-                    <?php if (isset($_SESSION['phone_number'])) {  ?>
-                        <a href="/?action=login">đăng xuất</a>
-                        <a href="/?action=history">lịch sử cắt</a>
-                    <?php } else {  ?>
-                        <a href="/?action=login">đăng nhập</a>
-                    <?php } ?>
-                </div>
-                <div class="nav_socials">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </nav>
-        </header>
+        <?php require "views/front/partials/header.php"; ?>
         <main>
             <div class="banner">
                 <div class="overlay_background"></div>
@@ -57,6 +37,15 @@
                         <div class="slogan__title">Đặt lịch giữ chỗ chỉ 30 giây</div>
                         <div class="slogan__text">Cắt xong trả tiền, hủy lịch không sao</div>
                     </div>
+                    <?php if(isset($_SESSION['phone_number'])) : ?>
+                    <!-- nếu đã đăng nhập hiển thị nút đặt ngay. -->
+                    <div class="form-input__form">
+                        <!-- HTML !-->
+                        <a href="/?action=book">
+                            <button class="button-85" role="button">ĐẶT LỊCH NGAY</button>
+                        </a>
+                    </div>
+                    <?php else: ?>
                     <div class="form-input__form flex">
                         <form action="/book" method="POST" style="width: 100%;">
                             <div class="form__input flex">
@@ -65,8 +54,8 @@
                             </div>
                         </form>
                     </div>
+                    <?php endif; ?>
                 </div>
-
             </div>
             <div class="list-services">
                 <div class="service container">
