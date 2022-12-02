@@ -2,7 +2,13 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once "models/front.php";
 
+# Lấy ra thông tin người dùng nếu đã login.
+isset($_SESSION['id']) ? $userId = (int) $_SESSION['id'] : '';
+isset($userId) ? $userDetail = query("SELECT * FROM users WHERE id=$userId") : '';
+// print_r($userDetail);
+
 $services = query("SELECT * FROM services WHERE status=1");
+
 $combos = query("
 SELECT combo.id, combo.status as trangthaicombo, 
 GROUP_CONCAT(services.name SEPARATOR ' & ') as comboname, 
@@ -12,12 +18,9 @@ JOIN services ON list_combo.service_id=services.id
 WHERE services.status <> 0
 GROUP BY combo.id
 ");
+
 $work_time = query("SELECT * FROM work_time");
 $stylists = query("SELECT * FROM employee");
-
-
-// print_r($combos);
-// var_dump($_POST);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Lay so dienn thoai tu form index
@@ -34,6 +37,8 @@ if (isset($_POST['book_now'])) {
     $time = $_POST['choose_date'] . " " . $_POST['choose_time'];
     $formatTime = date('Y-m-d H:i:s', strtotime($time));
     $employee = (int) $_POST['choose_employee'];
+    $passwordRegister = $_POST['password_register'];
+
     if (isset($_POST['choose_service'])) {
         $service_choose = $_POST['choose_service'];
         $combo_choose = null;
@@ -41,7 +46,8 @@ if (isset($_POST['book_now'])) {
         $service_choose = null;
         $combo_choose = (int) $_POST['choose_combo'];
     }
-    book($user_id, $time, $service_choose, $combo_choose, $employee);
+    // print_r($_POST);
+    book($user_id, $passwordRegister, $time, $service_choose, $combo_choose, $employee);
     header("location: /#popup1");
 }
 
@@ -59,4 +65,5 @@ if (isset($_GET['gettime'])) {
         ';
     }
 }
+
 require_once "views/front/booking.php";

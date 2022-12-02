@@ -29,14 +29,29 @@ function query($sql)
 function add_phone($phone_number)
 {
     $conn = connect();
-    $stmt = $conn->prepare("INSERT INTO users(phone_number, status) VALUES('$phone_number', 1)");
-    $stmt->execute();
-    return $id = $conn->lastInsertId();
+    $stmt0 = $conn->prepare("SELECT * FROM users WHERE phone_number='$phone_number'");
+    $stmt0->execute();
+    $availablePhone = $stmt0->fetch(PDO::FETCH_ASSOC);
+
+    if(empty($availablePhone)) {
+        $stmt = $conn->prepare("INSERT INTO users(phone_number, status) VALUES('$phone_number', 1)");
+        $stmt->execute();
+        $id = $conn->lastInsertId();
+    } else {
+        $id = $availablePhone['id'];
+    }
+    
+    return $id;
 }
 
-function book($user_id, $time, $services, $combo, $employee)
+function book($user_id, $password, $time, $services, $combo, $employee)
 {
     $conn = connect();
+    # nếu khách nhập mật khẩu sẽ update mật khẩu vào database.
+    $sql0 = "UPDATE `users` SET `password`='$password' WHERE id=$user_id";
+    $stmt0 = $conn->prepare($sql0);
+    $stmt0->execute();
+
     $sql1 = "INSERT INTO `orders`(`user_id`, `time`, `status`) VALUES ($user_id, '$time', 0)";
     $stmt1 = $conn->prepare($sql1);
     $stmt1->execute();
