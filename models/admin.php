@@ -349,4 +349,3 @@ function finished($id_receipt)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
-
