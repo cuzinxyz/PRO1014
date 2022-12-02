@@ -585,3 +585,106 @@ h6 {
   /* Internet Explorer/Edge */
   user-select: none;
 }
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  padding: 60px 0;
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  color: #000;
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 10px 30px 0 0;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+}
+.input_password {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  padding: 6px 20px;
+}
+.input_password:focus {
+  outline: none;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-body {
+  margin: 30px auto !important;
+}
+.modal-header p {
+  text-align: center;
+  font: 30px sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+.button_register{
+  margin-top: 20px;
+  padding: 0 20px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  border-color: transparent;
+  cursor: pointer;
+}
+/* .modal-body {padding: 100px 16px;} */
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0} 
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
