@@ -58,6 +58,9 @@ if (isset($action)) :
         case 'blog_detail':
             require "controllers/front/blog__detail.php";
             break;
+        case 'history':
+            require "controllers/front/listOrder.php";
+            break;
         default:
             require "views/front/404.php";
             break;

@@ -11,9 +11,7 @@
     <!-- CSS CUSTOM -->
     <link rel="stylesheet" href="public/css/main.css">
     <!-- CSS FONT AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 </head>
@@ -23,17 +21,34 @@
     <div id="popup1" class="popup-container animate__animated animate__zoomIn">
         <div class="popup-content">
             <a href="#" class="close">&times;</a>
-            <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;"
-                        class="fa-solid fa-check"></i></span>
+            <h3>ĐẶT LỊCH THÀNH CÔNG! <span style="color: green;"><i style="font-size:50px;" class="fa-solid fa-check"></i></span>
             </h3>
             <p>Chúc bạn một ngày mới vui vẻ, hẹn gặp lại bạn. </p>
         </div>
     </div>
 
     <div class="container-fluid">
-
-        <?php require "views/front/partials/header.php" ?>
-
+        <header>
+            <nav class="container">
+                <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
+                <div class="menu">
+                    <a href="#" class="active">home</a>
+                    <a href="#">contact us</a>
+                    <a href="#">book now</a>
+                    <?php if (isset($_SESSION['phone_number'])) {  ?>
+                        <a href="/?action=login">đăng xuất</a>
+                        <a href="/?action=history">lịch sử cắt</a>
+                    <?php } else {  ?>
+                        <a href="/?action=login">đăng nhập</a>
+                    <?php } ?>
+                </div>
+                <div class="nav_socials">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </nav>
+        </header>
         <main>
             <div class="banner">
                 <div class="overlay_background"></div>
@@ -45,8 +60,7 @@
                     <div class="form-input__form flex">
                         <form action="/book" method="POST" style="width: 100%;">
                             <div class="form__input flex">
-                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus
-                                    name="phone" maxlength="10">
+                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus name="phone" maxlength="10">
                                 <button type="submit" class="btn__action">ĐẶT LỊCH NGAY</button>
                             </div>
                         </form>
