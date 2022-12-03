@@ -13,7 +13,7 @@
                     <div class="dropdown-content">
                         <a href="/?action=history">lịch sử cắt</a>
                         <a href="/?action=settings">Thông tin</a>
-                        <a href="/?action=login">đăng xuất</a>
+                        <a href="/logout.php">đăng xuất</a>
                     </div>
                 </div>
             <?php } else {  ?>
