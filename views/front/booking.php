@@ -40,7 +40,6 @@
                 endif;
                 ?>
 
-
                 <div class="grid display-block">
                     <div class="selection">
                         <div class="select--wrap">

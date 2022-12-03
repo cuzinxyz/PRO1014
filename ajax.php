@@ -59,14 +59,14 @@ if (isset($_GET['getstylist'])) {
         SELECT orders_detail.employee_id FROM orders
         JOIN orders_detail ON orders.id=orders_detail.order_id
         WHERE orders.time = '" . $choose_date . "'
-    )
+    ) AND employee.status=1
     ");
-    // echo $choose_date;
-    // print_r($list);
+    
     if (empty($list)) {
         echo "Thời gian bạn chọn đã được đặt hết, vui lòng chọn ca khác. Chúng tôi vô cùng tiếc vì điều này!";
     } else {
         foreach ($list as $item) {
+            $getStar = query("SELECT * FROM feedback");
             echo '
                 <div class="stylist__item">
                     <label class="checkbox__label">

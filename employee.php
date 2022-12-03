@@ -205,7 +205,7 @@ if (isset($_POST['startCut'])) {
                                         <td><?= $detail['DichVu'] ?></td>
                                         <td><?= number_format($detail['price'], 0, '', ',') ?></td>
                                         <td>
-                                        <?php
+        <?php
             if ($detail['TrangThai'] == 0) {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
                 $CalcTimeDeadline = strtotime($detail['time']) + 3600;
@@ -229,7 +229,7 @@ if (isset($_POST['startCut'])) {
                     echo '<span class="badge bg-danger">Cancel</span>';
                 }
             }
-            ?>
+        ?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

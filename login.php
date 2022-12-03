@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 header("location: /employee.php");
             }
+        } else {
+            $wrongPassword = "Sai tài khoản hoặc mật khẩu!";
         }
     } else {
         $phone_number = $_POST['login_email'];
@@ -29,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $result = login_user($phone_number, $password);
         if (empty($result)) {
-            $error = '';
+            $wrongPassword = "Sai tài khoản hoặc mật khẩu!";
         } else {
             $_SESSION['id'] = $result['id'];
             $_SESSION['phone_number'] = $result['phone_number'];
@@ -105,6 +107,9 @@ if (isEmployee()) {
                         <!-- /.col -->
                     </div>
                 </form>
+                <div style="color: red;">
+                    <?= isset($wrongPassword) ? $wrongPassword : '' ?>
+                </div>
             </div>
             <!-- /.login-card-body -->
         </div>

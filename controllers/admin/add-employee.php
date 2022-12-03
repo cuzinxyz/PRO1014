@@ -10,5 +10,6 @@ if (isset($_POST['add'])) {
   // $job = $_POST['job'];
   $salary = $_POST['salary'];
   addEmployee($email, $name, $avatar, $salary);
+  header("location: /?action=employees");
 }
 require "views/admin/add-employee.php";

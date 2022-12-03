@@ -300,7 +300,7 @@ function update_comboes($ids, $id_combo) {
             WHERE list_combo.combo_id = $id_combo";
     $stmt = $conn->prepare($sql1);
     $stmt ->execute();
-
+    
     foreach ($ids as $id) {
         $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($id_combo, $id)";
         $stmt = $conn->prepare($sql2);
