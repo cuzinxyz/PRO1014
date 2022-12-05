@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result) {
             $_SESSION['name'] = $result['name'];
             $_SESSION['id'] = $result['id'];
-            $_SESSION['role'] = $result['isAdmin'];
-            if ($result['isAdmin'] == 'admin') {
+            $_SESSION['role'] = $result['role'];
+            if ($result['role'] == 'admin') {
                 header("location: /?action=receipt");
             } else {
                 header("location: /employee.php");

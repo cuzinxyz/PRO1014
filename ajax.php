@@ -121,14 +121,16 @@ if (isset($_POST['search']))
             echo '<span class="badge bg-primary">In process</span>';
             } else if ($receipt['TrangThai'] == 2) {
             echo '<span class="badge bg-success">Done</span>';
+            } else if ($receipt['TrangThai'] == 3) {
+                echo '<span class="badge bg-danger">Cancel</span>';
             } else {
-            // tính thời gian quá 1h sẽ Cancel hóa đơn.
-            $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
-            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
-            $today = date("Y-m-d H:i:s");
-            if ($deadline < $today) {
-            echo '<span class="badge bg-danger">Cancel</span>';
-            }
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                echo '<span class="badge bg-danger">Cancel</span>';
+                }
             }
             ?>
             </td>

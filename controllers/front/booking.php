@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 # Lấy ra thông tin người dùng nếu đã login.
 isset($_SESSION['id']) ? $userId = (int) $_SESSION['id'] : '';
 isset($userId) ? $userDetail = query("SELECT * FROM users WHERE id=$userId") : '';
-var_dump($userDetail);
 
 // Xu li du lieu sau khi nguoi dung dat lich
 if (isset($_POST['book_now'])) 

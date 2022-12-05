@@ -235,22 +235,15 @@ if (isset($_POST['startCut'])) {
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <form action="" method="POST">
                                 <?php
-                                    if ($detail['TrangThai'] == 0) {
+                                    if ($detail['TrangThai'] == 2) :
                                     ?>
-                                <button type="submit" name="startCut" class="btn btn-block btn-success btn-sm">Bắt đầu
-                                    cắt</button>
-                                <?php } elseif ($detail['TrangThai'] == 1) { ?>
-                                <button type="submit" name="finished" class="btn btn-block btn-success btn-sm">Hoàn
-                                    thành</button>
-                                <?php } else {
-                                        echo '<div class="direct-chat-text">
-                      Hóa đơn này của bạn đã xong!
-                    </div>';
-                                    }
+                                    <div class="direct-chat-text">
+                                        Đã xong!
+                                    </div>
+                                    <?php
+                                    endif;
                                     ?>
-                            </form>
                         </div>
                         <!-- /.card-body -->
                     </div>

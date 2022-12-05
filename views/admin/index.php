@@ -271,6 +271,8 @@
             echo '<span class="badge bg-primary">In process</span>';
         } else if ($detail['TrangThai'] == 2) {
             echo '<span class="badge bg-success">Done</span>';
+        } else if ($detail['TrangThai'] == 3) {
+            echo '<span class="badge bg-danger">Cancel</span>';
         } else {
             // tính thời gian quá 1h sẽ Cancel hóa đơn.
             $CalcTimeDeadline = strtotime($detail['time']) + 3600;
@@ -359,6 +361,8 @@
                 echo '<span class="badge bg-primary">In process</span>';
             } else if ($receipt['TrangThai'] == 2) {
                 echo '<span class="badge bg-success">Done</span>';
+            } else if ($receipt['TrangThai'] == 3) {
+                echo '<span class="badge bg-danger">Cancel</span>';
             } else {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
                 $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
@@ -375,6 +379,18 @@
                                                 <button type="button"
                                                     class="btn btn-block btn-primary btn-xs">View</button>
                                             </a>
+            <?php if($receipt['TrangThai'] != 2 && $receipt['TrangThai'] != 1) : ?>
+                                            <a href="/?action=receipt&confirm=<?= $receipt['MaHoaDon'] ?>">
+                                                <button type="button"
+                                                    class="btn btn-block btn-success btn-xs">Xác nhận</button>
+                                            </a>
+            <?php if($receipt['TrangThai'] != 3) : ?>
+                                            <a href="/?action=receipt&cancel=<?= $receipt['MaHoaDon'] ?>">
+                                                <button type="button"
+                                                    class="btn btn-block btn-danger btn-xs">Hủy đơn</button>
+                                            </a>
+            <?php endif; ?>
+            <?php endif; ?>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
