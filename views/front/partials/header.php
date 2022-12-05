@@ -2,9 +2,8 @@
     <nav class="container">
         <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
         <div class="menu">
-            <a href="#" class="active">home</a>
-            <a href="#">contact us</a>
-            <a href="#">book now</a>
+            <a href="/" class="active">home</a>
+            <a href="/">book now</a>
             <?php if (isset($_SESSION['phone_number'])) {  ?>
                 <div href="#" class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">
