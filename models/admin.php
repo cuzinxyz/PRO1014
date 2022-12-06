@@ -151,9 +151,10 @@ function blogs()
 function addEmployee($email, $name, $avatar, $salary)
 {
     $conn = connect();
-    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, NOW(), 1)";
+    $password = md5('123456');
+    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $name, $avatar, $salary));
+    $stmt->execute(array($email, $password, $name, $avatar, $salary));
 }
 
 function employee()
