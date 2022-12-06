@@ -1,3 +1,5 @@
+
+
 <header>
     <nav class="container">
         <img onclick="window.location.href='/'" class="nav_logo" src="public/images/logo.png" alt="">
@@ -18,6 +20,9 @@
             <?php } else {  ?>
                 <a href="/?action=login">đăng nhập</a>
             <?php } ?>
+            <a href="/?action=booking_history" class="<?= isset($_SESSION['phone_number']) ? 'display-none' : 'display-block' ?>"
+                style="<?= isset($_SESSION["phone_number"]) ? 'display: none;' : 'display: block' ?>"
+            >Lịch sử đặt hàng</a>
         </div>
         <div class="nav_socials">
             <a href="#"><i class="fa-brands fa-facebook"></i></a>

@@ -86,3 +86,45 @@ function shorter($text, $chars_limit)
         return $text;
     }
 }
+
+
+
+function getUser($id) {
+    $conn = connect();
+    $sql = "SELECT * FROM users WHERE id = $id";
+    $stmt = $conn ->prepare($sql);
+    $stmt ->execute();
+    $data = $stmt ->fetch();
+    return $data;
+}
+
+
+function updateUser($phone_number, $password, $id) {
+    $conn = connect();
+    $sql = "UPDATE users SET phone_number='$phone_number', password='$password' WHERE id = $id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
+
+function getHistoryBookingUser($phone_number) {
+    $conn = connect();
+    $sql = "SELECT services.name as ten_dich_vu, employee.name as ten_nhan_vien, orders.time FROM users 
+        LEFT JOIN orders ON users.id = orders.user_id
+        LEFT JOIN orders_detail ON orders.id = orders_detail.order_id
+        LEFT JOIN services ON services.id = orders_detail.service_id
+        LEFT JOIN employee ON employee.id = orders_detail.employee_id
+        WHERE users.phone_number=$phone_number
+        ";
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $data = $stmt -> fetchAll();
+    return $data;
+
+    // $sql2 = "SELECT combo.id, combo.status as trangthaicombo, 
+    // GROUP_CONCAT(services.name SEPARATOR ' & ') as comboname, 
+    // SUM(services.price) as tongtien 
+    // FROM combo JOIN list_combo ON combo.id=list_combo.combo_id 
+    // JOIN services ON list_combo.service_id=services.id 
+    // GROUP BY combo.id;"
+}
