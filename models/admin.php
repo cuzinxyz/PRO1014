@@ -376,3 +376,11 @@ function finished($id_receipt)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
+
+
+function delete_history($id) {
+    $conn = connect();
+    $sql = "UPDATE orders SET status=3 WHERE id=$id";
+    $stmt = $conn->prepare($sql);
+    $stmt -> execute();
+}

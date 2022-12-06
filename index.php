@@ -64,6 +64,12 @@ if (isset($action)) :
         case 'history':
             require "controllers/front/listOrder.php";
             break;
+        case 'settings':
+            require "controllers/front/settings.php";
+            break;
+        case 'booking_history':
+            require "controllers/front/booking_history.php";
+            break;
         default:
             require "views/front/404.php";
             break;
