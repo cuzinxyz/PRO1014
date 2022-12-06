@@ -169,7 +169,7 @@
                         </div>
                         <div class="detail__store display-none">
                             <div class="name__store">
-                                <?= isset($_COOKIE['phone']) ? $_COOKIE['phone'] : 'Guest' ?>
+                                <?= isset($_SESSION['phone_number']) ? $_SESSION['phone_number'] : 'Guest' ?>
                             </div>
                             <div class="address__store">
                                 <p class="logo-text">BrunoBarber</p> Xin kính chào quý khách.

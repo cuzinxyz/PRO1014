@@ -75,7 +75,7 @@
                             and
                             overall grooming, treat yourself to a day at Bruno’s Barbers.
                         </p>
-                        <a href="#" class="service_detail-btn">Book Now</a>
+                        <!-- <a href="#" class="service_detail-btn">Book Now</a> -->
                     </div>
                     <img src="public/images/bruno-service-1.jpg" class="service_image" alt="">
                 </div>

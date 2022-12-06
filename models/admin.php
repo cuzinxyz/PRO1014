@@ -35,8 +35,12 @@ function isEmployee()
 function get_receipt()
 {
     $conn = connect();
-    $sql = "SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
-    JOIN users ON orders.user_id=users.id ORDER BY time DESC";
+    $sql = "
+    SELECT orders.id as MaHoaDon, orders.user_id as MaKhachHang, time, orders.status as TrangThai, users.phone_number FROM `orders`
+    JOIN users ON orders.user_id=users.id
+    WHERE DATE(time) >= CURRENT_DATE() AND orders.status NOT IN(2,3)
+    ORDER BY time ASC
+    ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -89,6 +93,29 @@ function one_receipt($id)
     return $data;
 }
 
+function cancel($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE orders
+    SET status=3
+    WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+function confirm($id_receipt)
+{
+    $conn = connect();
+    $sql = "
+    UPDATE orders
+    SET status=1
+    WHERE id=$id_receipt
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+}
+
 # Model Service
 function add_service($name_service, $price_service)
 {
@@ -124,9 +151,10 @@ function blogs()
 function addEmployee($email, $name, $avatar, $salary)
 {
     $conn = connect();
-    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, '123456', ?, ?, ?, NOW(), 1)";
+    $password = md5('123456');
+    $sql = "INSERT INTO employee(email, password, name, image, salary, hire_date, status) VALUES (?, ?, ?, ?, ?, NOW(), 1)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $name, $avatar, $salary));
+    $stmt->execute(array($email, $password, $name, $avatar, $salary));
 }
 
 function employee()
@@ -149,12 +177,12 @@ function show_one_employee($id)
     return $data;
 }
 
-function update_employee($id, $email, $password, $name, $image, $salary, $status)
+function update_employee($id, $email, $password, $name, $image, $salary, $role = null, $status)
 {
     $conn = connect();
-    $sql = "UPDATE employee SET email= ?, password= ?, name = ?, image= ?, salary= ?, status= ? WHERE id=?";
+    $sql = "UPDATE employee SET email= ?, password= ?, name = ?, image= ?, role= ?, salary= ?, status= ? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->execute(array($email, $password, $name, $image, $salary, $status, $id));
+    $stmt->execute(array($email, $password, $name, $image, $role, $salary, $status, $id));
 }
 
 # Blog Model

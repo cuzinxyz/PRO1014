@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (filter_var($_POST['login_email'], FILTER_VALIDATE_EMAIL)) {
         $email = $_POST['login_email'];
-        $password = $_POST['login_password'];
+        $password = md5($_POST['login_password']);
 
         $result = login($email, $password);
         if ($result) {
             $_SESSION['name'] = $result['name'];
             $_SESSION['id'] = $result['id'];
-            $_SESSION['role'] = $result['isAdmin'];
-            if ($result['isAdmin'] == 'admin') {
+            $_SESSION['role'] = $result['role'];
+            if ($result['role'] == 'admin') {
                 header("location: /?action=receipt");
             } else {
                 header("location: /employee.php");
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         $phone_number = $_POST['login_email'];
-        $password = $_POST['login_password'];
+        $password = md5($_POST['login_password']);
 
         $result = login_user($phone_number, $password);
         if (empty($result)) {

@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 # Lấy ra thông tin người dùng nếu đã login.
 isset($_SESSION['id']) ? $userId = (int) $_SESSION['id'] : '';
 isset($userId) ? $userDetail = query("SELECT * FROM users WHERE id=$userId") : '';
-// var_dump($userDetail);
 
 // Xu li du lieu sau khi nguoi dung dat lich
 if (isset($_POST['book_now'])) 
@@ -42,13 +41,13 @@ if (isset($_POST['book_now']))
     $time = $_POST['choose_date'] . " " . $_POST['choose_time'];
     $formatTime = date('Y-m-d H:i:s', strtotime($time));
     $employee = (int) $_POST['choose_employee'];
-    $passwordRegister = $_POST['password_register'];
+    $passwordRegister = md5($_POST['password_register']);
 
     # nếu người dùng mới sẽ nhập mật khẩu từ form vào database.
     # nếu đã đăng nhập thì giữ mật khẩu cũ.
     if(isset($userDetail)) {
         if(empty($userDetail[0]['password'])) {
-            $passwordRegister = $_POST['password_register'];
+            $passwordRegister = md5($_POST['password_register']);
         } else {
             $passwordRegister = $userDetail[0]['password'];
         }
