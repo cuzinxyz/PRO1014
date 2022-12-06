@@ -95,6 +95,8 @@
       echo '<span class="badge bg-primary">In process</span>';
     } else if ($order['status'] == 2) {
       echo '<span class="badge bg-success">Done</span>';
+    } else if ($order['status'] == 3) {
+      echo '<span class="badge bg-danger">Cancel</span>';
     } else {
       // tính thời gian quá 1h sẽ Cancel hóa đơn.
       $CalcTimeDeadline = strtotime($order['time']) + 3600;

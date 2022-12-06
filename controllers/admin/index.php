@@ -6,7 +6,7 @@ if (isEmployee()) {
     # Nếu job khác admin thì chuyển hướng.
     if ($_SESSION['role'] != 'admin') {
         # Nhân viên sẽ chuyển hướng sang các đơn của mình.
-        header("location: /nhanvien");
+        header("location: /employee.php");
     }
 } else {
     header("location: /");
@@ -21,10 +21,28 @@ if (isset($_GET['detail'])) {
     $detail_receipt = one_receipt($id_receipt);
 }
 
+# Hủy 1 hóa đơn.
+if (isset($_GET['cancel'])) {
+    # $_GET detail url
+    $id_receipt = $_GET['cancel'];
+    # Lấy 1 hóa đơn dựa vào detail url.
+    $cancelReceipt = cancel($id_receipt);
+    header("location: /?action=receipt");
+}
+# Xác nhận 1 hóa đơn.
+if (isset($_GET['confirm'])) {
+    # $_GET detail url
+    $id_receipt = $_GET['confirm'];
+    # Lấy 1 hóa đơn dựa vào detail url.
+    $confirmReceipt = confirm($id_receipt);
+    header("location: /?action=receipt");
+}
+
 # FEEDBACK
 if (isset($_GET['done'])) {
     $id_receipt = (int) $_GET['detail'];
     $id_user = (int) $detail_receipt[0]['idKhach'];
+    finished($id_receipt);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $star = $_POST['rating'];
         $feedback_content = $_POST['feedback_content'];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 26, 2022 at 09:43 AM
+-- Generation Time: Dec 06, 2022 at 09:28 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -38,9 +38,10 @@ CREATE TABLE `combo` (
 --
 
 INSERT INTO `combo` (`id`, `status`) VALUES
-(1, 1),
-(2, 1),
-(3, 1);
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1);
 
 -- --------------------------------------------------------
 
@@ -54,7 +55,7 @@ CREATE TABLE `employee` (
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isAdmin` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `salary` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hire_date` date NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -64,12 +65,10 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `email`, `password`, `name`, `image`, `isAdmin`, `salary`, `hire_date`, `status`) VALUES
-(1, 'cuzin2k3@gmail.com', '12', 'Đỗ Hữu Nhật', 'img_parallax.jpg', NULL, '6000000', '2022-11-13', '0'),
-(2, 'duongbeo@beo.com', '12345', 'Nguyễn Văn Tuấn', 'aee19d3455b89031a5d6213caf8acbec.jpg', NULL, '121212121212', '2022-11-07', '0'),
-(3, '', '', 'Đặng Hải Dương', 'fluidicon.png', NULL, '100', '2022-11-14', '1'),
-(4, 'admin@bruno.me', 'admin', 'administrator', 'banhmichuot3.jpg', 'admin', '2130012301', '2022-11-01', '1'),
-(5, 'duongbeo@beo.com', '123456', 'Đặng Hải Dương', 'img_parallax.jpg', NULL, '123123123123', '2022-11-14', '1');
+INSERT INTO `employee` (`id`, `email`, `password`, `name`, `image`, `role`, `salary`, `hire_date`, `status`) VALUES
+(4, 'admin@bruno.me', 'admin', 'administrator', 'banhmichuot3.jpg', 'admin', '1212', '2022-11-01', '0'),
+(5, 'nhanvien1@gmail.com', '123456', 'Nhân Viên 1', 'nhuom-toc-mau-khoi-ST4.jpg', NULL, '12345678', '2022-12-02', '1'),
+(6, 'nhanvien2@gmail.com', '123456', 'Nhân Viên 2', 'small_side_part_vuot_ru_6dce22fce7.jpg', NULL, '3000000', '2022-12-03', '1');
 
 -- --------------------------------------------------------
 
@@ -84,13 +83,6 @@ CREATE TABLE `feedback` (
   `order_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT 'id khach'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `feedback`
---
-
-INSERT INTO `feedback` (`id`, `star`, `note`, `order_id`, `user_id`) VALUES
-(4, '5', 'good job\r\n', 42, 51);
 
 -- --------------------------------------------------------
 
@@ -109,11 +101,12 @@ CREATE TABLE `list_combo` (
 --
 
 INSERT INTO `list_combo` (`id`, `combo_id`, `service_id`) VALUES
-(1, 1, 1),
-(2, 2, 3),
-(3, 2, 4),
 (4, 3, 7),
-(5, 3, 8);
+(5, 3, 8),
+(8, 5, 9),
+(9, 5, 11),
+(12, 6, 10),
+(13, 6, 11);
 
 -- --------------------------------------------------------
 
@@ -133,13 +126,15 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `time`, `status`) VALUES
-(36, 46, '2022-11-24 09:40:00', 0),
-(37, 46, '2022-11-24 09:40:00', 0),
-(38, 47, '2022-12-01 09:00:00', 1),
-(39, 48, '2022-11-26 13:40:00', 0),
-(40, 49, '2022-11-26 13:40:00', 0),
-(41, 50, '2022-11-26 14:20:00', 0),
-(42, 51, '2022-11-26 15:00:00', 2);
+(68, 77, '2022-12-03 17:19:26', 1),
+(69, 78, '2022-12-04 11:00:00', 3),
+(70, 78, '2022-12-04 10:20:00', 2),
+(71, 79, '2022-12-06 18:00:39', 2),
+(72, 77, '2022-12-05 17:40:00', 2),
+(73, 71, '2022-12-05 17:00:00', 3),
+(74, 80, '2022-12-28 16:20:00', 2),
+(75, 72, '2022-12-06 09:00:00', 2),
+(76, 72, '2022-12-28 09:40:00', 1);
 
 -- --------------------------------------------------------
 
@@ -160,17 +155,19 @@ CREATE TABLE `orders_detail` (
 --
 
 INSERT INTO `orders_detail` (`id`, `order_id`, `service_id`, `combo_id`, `employee_id`) VALUES
-(49, 36, 7, NULL, 1),
-(50, 36, 8, NULL, 1),
-(51, 37, 7, NULL, 3),
-(52, 37, 9, NULL, 3),
-(53, 38, 7, NULL, 1),
-(54, 39, 8, NULL, 1),
-(55, 39, 9, NULL, 1),
-(56, 40, NULL, 3, 3),
-(57, 41, 8, NULL, 1),
-(58, 41, 9, NULL, 1),
-(59, 42, NULL, 3, 1);
+(92, 68, 8, NULL, 4),
+(93, 69, 7, NULL, 5),
+(94, 69, 8, NULL, 5),
+(95, 70, 12, NULL, 5),
+(96, 71, 8, NULL, 4),
+(97, 71, 12, NULL, 4),
+(98, 72, 11, NULL, 5),
+(99, 72, 12, NULL, 5),
+(100, 73, NULL, 5, 5),
+(101, 74, 11, NULL, 6),
+(102, 75, 9, NULL, 5),
+(103, 75, 10, NULL, 5),
+(104, 76, 8, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -231,6 +228,7 @@ INSERT INTO `services` (`id`, `name`, `price`, `status`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `phone_number` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -238,13 +236,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `phone_number`, `status`) VALUES
-(46, '0583034270', 1),
-(47, '0961472726', 1),
-(48, '0192912192', 1),
-(49, '1238282822', 1),
-(50, '0993838383', 1),
-(51, '9393993939', 1);
+INSERT INTO `users` (`id`, `phone_number`, `password`, `status`) VALUES
+(71, '0961472726', 'CuzinPro', 1),
+(72, '0583034270', 'kk', 1),
+(73, '3838383838', 'Cuzuzuuzuzuz', 1),
+(74, '0292929292', '', 1),
+(75, '3838383883', '123123j123123123123123', 1),
+(76, '0900000000', 'Demo', 1),
+(77, '0999999999', 'CuzinPro', 1),
+(78, '0989898989', 'Demo', 1),
+(79, '0976543212', NULL, 1),
+(80, '0393939393', '', 1);
 
 -- --------------------------------------------------------
 
@@ -350,37 +352,37 @@ ALTER TABLE `work_time`
 -- AUTO_INCREMENT for table `combo`
 --
 ALTER TABLE `combo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `list_combo`
 --
 ALTER TABLE `list_combo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -398,7 +400,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `work_time`

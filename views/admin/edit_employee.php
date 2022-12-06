@@ -77,6 +77,13 @@
                                                             } ?>>Đã nghỉ việc</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Công việc</label>
+                                    <select multiple="" name="role" class="form-control">
+                                        <option value="" <?= ($value['role'] == NULL) ? ' selected' : '' ?>>Nhân Viên</option>
+                                        <option value="admin" <?= ($value['role'] == 'admin') ? ' selected' : '' ?>>Admin</option>
+                                    </select>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">

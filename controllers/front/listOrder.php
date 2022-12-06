@@ -10,9 +10,6 @@ JOIN `users` ON orders.user_id = users.id
 WHERE users.phone_number = $phone_number
 ORDER BY orders.time DESC");
 
-// print_r($listOrder);
-// print_r($_SESSION);
-
 if (isset($_GET['detail'])) {
   # $_GET detail url
   $id_receipt = $_GET['detail'];

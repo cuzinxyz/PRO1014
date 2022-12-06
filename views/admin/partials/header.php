@@ -149,6 +149,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a href="/?action=feedback" class="nav-link ">
+                                <p> Danh sách phản hồi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
