@@ -47,7 +47,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nhập số điện thoại của bạn để xem lịch sử</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="phone_number"required>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phone_number" required>
                 </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" name="btn">Xem</button>
@@ -79,7 +79,6 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name Service</th>
                         <th>Time</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -90,40 +89,43 @@
                         <?php foreach ($listOrder as $key => $order) : ?>
                             <tr>
                             <td>1</td>
-                            <td><?= $order['phone_number'] ?></td>
                             <td><?= $order['time'] ?></td>
                             <td>
-                                <?php
-                                    if ($order['status'] == 0) {
-                                    // tính thời gian quá 1h sẽ Cancel hóa đơn.
-                                    $CalcTimeDeadline = strtotime($order['time']) + 3600;
-                                    $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
-                                    $today = date("Y-m-d H:i:s");
-                                    if ($deadline < $today) {
-                                        echo '<span class="badge bg-danger">Cancel</span>';
-                                    } else {
-                                        echo '<span class="badge bg-warning">Waiting</span>';
-                                    }
-                                    } else if ($order['status'] == 1) {
-                                    echo '<span class="badge bg-primary">In process</span>';
-                                    } else if ($order['status'] == 2) {
-                                    echo '<span class="badge bg-success">Done</span>';
-                                    } else {
-                                    // tính thời gian quá 1h sẽ Cancel hóa đơn.
-                                    $CalcTimeDeadline = strtotime($order['time']) + 3600;
-                                    $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
-                                    $today = date("Y-m-d H:i:s");
-                                    if ($deadline < $today) {
-                                        echo '<span class="badge bg-danger">Cancel</span>';
-                                    }
-                                    }
-                                ?>
+        <?php
+            if ($order['status'] == 0) {
+            // tính thời gian quá 1h sẽ Cancel hóa đơn.
+            $CalcTimeDeadline = strtotime($order['time']) + 3600;
+            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+            $today = date("Y-m-d H:i:s");
+            if ($deadline < $today) {
+                echo '<span class="badge bg-danger">Cancel</span>';
+            } else {
+                echo '<span class="badge bg-warning">Waiting</span>';
+            }
+            } else if ($order['status'] == 1) {
+            echo '<span class="badge bg-primary">In process</span>';
+            } else if ($order['status'] == 2) {
+            echo '<span class="badge bg-success">Done</span>';
+            } else if ($order['status'] == 3) {
+                echo '<span class="badge bg-danger">Cancel</span>';
+            } else {
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($order['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Cancel</span>';
+                }
+            }
+        ?>
                             </td>
                             <td> 
                                 <a href="/?action=booking_history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Detail</button></a>
-                                <a href="/?action=booking_history&delete=<?= $order['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa ?')">
-                                    <button class="badge bg-primary" style="border: none;">Delete</button>
+        <?php if($order['status'] == 0) : ?>
+                                <a href="/?action=booking_history&delete=<?= $order['id'] ?>" onclick="return confirm('Bạn có chắc muốn hủy?')">
+                                    <button class="badge bg-primary" style="border: none;">Hủy lịch</button>
                                 </a>
+        <?php endif; ?>
                             </td>
                             </tr>
                         <?php endforeach; ?>

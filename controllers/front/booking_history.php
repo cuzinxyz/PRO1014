@@ -2,17 +2,19 @@
 require_once "models/admin.php";
 
 if(isset($_POST['btn'])) {
-    $_SESSION['phone'] = $_POST['phone_number'];;
+    $_SESSION['phone'] = $_POST['phone_number'];
 }else {
 }
 
 if(isset($_SESSION['phone'])) {
     $phone = $_SESSION['phone'];
-    $listOrder = query("SELECT DISTINCT users.phone_number, orders.time, orders.status, orders.id  FROM `orders` 
-        JOIN `orders_detail` ON orders.id = orders_detail.order_id 
-        JOIN `users` ON orders.user_id = users.id
-        WHERE users.phone_number = $phone AND orders.status=0
-        ORDER BY orders.time DESC");
+    $listOrder = query("
+    SELECT DISTINCT users.phone_number, orders.time, orders.status, orders.id  FROM `orders` 
+    LEFT JOIN `orders_detail` ON orders.id = orders_detail.order_id 
+    LEFT JOIN `users` ON orders.user_id = users.id
+    WHERE users.phone_number = $phone
+    ORDER BY orders.time DESC
+    ");
 }else {
     $phone = "";
     unset($phone);

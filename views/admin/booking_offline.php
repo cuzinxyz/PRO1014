@@ -47,7 +47,7 @@
                                 <label class="col-sm-3 service__item">
                                     <input type="checkbox" name="choose_service[]" value="<?= $service['id'] ?>"
                                         class="checkbox__input-checkbox input__book--off">
-                                    <div class="position-relative p-2 label--off" style="height: 150px">
+                                    <div class="position-relative p-2 label--off service_bg" style="height: 60px">
                                         <h5 class="name__service--off"><?= $service['name'] ?></h5>
                                         <p class="price__service--off">
                                             <?= number_format($service['price'], 0, '', '.'); ?>
@@ -63,7 +63,7 @@
                                 <label class="col-sm-3 service__item">
                                     <input type="checkbox" name="choose_combo" value="<?= $combo['id'] ?>"
                                         class="checkbox__input-radio input__book--off">
-                                    <div class="position-relative p-2 label--off" style="height: 150px">
+                                    <div class="position-relative p-2 label--off combo_bg" style="height: 60px">
                                         <h5 class="name__service--off col-10"><?= $combo['comboname'] ?></h5>
                                         <p class="price__service--off">
                                             <?= number_format($combo['tongtien'], 0, '', '.'); ?>
@@ -78,10 +78,27 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                    <div class="card card-primary">
+                        <input
+                            class="form-control"
+                            id="dateTimeNow"
+                            type="datetime-local"
+                            name="partydate"
+                            value="<?php echo date('Y-m-d H:i:s'); ?>"
+                        />
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 </div>
-<?php $script = '<script src="public/js/booking-off.js"></script>'; ?>
+<?php 
+$script = '
+<script src="public/js/booking-off.js"></script>
+'; 
+?>
+<script>
+    const randomColor = "#"+((1<<24)*Math.random()|0).toString(16); 
+    document.documentElement.style.setProperty('--main-bg-color', randomColor);
+</script>
 <?php require_once 'views/admin/partials/footer.php' ?>

@@ -17,6 +17,7 @@
   font-family: -apple-system,system-ui,BlinkMacSystemFont;
   font-size: 18px;
   font-style: italic;
+  color: rgb(54, 54, 54);
 }
 
 .input__book--off {
@@ -46,4 +47,11 @@
   font-size: 22px;
   font-weight: 500;
   font-family: "Roboto",serif;
+}
+
+.service_bg {
+  background-color: #95caff;
+}
+.combo_bg {
+  background-color: #DAE2B6;
 }

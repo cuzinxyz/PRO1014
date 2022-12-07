@@ -313,16 +313,19 @@ function comboes()
 
 function get_one_combo($id) {
     $conn = connect();
-    $sql = "SELECT list_combo.service_id FROM list_combo 
+    $sql = "
+    SELECT list_combo.service_id, combo.status FROM list_combo 
     JOIN services ON list_combo.service_id = services.id 
-    WHERE combo_id = $id";
+    LEFT JOIN combo ON list_combo.combo_id=combo.id
+    WHERE combo_id =$id
+    ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
 
-function update_comboes($ids, $id_combo) {
+function update_comboes($ids, $id_combo, $status) {
     $conn = connect();
     $sql1 = "DELETE FROM list_combo
             WHERE list_combo.combo_id = $id_combo";
@@ -331,9 +334,15 @@ function update_comboes($ids, $id_combo) {
     
     foreach ($ids as $id) {
         $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($id_combo, $id)";
-        $stmt = $conn->prepare($sql2);
-        $stmt->execute();
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->execute();
     }
+
+    $sql3 = "
+    UPDATE `combo` SET `status`=$status WHERE id=$id_combo
+    ";
+    $stmt3 = $conn->prepare($sql3);
+    $stmt3 ->execute();
 }
 
 # Query

@@ -59,6 +59,14 @@
                         </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <div class="form-group">
+                        <select name="status_combo" id="" class="form-control select2" style="width: 100%;">
+                          <option value="" hidden>Lựa chọn trạng thái</option>
+                          <option value="1" <?php if($detail_combo[0]['status'] == 1) : echo ' selected'; endif; ?>>Hoạt động</option>
+                          <option value="0" <?php if($detail_combo[0]['status'] == 0) : echo ' selected'; endif; ?>>Ẩn </option>
+                        </select>
+                    </div>
                 </div>
               <!-- /.card-body -->
 
