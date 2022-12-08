@@ -177,7 +177,7 @@ function show_one_employee($id)
     return $data;
 }
 
-function update_employee($id, $email, $password, $name, $image, $salary, $role = null, $status)
+function update_employee($id, $email, $password, $name, $image, $salary, $status, $role = null)
 {
     $conn = connect();
     $sql = "UPDATE employee SET email= ?, password= ?, name = ?, image= ?, role= ?, salary= ?, status= ? WHERE id=?";
@@ -311,7 +311,8 @@ function comboes()
     return $data;
 }
 
-function get_one_combo($id) {
+function get_one_combo($id)
+{
     $conn = connect();
     $sql = "
     SELECT list_combo.service_id, combo.status FROM list_combo 
@@ -325,13 +326,14 @@ function get_one_combo($id) {
     return $data;
 }
 
-function update_comboes($ids, $id_combo, $status) {
+function update_comboes($ids, $id_combo, $status)
+{
     $conn = connect();
     $sql1 = "DELETE FROM list_combo
             WHERE list_combo.combo_id = $id_combo";
     $stmt = $conn->prepare($sql1);
-    $stmt ->execute();
-    
+    $stmt->execute();
+
     foreach ($ids as $id) {
         $sql2 = "INSERT INTO `list_combo`(`combo_id`, `service_id`) VALUES ($id_combo, $id)";
         $stmt2 = $conn->prepare($sql2);
@@ -342,7 +344,7 @@ function update_comboes($ids, $id_combo, $status) {
     UPDATE `combo` SET `status`=$status WHERE id=$id_combo
     ";
     $stmt3 = $conn->prepare($sql3);
-    $stmt3 ->execute();
+    $stmt3->execute();
 }
 
 # Query
@@ -415,9 +417,10 @@ function finished($id_receipt)
 }
 
 
-function delete_history($id) {
+function delete_history($id)
+{
     $conn = connect();
     $sql = "UPDATE orders SET status=3 WHERE id=$id";
     $stmt = $conn->prepare($sql);
-    $stmt -> execute();
+    $stmt->execute();
 }
