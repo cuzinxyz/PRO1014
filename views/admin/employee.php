@@ -28,6 +28,12 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+        <?php if(isset($_GET['success'])) : ?>
+                            <div class="alert alert-info alert-dismissible">
+                                <h5><i class="icon fas fa-info"></i> Tạo tài khoản thành công!</h5>
+                                Mật khẩu mặc định là: <h3 style="display: inline;color: #000">123456</h3>
+                            </div>
+        <?php endif; ?>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -48,7 +54,7 @@
                                             <img src="./public/images/employee/<?= $value['image'] ?>" alt=""
                                                 style="max-width: 200px;object-fit:cover;">
                                         </td>
-                                        <td><?= $value['salary'] ?></td>
+                                        <td><?= number_format($value['salary'], 0, '', ',') ?></td>
                                         <td><?= $value['status'] == 1 ? "<span class='badge bg-success'>Active</span>" : "<span class='badge bg-danger'>Inactive</span>" ?>
                                         </td>
                                         <td>

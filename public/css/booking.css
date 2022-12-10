@@ -661,6 +661,10 @@ h6 {
   border-color: transparent;
   cursor: pointer;
 }
+.button_register.disabled {
+  opacity: 0.65; 
+  cursor: not-allowed;
+}
 /* .modal-body {padding: 100px 16px;} */
 
 /* Add Animation */

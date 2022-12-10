@@ -103,34 +103,36 @@ if (isset($_POST['search']))
     ");
     foreach ($searchResult as $key => $receipt) : ?>
         <tr>
-            <td><?= ++$key ?></td>
+            <td><?= $receipt['MaHoaDon'] ?></td>
             <td><?= $receipt['phone_number'] ?></td>
             <td><?= $receipt['time'] ?></td>
             <td>
             <?php
             if ($receipt['TrangThai'] == 0) {
-            // tính thời gian quá 1h sẽ Cancel hóa đơn.
-            $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
-            $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
-            $today = date("Y-m-d H:i:s");
-            if ($deadline < $today) {
-            echo '<span class="badge bg-danger">Cancel</span>';
-            } else {
-            echo '<span class="badge bg-warning">Waiting</span>';
-            }
+                // tính thời gian quá 1h sẽ Cancel hóa đơn.
+                $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
+                $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
+                $today = date("Y-m-d H:i:s");
+                if ($deadline < $today) {
+                    echo '<span class="badge bg-danger">Đã Hủy</span>';
+                } else {
+                    echo '<span class="badge bg-warning">Chờ xác nhận</span>';
+                }
             } else if ($receipt['TrangThai'] == 1) {
-            echo '<span class="badge bg-primary">In process</span>';
+                echo '<span class="badge bg-primary">Đang cắt</span>';
             } else if ($receipt['TrangThai'] == 2) {
-            echo '<span class="badge bg-success">Done</span>';
+                echo '<span class="badge bg-success">Hoàn thành</span>';
             } else if ($receipt['TrangThai'] == 3) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đơn bị hủy</span>';
+            } else if ($receipt['TrangThai'] == 4) {
+                echo '<span class="badge bg-dark">Đã Xác Nhận</span>';
             } else {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
                 $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
                 $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
                 $today = date("Y-m-d H:i:s");
                 if ($deadline < $today) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                    echo '<span class="badge bg-danger">Đã Hủy</span>';
                 }
             }
             ?>
@@ -138,7 +140,7 @@ if (isset($_POST['search']))
             <td>
                 <a href="/?action=receipt&detail=<?= $receipt['MaHoaDon'] ?>">
                     <button type="button"
-                        class="btn btn-block btn-primary btn-xs">View</button>
+                        class="btn btn-block btn-primary btn-xs">Xem Chi Tiết</button>
                 </a>
             </td>
         </tr>

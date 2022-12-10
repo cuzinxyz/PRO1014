@@ -109,7 +109,7 @@ function confirm($id_receipt)
     $conn = connect();
     $sql = "
     UPDATE orders
-    SET status=1
+    SET status=4
     WHERE id=$id_receipt
     ";
     $stmt = $conn->prepare($sql);
@@ -160,7 +160,7 @@ function addEmployee($email, $name, $avatar, $salary)
 function employee()
 {
     $conn = connect();
-    $sql = "SELECT * FROM employee";
+    $sql = "SELECT * FROM employee ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll();

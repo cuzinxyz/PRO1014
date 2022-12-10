@@ -47,7 +47,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nhập số điện thoại của bạn để xem lịch sử</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phone_number" required>
+                    <input type="text" autofocus class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phone_number" required>
                 </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" name="btn">Xem</button>
@@ -98,29 +98,31 @@
             $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
             $today = date("Y-m-d H:i:s");
             if ($deadline < $today) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đã Hủy</span>';
             } else {
-                echo '<span class="badge bg-warning">Waiting</span>';
+                echo '<span class="badge bg-warning">Chờ xác nhận</span>';
             }
             } else if ($order['status'] == 1) {
-            echo '<span class="badge bg-primary">In process</span>';
+            echo '<span class="badge bg-primary">Đang cắt</span>';
             } else if ($order['status'] == 2) {
-            echo '<span class="badge bg-success">Done</span>';
+            echo '<span class="badge bg-success">Hoàn thành</span>';
             } else if ($order['status'] == 3) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đơn bị hủy</span>';
+            } else if ($order['status'] == 4) {
+                echo '<span class="badge bg-dark">Đã Xác Nhận</span>';
             } else {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
                 $CalcTimeDeadline = strtotime($order['time']) + 3600;
                 $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
                 $today = date("Y-m-d H:i:s");
                 if ($deadline < $today) {
-                    echo '<span class="badge bg-danger">Cancel</span>';
+                    echo '<span class="badge bg-danger">Đã Hủy</span>';
                 }
             }
         ?>
                             </td>
                             <td> 
-                                <a href="/?action=booking_history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Detail</button></a>
+                                <a href="/?action=booking_history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Xem Chi Tiết</button></a>
         <?php if($order['status'] == 0) : ?>
                                 <a href="/?action=booking_history&delete=<?= $order['id'] ?>" onclick="return confirm('Bạn có chắc muốn hủy?')">
                                     <button class="badge bg-primary" style="border: none;">Hủy lịch</button>
@@ -174,23 +176,27 @@
         $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
         $today = date("Y-m-d H:i:s");
         if ($deadline < $today) {
-            echo '<span class="badge bg-danger">Cancel</span>';
+            echo '<span class="badge bg-danger">Đã Hủy</span>';
         } else {
-            echo '<span class="badge bg-warning">Waiting</span>';
+            echo '<span class="badge bg-warning">Chờ Xác Nhận</span>';
         }
     } else if ($detail['TrangThai'] == 1) {
-        echo '<span class="badge bg-primary">In process</span>';
+        echo '<span class="badge bg-primary">Đang cắt</span>';
     } else if ($detail['TrangThai'] == 2) {
-        echo '<span class="badge bg-success">Done</span>';
+        echo '<span class="badge bg-success">Hoàn Thành</span>';
+    } else if ($detail['TrangThai'] == 3) {
+        echo '<span class="badge bg-danger">Đơn bị hủy</span>';
+    } else if ($detail['TrangThai'] == 4) {
+        echo '<span class="badge bg-dark">Đã Xác Nhận</span>';
     } else {
         // tính thời gian quá 1h sẽ Cancel hóa đơn.
         $CalcTimeDeadline = strtotime($detail['time']) + 3600;
         $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
         $today = date("Y-m-d H:i:s");
         if ($deadline < $today) {
-            echo '<span class="badge bg-danger">Cancel</span>';
+            echo '<span class="badge bg-danger">Đã Hủy</span>';
         }
-        }
+    }
     ?>
                     </td>
                 </tr>

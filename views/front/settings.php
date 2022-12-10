@@ -36,12 +36,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="public/css/flatpickr.min.css">
     <link rel="stylesheet" href="public/css/toastify.min.css">
+    <style>
+        .logo_bg {
+            background: #000;
+            padding: 10px 30px;
+            border-radius: 60px;
+            margin: 30px 0;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
     <!-- Main content -->
     <section class="content">
+        <div class="container">
+            <a href="/"><img src="public/images/logo.png" class="logo_bg" alt=""></a>
+        </div>
+        
         <div class="container">
         <div class="row mb-2">
                 <div class="col-sm-6">
@@ -57,25 +69,37 @@
                         <!-- form start -->
 
                         <form action="" method="POST" enctype="multipart/form-data">
+        <?php 
+        if(isset($_SESSION['role'])) :
+        ?>
                             <div class="card-body">
-
-                                <div class="tt">
-                                    <input type="hidden" name="id" value=<?php if (isset($_SESSION['id']) && ($_SESSION['id']  > 0)) echo $_SESSION['id'] ; ?>>
-                                </div>
-
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="phone_number" value="<?= isset($user['phone_number']) ? $user['phone_number'] : "" ?>" required>
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" disabled class="form-control form-control-border" id="exampleInputEmail1" value="<?= isset($employee[0]['email']) ? $employee[0]['email'] : "" ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="password" value="<?= isset($user['password']) ? $user['password'] : "" ?>" required>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="new_password" placeholder="Nhập mật khẩu mới">
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label>RePassword</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="re_password" required>
-                                </div> -->
-                            <!-- /.card-body -->
+                                <a href="/employee.php">
+                                    <button type="button" class="btn btn-warning float-right" name="edit_employee">Quay lại</button>
+                                </a>
+                            </div>
+        <?php else: ?>
+                            <div class="card-body">
+                                <div class="tt">
+                                    <input type="hidden" name="id" value=<?php if (isset($_SESSION['id']) && ($_SESSION['id']  > 0)) echo $_SESSION['id'] ; ?>>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập số điện thoại mới" name="phone_number" value="<?= isset($user['phone_number']) ? $user['phone_number'] : "" ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="password" placeholder="Nhập mật khẩu mới">
+                                </div>
+                            </div>
+        <?php endif; ?>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" name="edit_employee">Thay đổi</button>
                             </div>

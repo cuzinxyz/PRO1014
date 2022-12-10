@@ -30,7 +30,10 @@
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body container">
-                            <input type="password" placeholder="Nhập mật khẩu" class="input_password" name="password_register">
+                            <input type="password" autofocus id="password" placeholder="Nhập mật khẩu" class="input_password" name="password_register">
+                            <input type="password" id="confirm_password" placeholder="Nhập lại mật khẩu" class="input_password" name="password_confirm" style="margin-top: 10px;">
+                            <span id='message'></span>
+                            <br>
                             <input class="button_register" type="button" id="done" value="Hoàn thành" />
                         </div>
                     </div>
@@ -218,6 +221,20 @@
                 modal.style.display = "none";
             }
         }
+
+        $('#password, #confirm_password').on('keyup', function () {
+            if($('#password').val() != '' || $('#confirm_password').val()) {
+                if ($('#password').val() == $('#confirm_password').val()) {
+                    $('#message').html('Mật khẩu trùng nhau &#9989;').css('color', 'green');
+                    $("#done").prop( "disabled", true );
+                    $("#done").removeClass("disabled");
+                } else {
+                    $("#done").addClass("disabled");
+                    $("#done").prop( "disabled", false );
+                    $('#message').html('Mật khẩu phải trùng nhau &#10060;').css('color', 'red');
+                }
+            }
+        });
     </script>
 </body>
 

@@ -92,9 +92,9 @@ function shorter($text, $chars_limit)
 function getUser($id) {
     $conn = connect();
     $sql = "SELECT * FROM users WHERE id = $id";
-    $stmt = $conn ->prepare($sql);
-    $stmt ->execute();
-    $data = $stmt ->fetch();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
 

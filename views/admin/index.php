@@ -263,23 +263,25 @@
             $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
             $today = date("Y-m-d H:i:s");
             if ($deadline < $today) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đã Hủy</span>';
             } else {
-                echo '<span class="badge bg-warning">Waiting</span>';
+                echo '<span class="badge bg-warning">Chờ Xác Nhận</span>';
             }
         } else if ($detail['TrangThai'] == 1) {
-            echo '<span class="badge bg-primary">In process</span>';
+            echo '<span class="badge bg-primary">Đang cắt</span>';
         } else if ($detail['TrangThai'] == 2) {
-            echo '<span class="badge bg-success">Done</span>';
+            echo '<span class="badge bg-success">Hoàn Thành</span>';
         } else if ($detail['TrangThai'] == 3) {
-            echo '<span class="badge bg-danger">Cancel</span>';
+            echo '<span class="badge bg-danger">Đã Bị Hủy</span>';
+        } else if ($detail['TrangThai'] == 4) {
+            echo '<span class="badge bg-dark">Đã Xác Nhận</span>';
         } else {
             // tính thời gian quá 1h sẽ Cancel hóa đơn.
             $CalcTimeDeadline = strtotime($detail['time']) + 3600;
             $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
             $today = date("Y-m-d H:i:s");
             if ($deadline < $today) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đã Hủy</span>';
             }
         }
         ?>
@@ -353,23 +355,25 @@
                 $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
                 $today = date("Y-m-d H:i:s");
                 if ($deadline < $today) {
-                    echo '<span class="badge bg-danger">Cancel</span>';
+                    echo '<span class="badge bg-danger">Đã Hủy</span>';
                 } else {
-                    echo '<span class="badge bg-warning">Waiting</span>';
+                    echo '<span class="badge bg-warning">Chờ xác nhận</span>';
                 }
             } else if ($receipt['TrangThai'] == 1) {
-                echo '<span class="badge bg-primary">In process</span>';
+                echo '<span class="badge bg-primary">Đang cắt</span>';
             } else if ($receipt['TrangThai'] == 2) {
-                echo '<span class="badge bg-success">Done</span>';
+                echo '<span class="badge bg-success">Hoàn thành</span>';
             } else if ($receipt['TrangThai'] == 3) {
-                echo '<span class="badge bg-danger">Cancel</span>';
+                echo '<span class="badge bg-danger">Đơn bị hủy</span>';
+            } else if ($receipt['TrangThai'] == 4) {
+                echo '<span class="badge bg-dark">Đã Xác Nhận</span>';
             } else {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
                 $CalcTimeDeadline = strtotime($receipt['time']) + 3600;
                 $deadline = date("Y-m-d H:i:s", $CalcTimeDeadline);
                 $today = date("Y-m-d H:i:s");
                 if ($deadline < $today) {
-                    echo '<span class="badge bg-danger">Cancel</span>';
+                    echo '<span class="badge bg-danger">Đã Hủy</span>';
                 }
             }
             ?>
@@ -377,13 +381,15 @@
                                         <td>
                                             <a href="/?action=receipt&detail=<?= $receipt['MaHoaDon'] ?>">
                                                 <button type="button"
-                                                    class="btn btn-block btn-primary btn-xs">View</button>
+                                                    class="btn btn-block btn-primary btn-xs">Xem Chi Tiết</button>
                                             </a>
             <?php if($receipt['TrangThai'] != 2 && $receipt['TrangThai'] != 1) : ?>
+            <?php if($receipt['TrangThai'] != 4) : ?>
                                             <a href="/?action=receipt&confirm=<?= $receipt['MaHoaDon'] ?>">
                                                 <button type="button"
                                                     class="btn btn-block btn-success btn-xs">Xác nhận</button>
                                             </a>
+            <?php endif; ?>
             <?php if($receipt['TrangThai'] != 3) : ?>
                                             <a href="/?action=receipt&cancel=<?= $receipt['MaHoaDon'] ?>">
                                                 <button type="button"

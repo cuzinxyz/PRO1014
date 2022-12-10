@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($result['role'] == 'admin') {
                 header("location: /?action=receipt");
             } else {
+                $_SESSION['role'] = 'employee';
                 header("location: /employee.php");
             }
         } else {
