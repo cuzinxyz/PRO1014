@@ -13,7 +13,7 @@ $employee = query("SELECT * FROM `employee` WHERE `id` = $employeeID");
 $receipts = query("SELECT DISTINCT users.phone_number, orders.time, orders.id, orders.status  FROM `orders` 
 JOIN `orders_detail` ON orders.id = orders_detail.order_id 
 JOIN `users` ON orders.user_id = users.id
-WHERE orders_detail.employee_id = $employeeID
+WHERE DATE(time) >= CURRENT_DATE() AND orders.status NOT IN(2,3) AND orders_detail.employee_id = $employeeID
 ORDER BY orders.time DESC");
 
 if (isset($_GET['detail'])) {
@@ -156,9 +156,9 @@ if (isset($_POST['startCut'])) {
                 echo '<span class="badge bg-primary">Đang cắt</span>';
             } else if ($receipt['status'] == 2) {
                 echo '<span class="badge bg-success">Hoàn thành</span>';
-            } else if ($receipt['TrangThai'] == 3) {
+            } else if ($receipt['status'] == 3) {
                 echo '<span class="badge bg-danger">Đơn bị hủy</span>';
-            } else if ($receipt['TrangThai'] == 4) {
+            } else if ($receipt['status'] == 4) {
                 echo '<span class="badge bg-dark">Đã xác nhận</span>';
             } else {
                 // tính thời gian quá 1h sẽ Cancel hóa đơn.
@@ -173,7 +173,7 @@ if (isset($_POST['startCut'])) {
                                         </td>
                                         <td>
                                             <a href="/employee.php?detail=<?= $receipt['id'] ?>"><button
-                                                    class="badge bg-success" style="border: none;">Detail</button></a>
+                                                    class="badge bg-success" style="border: none;">Xem Chi Tiết</button></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -244,15 +244,19 @@ if (isset($_POST['startCut'])) {
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-                                <?php
-                                    if ($detail['TrangThai'] == 2) :
-                                    ?>
-                                    <div class="direct-chat-text">
-                                        Đã xong!
-                                    </div>
-                                    <?php
-                                    endif;
-                                    ?>
+                        <form action="" class="mt-2" method="POST">
+        <?php if ($detail['TrangThai'] == 4) : ?>
+                <button type="submit" name="startCut" class="btn btn-block btn-success btn-sm">Bắt đầu cắt</button>
+        <?php elseif($detail['TrangThai'] == 1): ?>
+                <button type="submit" name="finished" class="btn btn-block btn-success btn-sm">Cắt xong!</button>
+        <?php endif; ?>
+                        </form>
+
+        <?php if ($detail['TrangThai'] == 2) : ?>
+            <div class="direct-chat-text">
+                Đã xong!
+            </div>
+        <?php endif; ?>
                         </div>
                         <!-- /.card-body -->
                     </div>

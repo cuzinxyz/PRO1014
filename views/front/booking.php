@@ -226,11 +226,11 @@
             if($('#password').val() != '' || $('#confirm_password').val()) {
                 if ($('#password').val() == $('#confirm_password').val()) {
                     $('#message').html('Mật khẩu trùng nhau &#9989;').css('color', 'green');
-                    $("#done").prop( "disabled", true );
+                    $("#done").prop( "disabled", false );
                     $("#done").removeClass("disabled");
                 } else {
                     $("#done").addClass("disabled");
-                    $("#done").prop( "disabled", false );
+                    $("#done").prop( "disabled", true );
                     $('#message').html('Mật khẩu phải trùng nhau &#10060;').css('color', 'red');
                 }
             }

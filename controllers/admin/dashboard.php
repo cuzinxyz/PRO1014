@@ -4,11 +4,11 @@ require_once "models/admin.php";
 # số lượng user
 $users = query("SELECT COUNT(phone_number) as amount FROM `users`");
 # số lượng nhân viên
-$employee = query("SELECT COUNT(*) as amount FROM `employee`");
+$employee = query("SELECT COUNT(*) as amount FROM `employee` WHERE role IS NULL");
 # số lượng dịch vụ
-$services = query("SELECT COUNT(*) as amount FROM `services`");
+$services = query("SELECT COUNT(*) as amount FROM `services` WHERE status=1");
 # số lượng đơn hàng
-$totalOrder = query("SELECT COUNT(*) as amount FROM `orders` ");
+$totalOrder = query("SELECT COUNT(*) as amount FROM `orders`");
 
 # doanh thu chưa có combo :D
 
@@ -94,7 +94,7 @@ foreach ($orderList as $key => $total) {
   $totalSales = $totalSales + $total['price'] + $total['comboPrice'];
 }
 # lượt khách trong ngày
-$orderOfOneDay = query("SELECT * FROM orders 
+$orderOfOneDay = query("SELECT COUNT(*) as amount FROM orders 
 WHERE date(time) = current_date()");
 
 
