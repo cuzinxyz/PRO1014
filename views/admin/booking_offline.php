@@ -2,6 +2,8 @@
 
 <head>
     <link rel="stylesheet" href="./public/css/booking__offline.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <div class="content-wrapper" style="min-height: 686px;">
     <!-- Content Header (Page header) -->
@@ -74,19 +76,14 @@
                                 <?php endforeach; ?>
                             </div>
                             <!-- /.card -->
+                            <h3 class="service__off mt-4">Time</h3>
+                            <div class="row p-3">
+                                <input class="flatpickr flatpickr-input" type="text" placeholder="Select Date.." name="choose_date" data-id="minDateToday" readonly="readonly" id="date">
+                            </div>
                         </form>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
-                    <div class="card card-primary">
-                        <input
-                            class="form-control"
-                            id="dateTimeNow"
-                            type="datetime-local"
-                            name="partydate"
-                            value="<?php echo date('Y-m-d H:i:s'); ?>"
-                        />
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
     </section>
@@ -95,10 +92,8 @@
 <?php 
 $script = '
 <script src="public/js/booking-off.js"></script>
+<script src="public/js/date-bookoff.js"></script>
 '; 
 ?>
-<script>
-    const randomColor = "#"+((1<<24)*Math.random()|0).toString(16); 
-    document.documentElement.style.setProperty('--main-bg-color', randomColor);
-</script>
+
 <?php require_once 'views/admin/partials/footer.php' ?>

@@ -21,6 +21,8 @@ SELECT DISTINCT employee.id as idnhanvien, employee.name, employee.image FROM em
 ");
 
 if (isset($_POST['book'])) {
+    $time_choose = $_POST['choose_date'];
+// var_dump($_POST);
     $phone_number = $_POST['phone_number'];
     if (isset($_POST['choose_service'])) {
         $service_choose = $_POST['choose_service'];
@@ -30,7 +32,7 @@ if (isset($_POST['book'])) {
         $combo_choose = (int) $_POST['choose_combo'];
     }
     $employee_id = (int) $randEmployee[0]['idnhanvien'];
-    book($phone_number, $service_choose, $combo_choose, $employee_id);
+    book($phone_number, $service_choose, $combo_choose, $employee_id, $time_choose);
 }
 
 require "views/admin/booking_offline.php";

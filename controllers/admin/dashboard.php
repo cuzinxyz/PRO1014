@@ -97,5 +97,15 @@ foreach ($orderList as $key => $total) {
 $orderOfOneDay = query("SELECT COUNT(*) as amount FROM orders 
 WHERE date(time) = current_date()");
 
+$top5Employee = query("
+SELECT AVG(star) AS Star, employee.name, employee.image FROM feedback
+LEFT JOIN orders ON feedback.order_id=orders.id
+LEFT JOIN orders_detail ON orders.id=orders_detail.order_id
+LEFT JOIN employee ON orders_detail.employee_id=employee.id
+GROUP BY employee.id
+ORDER BY star DESC
+LIMIT 5
+");
+// print_r($top5Employee);
 
 require "views/admin/dashboard.php";

@@ -8,10 +8,11 @@
                     <h1>Employees</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Employee</li>
-                    </ol>
+                    <div class="float-sm-right">
+                        <a href="/?action=addemployee">
+                        <button type="button" class="btn btn-block btn-primary btn-sm">Thêm nhân viên</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

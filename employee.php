@@ -248,7 +248,7 @@ if (isset($_POST['startCut'])) {
         <?php if ($detail['TrangThai'] == 4) : ?>
                 <button type="submit" name="startCut" class="btn btn-block btn-success btn-sm">Bắt đầu cắt</button>
         <?php elseif($detail['TrangThai'] == 1): ?>
-                <button type="submit" name="finished" class="btn btn-block btn-success btn-sm">Cắt xong!</button>
+                <!-- <button type="submit" name="finished" class="btn btn-block btn-success btn-sm">Cắt xong!</button> -->
         <?php endif; ?>
                         </form>
 

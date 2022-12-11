@@ -357,7 +357,7 @@ function query($sql)
     return $data;
 }
 
-function book($phone_number, $services, $combo, $employee)
+function book($phone_number, $services, $combo, $employee, $time)
 {
     $conn = connect();
     # insert user
@@ -366,7 +366,7 @@ function book($phone_number, $services, $combo, $employee)
     $stmt0->execute();
     $user_id = (int) $conn->lastInsertId();
     # insert hoa don
-    $sql1 = "INSERT INTO `orders`(`user_id`, `time`, `status`) VALUES ($user_id, NOW(), 0)";
+    $sql1 = "INSERT INTO `orders`(`user_id`, `time`, `status`) VALUES ($user_id, '$time', 0)";
     $stmt1 = $conn->prepare($sql1);
     $stmt1->execute();
     $order_id = $conn->lastInsertId();

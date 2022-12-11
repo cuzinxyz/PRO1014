@@ -9,7 +9,12 @@ $value = show_one_employee($id);
 if (isset($_POST['edit_employee'])) {
     $id = $_POST['id'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
+    if(empty($password)) {
+        $password = $value['password'];
+    } else {
+        $password = md5($_POST['password']);
+    }
     $salary = $_POST['salary'];
     $status = $_POST['status'];
     $name = $_POST['name'];
@@ -29,7 +34,7 @@ if (isset($_POST['edit_employee'])) {
     }
 
     move_uploaded_file($_FILES['image']['tmp_name'], $fileName);
-    update_employee($id, $email, $password, $name, $image, $salary, $role, $status);
+    update_employee($id, $email, $password, $name, $image, $salary, $status, $role);
     header('location: /?action=employees');
 }
 

@@ -80,7 +80,7 @@ if (isset($_GET['getstylist'])) {
                             <img src="public/images/employee/' . $item['image'] . '" alt="" class="avatar__stylist">
                             <p class="name__stylist">' . $item['name'] . '</p>
                             <span href="" class="detail__stylist">
-                                Review: '.$vote.'/5 <i class="fa-regular fa-star"></i>
+                                '.$vote.'/5 <i class="fa-regular fa-star"></i>
                             </span>
                         </div>
                     </div>

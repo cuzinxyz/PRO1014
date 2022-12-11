@@ -22,7 +22,7 @@
             <?php } ?>
             <a href="/?action=booking_history" class="<?= isset($_SESSION['phone_number']) ? 'display-none' : 'display-block' ?>"
                 style="<?= isset($_SESSION["phone_number"]) ? 'display: none;' : 'display: block' ?>"
-            >Lịch sử đặt hàng</a>
+            >Lịch sử đặt</a>
         </div>
         <div class="nav_socials">
             <a href="#"><i class="fa-brands fa-facebook"></i></a>

@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="password" value="<?= isset($_GET['id']) ? $value['password'] : "" ?>" required>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="password" placeholder="Nhập mật khẩu mới">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Hình ảnh</label>
