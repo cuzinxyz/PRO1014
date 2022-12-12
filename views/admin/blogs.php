@@ -8,10 +8,11 @@
                     <h1>Danh sách bài viết</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blogs list</li>
-                    </ol>
+                    <div class="float-sm-right">
+                        <a href="/?action=addblog">
+                        <button type="button" class="btn btn-block btn-primary btn-sm">Thêm bài viết</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

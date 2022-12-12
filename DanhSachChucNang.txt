@@ -1,0 +1,24 @@
+Danh sách tính năng BrunoBaber:
+
+USER
+- Blog detail.
+- Lịch sử cắt tóc đã đặt.
+- Đặt lịch.
+- Cài đặt (thay đổi thông tin).
+
+EMPLOYEE
+-  Danh sách lịch đặt của mình.
+- Cài đặt (thay đổi thông tin).
+- Thay đổi trạng thái cắt tóc.
+
+ADMIN
+- Danh sách hóa đơn của cửa hàng.
+- Tìm kiếm hóa đơn (dựa vào sdt).
+- Thay đổi trạng thái cắt tóc.
+- Đánh giá về dịch vụ.
+- Thống kê.
+- Dịch vụ. (Danh sách, Thêm, Sửa)
+- Nhân viên. (Danh sách, Thêm, Sửa)
+- Danh sách phản hồi.
+- Bài viết. (Thêm, Sửa, Xóa)
+- Đặt lịch. (khi khách gọi điện hoặc đến cửa hàng)

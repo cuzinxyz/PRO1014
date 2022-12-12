@@ -1,4 +1,16 @@
 <?php date_default_timezone_set('Asia/Ho_Chi_Minh'); ?>
+<?php
+# Kiểm tra xem có phải là admin hay không?
+if (isEmployee()) {
+    # Nếu job khác admin thì chuyển hướng.
+    if ($_SESSION['role'] != 'admin') {
+        # Nhân viên sẽ chuyển hướng sang các đơn của mình.
+        header("location: /employee.php");
+    }
+} else {
+    header("location: /");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,16 +1,16 @@
 <?php
 require "models/admin.php";
 
-# Kiểm tra xem có phải là admin hay không?
-if (isEmployee()) {
-    # Nếu job khác admin thì chuyển hướng.
-    if ($_SESSION['role'] != 'admin') {
-        # Nhân viên sẽ chuyển hướng sang các đơn của mình.
-        header("location: /employee.php");
-    }
-} else {
-    header("location: /");
-}
+// # Kiểm tra xem có phải là admin hay không?
+// if (isEmployee()) {
+//     # Nếu job khác admin thì chuyển hướng.
+//     if ($_SESSION['role'] != 'admin') {
+//         # Nhân viên sẽ chuyển hướng sang các đơn của mình.
+//         header("location: /employee.php");
+//     }
+// } else {
+//     header("location: /");
+// }
 # Tất cả hóa đơn.
 $all_receipts = get_receipt();
 # Xem chi tiết 1 hóa đơn.
