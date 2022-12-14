@@ -73,6 +73,9 @@ if (isset($action)) :
         case 'booking_history':
             require "controllers/front/booking_history.php";
             break;
+        case 'update_receipt':
+            require "controllers/admin/update__order.php";
+            break;
         default:
             require "views/front/404.php";
             break;
