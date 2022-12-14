@@ -424,3 +424,13 @@ function delete_history($id)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 }
+
+function book_update($order_id, $service_choose, $employee)
+{
+    $conn = connect();
+    foreach ($service_choose as $service) {
+        $sql = "INSERT INTO `orders_detail`(`order_id`, `service_id`, `employee_id`) VALUES($order_id, $service, $employee)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    }
+}
