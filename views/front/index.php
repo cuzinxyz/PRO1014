@@ -57,7 +57,7 @@
                     <div class="form-input__form flex">
                         <form action="/book" method="POST" style="width: 100%;">
                             <div class="form__input flex">
-                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus name="phone" maxlength="10">
+                                <input placeholder="Nhập SDT để đặt lịch" type="tel" class="my-input" value="" autofocus name="phone" required maxlength="10">
                                 <button type="submit" class="btn__action">ĐẶT LỊCH NGAY</button>
                             </div>
                         </form>
@@ -116,7 +116,27 @@
         <?php require "views/front/partials/footer.php" ?>
 
     </div>
-
+    <script src="public/js/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').on('click','.btn__action', function() {
+            var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            var mobile = $('.my-input').val();
+            if(mobile !==''){
+                if (vnf_regex.test(mobile) == false) 
+                {
+                    alert('Số điện thoại của bạn không đúng định dạng!');
+                    return false;
+                }else{
+                    return true;
+                }
+            }else{
+                alert('Bạn chưa điền số điện thoại!');
+                return false;
+            }
+            });
+        });
+    </script>
 </body>
 
 </html>

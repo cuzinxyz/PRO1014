@@ -34,18 +34,18 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="title">
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter title blog" name="title" required>
                 </div>
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Content</label>
-                  <textarea class="form-control" rows="5" placeholder="Enter ..." name="content" id="summernote"></textarea>
+                  <textarea class="form-control" rows="5" placeholder="Enter ..." name="content" id="summernote" required></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">Image blog</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+                      <input type="file" class="custom-file-input" id="exampleInputFile" name="image" required>
                       <label class="custom-file-label" for="exampleInputFile">Choose image</label>
                     </div>
                     <div class="input-group-append">

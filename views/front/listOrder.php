@@ -110,7 +110,13 @@
     }
 ?>
                       </td>
-                      <td> <a href="/?action=history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Xem Chi Tiết</button></a></td>
+                      <td> <a href="/?action=history&detail=<?= $order['id'] ?>"><button class="badge bg-success" style="border: none;">Xem Chi Tiết</button></a>
+        <?php if($order['status'] == 0) : ?>
+                                <a href="/?action=history&delete=<?= $order['id'] ?>" onclick="return confirm('Bạn có chắc muốn hủy?')">
+                                    <button class="badge bg-primary" style="border: none;">Hủy lịch</button>
+                                </a>
+        <?php endif; ?>
+                    </td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

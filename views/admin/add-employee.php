@@ -35,21 +35,21 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" name="name">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" required placeholder="Enter name" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" required placeholder="Enter email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Lương</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter salary" name="salary">
+                                    <input type="number" required class="form-control" id="exampleInputEmail1" placeholder="Enter salary" name="salary">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image upload</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="avatar">
+                                            <input type="file" required class="custom-file-input" id="exampleInputFile" name="avatar">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                         <div class="input-group-append">
@@ -61,7 +61,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" name="add">Add</button>
+                                <button type="submit" id="submit" class="btn btn-primary" name="add">Add</button>
                             </div>
                         </form>
                     </div>
@@ -74,5 +74,18 @@
     </section>
     <!-- /.content -->
 </div>
+<?php  
+$script = '
+<script>
+    $("#submit").on("click",function(){
+        if (($("input[name=name]").val()) == "" || ($("input[name=email]").val()) == "" || ($("input[name=salary]").val()) == "") {
+            alert("Bạn cần điền đủ thông tin.");
+            return false;
+        }
+        return true;
+      })
+</script>
+';
+?>
 
 <?php require_once 'views/admin/partials/footer.php' ?>

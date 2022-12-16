@@ -21,4 +21,10 @@ if (isset($_GET['detail'])) {
   }
 }
 
+if(isset($_GET['delete'])) {
+  $id_delete = $_GET['delete'];
+  delete_history($id_delete);
+  header("location: /?action=history");
+}
+
 require "views/front/listOrder.php";

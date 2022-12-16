@@ -76,7 +76,7 @@ if (isEmployee()) {
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form action="" method="post">
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <input type="text" class="form-control" name="login_email" placeholder="Email or Phone number" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -84,7 +84,8 @@ if (isEmployee()) {
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
+                    <p class="text-danger" id="username_error"></p>
+                    <div class="input-group">
                         <input type="password" class="form-control" name="login_password" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -92,6 +93,7 @@ if (isEmployee()) {
                             </div>
                         </div>
                     </div>
+                    <p class="text-danger" id="password_error"></p>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -103,7 +105,7 @@ if (isEmployee()) {
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" id="btnLogin" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -123,6 +125,37 @@ if (isEmployee()) {
     <script src="public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="public/admin/dist/js/adminlte.min.js"></script>
+
+    <script>
+    $(document).ready(function()
+    {
+        $('#btnLogin').click(function(){
+            // BƯỚC 1: Lấy dữ liệu từ form
+            var username    = $.trim($('input[name=login_email').val());
+            var password    = $.trim($('input[name=login_password').val());
+            // BƯỚC 2: Validate dữ liệu
+            // Biến cờ hiệu
+            var flag = true;
+            // Password
+            if (password.length <= 0){
+                $('#password_error').text('Bạn phải nhập mật khẩu');
+                flag = false;
+            }
+            else{
+                $('#password_error').text('');
+            }
+            // Username
+            if (username.length <= 0){
+                $('#username_error').text('Bạn phải nhập tài khoản');
+                flag = false;
+            }
+            else{
+                $('#username_error').text('');
+            }
+            return flag;
+        });
+    });
+    </script>
 </body>
 
 </html>

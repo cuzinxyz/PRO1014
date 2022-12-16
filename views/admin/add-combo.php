@@ -52,7 +52,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" name="add">Add</button>
+                <button type="submit" id="submit" class="btn btn-primary" name="add">Add</button>
               </div>
             </form>
           </div>
@@ -66,4 +66,17 @@
   <!-- /.content -->
 </div>
 
+<?php  
+$script = '
+<script>
+$("#submit").on("click",function(){
+  if (($(".checkbox__input:checked").length)<=1) {
+      alert("Bạn cần chọn dịch vụ để tạo combo");
+      return false;
+  }
+  return true;
+})
+</script>
+';
+?>
 <?php require_once 'views/admin/partials/footer.php'; ?>

@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" name="add">Thêm</button>
+                                <button type="submit" id="submit" class="btn btn-primary" name="add">Thêm</button>
                             </div>
                         </form>
                     </div>
@@ -51,13 +51,22 @@
 </div>
 
 <?php
-$script = "
+$script = '
 <script>
 $(function() {
     bsCustomFileInput.init();
 });
+
+$("#submit").on("click",function(){
+  if (($("input[name=nameService]").val()) == "" || ($("input[name=priceService]").val()) == "") {
+      alert("Bạn cần điền đủ thông tin.");
+      return false;
+  }
+  return true;
+})
+
 </script>
-";
+';
 ?>
 
 <?php require_once "views/admin/partials/footer.php" ?>
